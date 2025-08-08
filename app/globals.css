@@ -86,7 +86,7 @@
 }
 
 body {
-  font-family: var(--font-bricolage);
+  --font-primary: "Poppins", sans-serif;
 }
 
 .dark {
