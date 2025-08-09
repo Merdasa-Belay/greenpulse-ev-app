@@ -29,7 +29,7 @@ const CompanionCard = ({ id, name, topic, subject, duration, color }: CompanionC
             <div className="flex items-center gap-2">
                 <Image
                     src="/icons/clock.svg"
-                    alt="Clock Icon"
+                    alt="minutes"
                     width={13.5}
                     height={13.5}
                 />

@@ -26,7 +26,7 @@ const Page = () => {
           topic="Derivatives & Integrals"
           subject="maths"
           duration={45}
-          color="#FFDA6E"
+          color="#FFC857"
 
         />
         <CompanionCard
