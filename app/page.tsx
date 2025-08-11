@@ -1,8 +1,8 @@
-import React from 'react'
 import CompanionCard from '@/components/CompanionCard';
 import CompanionsList from '@/components/CompanionsList';
 import CTA from '@/components/CTA';
 import { recentSessions } from '@/constants';
+import MobileBottomNav from '@/components/MobileBottomNav';
 
 const Page = () => {
   return (
@@ -47,6 +47,7 @@ const Page = () => {
         />
         <CTA />
       </section>
+      <MobileBottomNav />
     </main >
   )
 }

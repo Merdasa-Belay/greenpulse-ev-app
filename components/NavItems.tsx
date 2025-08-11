@@ -10,12 +10,21 @@ const navItems = [
     { label: "My Journey", href: "/my-journey" },
 ];
 
-const NavItems = () => {
+interface NavItemsProps {
+    isMobile?: boolean;
+}
+
+const NavItems = ({ isMobile = false }: NavItemsProps) => {
     const pathname = usePathname();
     const activeColor = "#14C88F";
 
     return (
-        <nav className="flex items-center gap-6">
+        <nav
+            className={cn(
+                "flex gap-6",
+                isMobile ? "flex-col" : "flex-row items-center"
+            )}
+        >
             {navItems.map((item) => {
                 const isActive = pathname === item.href;
 
@@ -26,7 +35,8 @@ const NavItems = () => {
                         className={cn(
                             "relative pb-1 transition-all duration-300 hover:scale-105",
                             "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full",
-                            isActive ? "font-bold after:w-full" : "text-gray-700"
+                            isActive ? "font-bold after:w-full" : "text-gray-700",
+                            isMobile ? "text-lg py-2" : ""
                         )}
                         style={{
                             color: isActive ? activeColor : undefined,
