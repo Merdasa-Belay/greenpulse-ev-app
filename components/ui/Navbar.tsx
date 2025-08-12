@@ -66,7 +66,7 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* Right Side - User Profile or Auth Buttons */}
+                    {/* Right Side - User Profile */}
                     <div className="flex items-center gap-4">
                         {loading ? (
                             // Loading state
@@ -74,23 +74,7 @@ export default function Navbar() {
                         ) : user ? (
                             // User is signed in - show profile dropdown
                             <UserProfileDropdown user={user} />
-                        ) : (
-                            // User is not signed in - show auth buttons
-                            <div className="hidden md:flex items-center gap-3">
-                                <Link
-                                    href="/sign-in"
-                                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-600 transition-colors duration-200"
-                                >
-                                    Sign In
-                                </Link>
-                                <Link
-                                    href="/sign-up"
-                                    className="px-4 py-2 text-sm font-medium bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200"
-                                >
-                                    Sign Up
-                                </Link>
-                            </div>
-                        )}
+                        ) : null}
 
                         {/* Mobile Hamburger */}
                         <button
@@ -202,26 +186,7 @@ export default function Navbar() {
                                 Sign Out
                             </button>
                         </>
-                    ) : (
-                        // User is not signed in - show auth links
-                        <>
-                            <div className="border-t border-white/20 my-2"></div>
-                            <Link
-                                href="/sign-in"
-                                className="block px-2 py-1 rounded hover:bg-white/10"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Sign In
-                            </Link>
-                            <Link
-                                href="/sign-up"
-                                className="block px-2 py-1 rounded hover:bg-white/10"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Sign Up
-                            </Link>
-                        </>
-                    )}
+                    ) : null}
                 </nav>
             </aside>
         </>

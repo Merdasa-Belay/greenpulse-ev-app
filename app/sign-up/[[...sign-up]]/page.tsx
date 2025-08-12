@@ -8,12 +8,15 @@ export default function SignUpPage() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState<'student' | 'teacher' | 'admin'>('student');
     const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+        setIsSubmitting(true);
 
         try {
             const res = await fetch('/api/signup', {
@@ -21,7 +24,7 @@ export default function SignUpPage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, email, password }),
+                body: JSON.stringify({ name, email, password, role }),
             });
 
             if (!res.ok) {
@@ -30,12 +33,14 @@ export default function SignUpPage() {
                 return;
             }
 
-            // Redirect to login page on successful signup
-            router.push('/login');
+            // Redirect to sign-in with a one-time success message
+            router.push('/sign-in?message=Account%20created.%20Please%20sign%20in.');
 
         } catch (err) {
             setError('An unexpected error occurred.');
             console.error(err);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -112,12 +117,32 @@ export default function SignUpPage() {
                     {/* Optional: Password toggle button here */}
                 </div>
 
+                {/* Role Selection */}
+                <div className="flex flex-col">
+                    <label className="text-gray-900 font-semibold">Role</label>
+                </div>
+                <div className="border border-gray-200 rounded-lg h-12 flex items-center pl-3 focus-within:border-blue-500 transition">
+                    <svg viewBox="0 0 24 24" width={20} height={20} className="text-gray-400">
+                        <path fill="currentColor" d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm-8 9a8 8 0 0 1 16 0z" />
+                    </svg>
+                    <select
+                        value={role}
+                        onChange={(e) => setRole(e.target.value as 'student' | 'teacher' | 'admin')}
+                        className="ml-3 rounded-lg border-none w-full h-full focus:outline-none bg-transparent"
+                    >
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
                 {/* Submit button */}
                 <button
                     type="submit"
-                    className="mt-5 mb-3 bg-gray-900 text-white text-sm font-medium rounded-lg h-12 w-full hover:bg-gray-800 transition"
+                    disabled={isSubmitting}
+                    className="mt-5 mb-3 bg-gray-900 text-white text-sm font-medium rounded-lg h-12 w-full hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    Create Account
+                    {isSubmitting ? 'Creating Account...' : 'Create Account'}
                 </button>
             </form>
         </div>

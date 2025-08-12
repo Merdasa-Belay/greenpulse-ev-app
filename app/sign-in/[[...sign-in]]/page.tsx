@@ -1,21 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import type { User } from '@/contexts/AuthContext';
 
 // Validation schema
 const signInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   password: z.string().min(1, 'Password is required'),
-  rememberMe: z.boolean().optional().default(false),
+  rememberMe: z.boolean().default(false),
 });
 
-type SignInForm = z.infer<typeof signInSchema>;
+type SignInForm = z.input<typeof signInSchema>;
 
 export default function LoginPage() {
   const router = useRouter();
@@ -25,6 +26,8 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const redirectTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const {
     register,
@@ -32,6 +35,7 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
+    defaultValues: { email: '', password: '', rememberMe: false },
   });
 
   // Check for success message from URL params (e.g., after successful signup)
@@ -42,31 +46,80 @@ export default function LoginPage() {
     }
   }, [searchParams]);
 
+  // Cleanup any pending redirect timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (redirectTimeout.current) {
+        clearTimeout(redirectTimeout.current);
+      }
+    };
+  }, []);
+
   const onSubmit = async (data: SignInForm) => {
     setIsSubmitting(true);
     setError(null);
     setSuccessMessage(null);
 
     try {
-      const response = await fetch('/api/auth/signin', {
+      const response = await fetch('/api/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(data),
       });
+      // Parse JSON safely in case of empty/invalid response body
+      let result: unknown = undefined;
+      try {
+        result = await response.json();
+      } catch {
+        // ignore
+      }
 
-      const result = await response.json();
+      type SignInErr = { error: string };
+      const isRecord = (v: unknown): v is Record<string, unknown> =>
+        typeof v === 'object' && v !== null;
+      const hasError = (r: unknown): r is SignInErr =>
+        isRecord(r) && typeof r['error'] === 'string';
+      const hasUser = (
+        r: unknown
+      ): r is { user: { id: number | string; email: string; name?: string | null; profileImage?: string | null; role?: 'teacher' | 'student' | 'admin' | null } } => {
+        if (!isRecord(r)) return false;
+        const u = r['user'];
+        if (!isRecord(u)) return false;
+        const idOk = typeof u['id'] === 'number' || typeof u['id'] === 'string';
+        const emailOk = typeof u['email'] === 'string';
+        return idOk && emailOk;
+      };
 
       if (!response.ok) {
-        throw new Error(result.error || 'Something went wrong');
+        throw new Error(hasError(result) ? result.error : 'Sign-in failed');
       }
 
       // Update auth context with user data
-      login(result.user);
+      if (!hasUser(result)) {
+        throw new Error('Invalid response from server');
+      }
+      const apiUser = result.user;
+      const clientUser: User = {
+        id: String(apiUser.id),
+        name: typeof apiUser.name === 'string' ? apiUser.name : '',
+        email: apiUser.email,
+        role:
+          apiUser.role === 'teacher' || apiUser.role === 'student' || apiUser.role === 'admin'
+            ? apiUser.role
+            : 'student',
+        profileImage: typeof apiUser.profileImage === 'string' ? apiUser.profileImage : undefined,
+      };
+      login(clientUser);
 
-      // Success - redirect to dashboard or home page
-      router.push('/'); // You can change this to your dashboard route
+      // Show success and redirect after a short delay
+      setSuccessMessage('Successfully signed in! Redirecting...');
+      setIsRedirecting(true);
+      redirectTimeout.current = setTimeout(() => {
+        router.replace('/'); // You can change this to your dashboard route
+      }, 2000);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unexpected error occurred');
     } finally {
@@ -87,7 +140,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Success Message */}
           {successMessage && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3" aria-live="polite">
               <p className="text-green-600 text-sm">{successMessage}</p>
             </div>
           )}
@@ -113,7 +166,7 @@ export default function LoginPage() {
                 id="email"
                 placeholder="Enter your email address"
                 className="ml-3 rounded-lg border-none w-full h-full focus:outline-none"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isRedirecting}
               />
             </div>
             {errors.email && (
@@ -143,7 +196,7 @@ export default function LoginPage() {
                 id="password"
                 placeholder="Enter your password"
                 className="ml-3 rounded-lg border-none w-full h-full focus:outline-none"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isRedirecting}
               />
               <button
                 type="button"
@@ -195,10 +248,15 @@ export default function LoginPage() {
           {/* Sign In Button */}
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isRedirecting}
             className="w-full bg-blue-600 text-white text-sm font-medium rounded-lg h-12 hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
-            {isSubmitting ? (
+            {isRedirecting ? (
+              <div className="flex items-center">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Redirecting...
+              </div>
+            ) : isSubmitting ? (
               <div className="flex items-center">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                 Signing In...
@@ -211,7 +269,7 @@ export default function LoginPage() {
           {/* Sign Up Link */}
           <div className="text-center">
             <p className="text-gray-600 text-sm">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link
                 href="/sign-up"
                 className="text-blue-600 font-medium hover:text-blue-700 transition"

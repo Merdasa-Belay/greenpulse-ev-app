@@ -30,14 +30,30 @@ export async function POST(request: Request) {
 
     // 4. Generate a JWT token
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, role: user.role },
       process.env.JWT_SECRET || 'your-fallback-secret-key',
       { expiresIn: '1h' }
     );
 
-    // 5. Return the token and user info
+    // 5. Return the token and user info and set an auth cookie for middleware
     const { password: _, ...userWithoutPassword } = user;
-    return NextResponse.json({ token, user: userWithoutPassword }, { status: 200 });
+    const response = NextResponse.json({ token, user: userWithoutPassword }, { status: 200 });
+    response.cookies.set('next-auth.session-token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60, // 1 hour
+    });
+    // Optional: set a readable role cookie (non-HTTP-only) for client-side checks
+    response.cookies.set('role', String(user.role), {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60,
+    });
+    return response;
 
   } catch (error) {
     console.error('Signin Error:', error);

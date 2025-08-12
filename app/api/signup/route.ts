@@ -4,15 +4,20 @@ import { hashPassword } from '@/lib/jwt';
 
 export async function POST(request: Request) {
   try {
-    const { name, email, password } = await request.json();
+  const { name, email, password, role } = await request.json();
 
     console.log('Signup request received:', { name, email });
 
     // 1. Validate input
-    if (!name || !email || !password) {
+  if (!name || !email || !password) {
       console.log('Validation failed: Missing fields');
       return NextResponse.json({ error: 'Name, email, and password are required.' }, { status: 400 });
     }
+  const allowedRoles = ['student', 'teacher', 'admin'] as const;
+  type AllowedRole = typeof allowedRoles[number];
+  const normalizedRole: AllowedRole = allowedRoles.includes(role as AllowedRole)
+    ? (role as AllowedRole)
+    : 'student';
 
     // 2. Check if user already exists
     console.log('Checking for existing user...');
@@ -32,19 +37,18 @@ export async function POST(request: Request) {
 
     // 4. Create the new user in the database
     console.log('Creating user in database...');
-    const user = await prisma.user.create({
+  const user = await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
+        role: normalizedRole,
       },
+      select: { id: true, name: true, email: true, role: true, createdAt: true },
     });
     console.log('User created successfully:', user);
 
-    // Do not return the password hash in the response
-    const { password: _, ...userWithoutPassword } = user;
-
-    return NextResponse.json({ user: userWithoutPassword }, { status: 201 });
+    return NextResponse.json({ user }, { status: 201 });
 
   } catch (error) {
     console.error('Signup Error:', error);

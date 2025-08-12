@@ -73,6 +73,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
       console.error('Error during logout:', error);
     } finally {
       setUser(null);
+      // Redirect to sign-in after logout
+      try {
+        // best effort navigation
+        window.location.assign('/sign-in');
+      } catch { }
     }
   };
 
