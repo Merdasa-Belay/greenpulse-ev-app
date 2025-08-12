@@ -12,8 +12,12 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/forgot-password') ||
     pathname.startsWith('/reset-password')
 
-  // Only auth pages are public per requirement
-  const isPublicRoute = isAuthPage
+  // Public routes for marketing/SEO and auth
+  const isPublicRoute =
+    isAuthPage ||
+    pathname === '/landing' ||
+    pathname === '/robots.txt' ||
+    pathname === '/sitemap.xml'
 
   // If user is signed in and on an auth page, send them to home
   if (currentUser && isAuthPage) {
@@ -22,6 +26,10 @@ export function middleware(request: NextRequest) {
 
   // If user is not signed in and trying to access a protected route, redirect to sign-in
   if (!currentUser && !isPublicRoute) {
+    // First load: send unauthenticated users hitting root to the landing page
+    if (pathname === '/') {
+      return NextResponse.redirect(new URL('/landing', request.url))
+    }
     return NextResponse.redirect(new URL('/sign-in', request.url))
   }
 

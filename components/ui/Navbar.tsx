@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -11,8 +11,15 @@ import Avatar from "./Avatar";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
     const { user, loading, logout } = useAuth();
+
+    // Avoid hydration mismatch: render only after client mounts
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+    if (!mounted) return null;
 
     // Hide Navbar on auth pages
     if (pathname?.startsWith("/sign-in") || pathname?.startsWith("/sign-up") || pathname?.startsWith("/forgot-password") || pathname?.startsWith("/reset-password")) {
@@ -66,7 +73,7 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* Right Side - User Profile */}
+                    {/* Right Side - Auth / User Profile */}
                     <div className="flex items-center gap-4">
                         {loading ? (
                             // Loading state
@@ -74,7 +81,23 @@ export default function Navbar() {
                         ) : user ? (
                             // User is signed in - show profile dropdown
                             <UserProfileDropdown user={user} />
-                        ) : null}
+                        ) : (
+                            // Not signed in - show Sign In / Sign Up (desktop)
+                            <div className="hidden md:flex items-center gap-3">
+                                <Link
+                                    href="/sign-in"
+                                    className="px-4 py-2 rounded border border-green-500 text-green-600 hover:bg-green-50 transition"
+                                >
+                                    Sign In
+                                </Link>
+                                <Link
+                                    href="/sign-up"
+                                    className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition"
+                                >
+                                    Sign Up
+                                </Link>
+                            </div>
+                        )}
 
                         {/* Mobile Hamburger */}
                         <button
@@ -186,7 +209,26 @@ export default function Navbar() {
                                 Sign Out
                             </button>
                         </>
-                    ) : null}
+                    ) : (
+                        // Not signed in - show Sign In / Sign Up (mobile)
+                        <>
+                            <div className="border-t border-white/20 my-2"></div>
+                            <Link
+                                href="/sign-in"
+                                className="block px-2 py-2 rounded bg-white text-green-700 font-medium text-center"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Sign In
+                            </Link>
+                            <Link
+                                href="/sign-up"
+                                className="block px-2 py-2 rounded bg-green-700 text-white font-medium text-center"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Sign Up
+                            </Link>
+                        </>
+                    )}
                 </nav>
             </aside>
         </>
