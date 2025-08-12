@@ -1,147 +1,184 @@
+<div align="center">
 
-# GreenPulse EV App
+# GreenPulse EV
 
-Real-time AI Teaching Platform for engaging, topic-based learning experiences.
+Smart EV routing, charging optimization, and learning companions — built with Next.js, Prisma, and MySQL.
 
 ![App Thumbnail](public/readme/thumbnail.png)
 
+</div>
+
 ## Overview
 
-GreenPulse EV App is a Next.js App Router project that showcases interactive "Companions" (guided learning personas), a personal journey view, and a subscription flow. It uses a modern UI kit with headless primitives and a type-safe form stack.
+GreenPulse EV is a Next.js App Router project with authentication (signup/signin/signout), role-based access (student/teacher/admin), and a modern Tailwind UI. It includes a public landing page, protected app routes, and a JWT-based session set via HTTP-only cookies compatible with middleware.
 
 ## Features
 
-- Companion cards and listing with categories and durations
-- Create/edit companion flows (form with validation)
-- Personal journey page and recent sessions
-- Subscription page scaffold
-- Responsive design with reusable UI components (buttons, inputs, table, etc.)
+- Public landing page with marketing sections and SEO metadata
+- Authentication: signup, signin, signout using JWT (HTTP-only cookie)
+- Role-based access control in middleware (student/teacher/admin)
+- Protected routes (e.g., /admin, /teacher, /student, app pages)
+- Forms with React Hook Form + Zod validation
+- Prisma ORM (MySQL) with typed client
+- Modern UI with Tailwind CSS and headless primitives
+- Next.js App Router, server components, and edge-friendly middleware
 
 ## Tech Stack
 
-- Next.js 15 (App Router) + React 19 + TypeScript 5
+- Next.js 15 (App Router), React 19, TypeScript 5
 - Tailwind CSS v4
-- Radix UI primitives (select, label)
-- React Hook Form + Zod (forms and validation)
-- Framer Motion (animations)
-- Lucide Icons
+- Prisma + MySQL
+- JWT (jsonwebtoken) for session tokens
+- React Hook Form + Zod
+- Radix Primitives (label/select), Heroicons/Lucide Icons
 
-## Project Structure
+## Project Structure (excerpt)
 
 ```text
-.
-├── app/                       # Next.js App Router pages/layout
-│   ├── layout.tsx             # Root layout
-│   ├── globals.css            # Global styles (Tailwind v4)
-│   ├── page.tsx               # Home / Dashboard
-│   ├── companions/
-│   │   ├── page.tsx           # Companions index
-│   │   ├── new/page.tsx       # Create companion
-│   │   └── [id]/page.tsx      # Companion details
-│   ├── my-journey/page.tsx    # Personal journey
-│   ├── sign-in/page.tsx       # Sign-in placeholder
-│   └── subscription/page.tsx  # Subscription page
-├── components/
-│   ├── CompanionCard.tsx
-│   ├── CompanionForm.tsx
-│   ├── CompanionsList.tsx
-│   ├── CTA.tsx
-│   ├── NavItems.tsx
-│   └── ui/                    # Reusable UI primitives
-│       ├── Navbar.tsx
-│       ├── button.tsx
-│       ├── form.tsx
-│       ├── input.tsx
-│       ├── label.tsx
-│       ├── select.tsx
-│       ├── table.tsx
-│       └── textarea.tsx
-├── constants/
-│   ├── index.ts               # App constants and seed data
-│   └── soundwaves.json        # Static JSON asset
-├── lib/
-│   └── utils.ts               # Utility helpers
-├── public/
-│   ├── icons/*.svg            # Icon set
-│   ├── images/*.svg           # Images
-│   └── readme/*.png           # README visuals
-├── types/                     # Type declarations
-│   ├── index.d.ts
-│   └── vapi.d.ts
-├── eslint.config.mjs
-├── next.config.ts
-├── package.json
-├── postcss.config.mjs
-├── tsconfig.json
-└── README.md
+app/
+   layout.tsx           # Root layout (AuthProvider, Navbar)
+   page.tsx             # Authenticated dashboard
+   landing/page.tsx     # Public landing page
+   api/                 # Route handlers (signup, signin, auth/me, auth/signout)
+components/
+   landing/             # Hero, Features, CTA
+   ui/                  # Reusable UI components
+contexts/
+   AuthContext.tsx      # Client auth state (login/logout/refresh)
+lib/
+   prisma.ts            # Prisma client
+   jwt.ts               # JWT helpers and password hashing
+middleware.ts          # Route protection + role enforcement
+prisma/
+   schema.prisma        # DB schema (User + Role)
 ```
 
-## Getting Started
+## Setup
 
 Prerequisites
 
-- Node.js 18+ (recommend LTS) and npm
+- Node.js 18+ (LTS recommended)
+- MySQL database (local or managed)
 
-Install dependencies
+1) Install dependencies
 
 ```bash
 npm install
 ```
 
-Run the dev server
+2) Environment variables
+
+Create `.env` (or `.env.local`) in the project root:
+
+```bash
+# Database (MySQL)
+DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DB_NAME"
+
+# JWT signing secret (use a strong random value in production)
+JWT_SECRET="replace-with-a-strong-secret"
+
+# (Optional) Public app URL for absolute metadata (OG/Twitter)
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+```
+
+3) Generate Prisma client and run migrations
+
+```bash
+npx prisma migrate dev --name init
+npx prisma generate
+```
+
+If using an existing DB, ensure it’s empty or aligned with `prisma/schema.prisma`.
+
+4) Start the dev server
 
 ```bash
 npm run dev
 ```
 
-Build for production
+Visit http://localhost:3000.
+
+## Running Migrations (production)
 
 ```bash
-npm run build
-npm start
+npx prisma migrate deploy
 ```
 
-Lint
+## Authentication Flow
+
+- Signup (`POST /api/signup`):
+   - Validates name, email, password; role defaults to `student` if omitted.
+   - Hashes password (bcryptjs) and stores user in MySQL via Prisma.
+- Signin (`POST /api/signin`):
+   - Verifies credentials, signs a JWT `{ userId, email, role }` (1h expiry).
+   - Sets `next-auth.session-token` (HTTP-only cookie) and a readable `role` cookie.
+   - Returns user payload (without password).
+- Me (`GET /api/auth/me`):
+   - Reads the HTTP-only cookie, verifies JWT, returns user info.
+- Signout (`POST /api/auth/signout`):
+   - Clears the session and role cookies.
+
+Middleware (`middleware.ts`):
+
+- Public routes are allowed (e.g., `/landing`, `/sign-in`, `/sign-up`, `/forgot-password`, `/reset-password`, SEO routes).
+- Unauthenticated access to protected routes redirects to `/sign-in`.
+- Role-restricted routes (`/admin`, `/teacher`, `/student`) enforce roles using the `role` cookie when signed in.
+
+Client Auth Context (`contexts/AuthContext.tsx`):
+
+- Holds `user` and `loading` state.
+- `refreshUser()` fetches `/api/auth/me` on mount.
+- `login()` sets client state post-signin; `logout()` calls signout and navigates to `/sign-in`.
+
+## Extending Roles and Features
+
+Add a role
+
+1) Update Prisma schema:
+
+```prisma
+enum Role {
+   student
+   teacher
+   admin
+   // add more here, e.g. manager
+}
+```
+
+2) Use the new role in the `User` model and rerun migrations:
 
 ```bash
-npm run lint
+npx prisma migrate dev --name add-new-role
 ```
 
-## Environment Variables
+3) Update middleware checks (e.g., allow `/manager`).
 
-This project doesn’t require environment variables by default. If you integrate external services (auth, APIs), create a `.env.local` file at the project root and add your keys there.
+4) Update UI and registration (`/api/signup`) to accept/select the new role.
 
-## Key Routes
+Add a protected feature
 
-- `/` – Dashboard (cards, recent sessions + CTA)
-- `/companions` – Browse companions
-- `/companions/new` – Create a companion
-- `/companions/[id]` – Companion details
-- `/my-journey` – Learning journey view
-- `/subscription` – Subscription page
-- `/sign-in` – Placeholder (no auth wired by default)
+- Create a new route under `app/feature/page.tsx`.
+- Guard via middleware path rules (e.g., `/feature` for specific roles).
+- On the client, use `useAuth()` to tailor UI by role.
 
-## UI and Patterns
+## Known Issues / Tips
 
-- UI components live under `components/ui` and are designed to be composable and themeable.
-- Forms use `react-hook-form` with `zod` validators defined alongside the form components.
-- Tailwind v4 uses the new PostCSS plugin; global styles live in `app/globals.css`.
+- Hydration warnings can occur if client-only state renders during SSR. We mitigate this by deferring client-only UI (e.g., Navbar waits for mount) and keeping landing sections server-friendly.
+- Always include `credentials: 'include'` on fetch calls that need cookies.
+- Use `NextResponse.redirect` and middleware for server-side redirects to avoid client/server mismatches.
+- Use strong `JWT_SECRET` in production and rotate as needed.
+- For DB schema changes, commit both `schema.prisma` and generated migrations.
 
-## Deployment
+## Scripts
 
-This is a standard Next.js App Router app. Recommended hosting: Vercel.
-
-- Add any required environment variables in the hosting dashboard.
-- Use the production build command `next build` and start with `next start`.
-
-## Troubleshooting
-
-- Ensure Node 18+ is installed.
-- If styles don’t load, confirm Tailwind v4 is enabled via `@tailwindcss/postcss` and that `app/globals.css` is imported in `app/layout.tsx`.
-- If the dev server caches oddly, delete `.next/` and restart:
-   - `rm -rf .next` then `npm run dev`
+```bash
+npm run dev       # Start Next.js (dev)
+npm run build     # Build for production
+npm run start     # Start production server
+npm run lint      # Lint codebase
+```
 
 ## License
 
-No license specified.
+Green Pulse © 2025 GreenPulse EV. See LICENSE (or replace with your organization’s license).
 
