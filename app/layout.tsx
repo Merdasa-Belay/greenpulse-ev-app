@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/ui/Navbar";
+import ConditionalNavbar from "@/components/ui/ConditionalNavbar";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 const bricolage = Bricolage_Grotesque({
@@ -10,8 +10,11 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "greenpulse-ev",
-  description: "Real-time AI Teaching Platform",
+  title: {
+    template: "%s | GreenPulse EV",
+    default: "GreenPulse EV",
+  },
+  description: "Smart EV routing, charging optimization, and learning companions.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -19,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${bricolage.variable} antialiased`}>
         <AuthProvider>
-          <Navbar />
+          <ConditionalNavbar />
           <div>
             {children}
           </div>
