@@ -5,7 +5,7 @@ import Navbar from './Navbar'; // Assuming the original Navbar is here
 
 const ConditionalNavbar = () => {
   const pathname = usePathname();
-  const isLandingPage = pathname === '/landing';
+  const isLandingPage = pathname === '/' || pathname === '/landing';
 
   if (isLandingPage) {
     return null; // Don't render Navbar on the landing page

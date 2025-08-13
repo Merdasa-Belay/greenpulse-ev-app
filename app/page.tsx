@@ -1,55 +1,31 @@
-import CompanionCard from '@/components/CompanionCard';
-import CompanionsList from '@/components/CompanionsList';
-import CTA from '@/components/CTA';
-import { recentSessions } from '@/constants';
+// Root landing page for initial public phase.
+import Hero from '@/components/landing/Hero';
+import Features from '@/components/landing/Features';
+import Services from '@/components/landing/Services';
+import Stats from '@/components/landing/Stats';
+import Testimonials from '@/components/landing/Testimonials';
+import CTASection from '@/components/landing/CTASection';
+import Newsletter from '@/components/landing/Newsletter';
+import Contact from '@/components/landing/Contact';
+import Footer from '@/components/landing/Footer';
+import NewNavbar from '@/components/ui/NewNavbar';
 import MobileBottomNav from '@/components/MobileBottomNav';
 
-const Page = () => {
+export default function LandingRootPage() {
   return (
-    <main>
-      <h1>
-        Dashboard
-      </h1 >
-      <section className='home-section'>
-        <CompanionCard
-          id="123"
-          name="Neura the Brainy Explorer"
-          topic="Neural Networks"
-          subject="science"
-          duration={45}
-          color="#E5D0FF"
-
-        />
-        <CompanionCard
-          id="456"
-          name="Countsy the Number Wizard"
-          topic="Derivatives & Integrals"
-          subject="maths"
-          duration={45}
-          color="#FFC857"
-
-        />
-        <CompanionCard
-          id="789"
-          name="Verba the Vocabulary Builder"
-          topic="English Literature"
-          subject="language"
-          duration={45}
-          color="#BDE7FF"
-
-        />
-      </section>
-      <section className='home-section'>
-        <CompanionsList
-          title="Recently completed Sessions"
-          companions={recentSessions}
-          className="w-2/3 max-lg:w-full"
-        />
-        <CTA />
-      </section>
+    <main className="overflow-x-hidden min-h-screen bg-white pt-20 pb-24 md:pb-0">
+      <NewNavbar />
+      <Hero />
+      <Features />
+      <Services />
+      <Stats />
+      <Testimonials />
+      <CTASection />
+      <Newsletter />
+      <Contact />
+      <Footer />
+      {/* Mobile bottom navigation (hidden on md+) */}
       <MobileBottomNav />
-    </main >
-  )
+    </main>
+  );
 }
-
-export default Page
