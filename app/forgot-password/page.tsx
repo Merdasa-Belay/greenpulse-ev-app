@@ -78,7 +78,7 @@ export default function ForgotPasswordPage() {
               If an account with that email exists, we sent you a password reset link.
             </p>
             <p className="text-sm text-gray-500 mb-6">
-              Didn't receive an email? Check your spam folder or try again.
+              Didn&apos;t receive an email? Check your spam folder or try again.
             </p>
             <div className="space-y-3">
               <Link
@@ -109,7 +109,7 @@ export default function ForgotPasswordPage() {
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Forgot Password?</h1>
           <p className="text-gray-600">
-            Enter your email address and we'll send you a link to reset your password.
+            Enter your email address and we&apos;ll send you a link to reset your password.
           </p>
         </div>
 

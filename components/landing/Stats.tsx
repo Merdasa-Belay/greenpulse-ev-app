@@ -53,28 +53,28 @@ function useCountUp(target: string, inView: boolean) {
 export default function Stats() {
     const stats: StatItem[] = [
         {
-            value: "15+",
-            label: "Future Models Coming",
+            value: "150+",
+            label: "Beta Learners",
             color: "blue",
-            icon: <RocketLaunchIcon className="w-8 h-8" />,
-        },
-        {
-            value: "50+",
-            label: "Certified Technicians",
-            color: "green",
             icon: <UserGroupIcon className="w-8 h-8" />,
         },
         {
-            value: "98%",
-            label: "Customer Satisfaction",
+            value: "800+",
+            label: "Lessons Accessed",
+            color: "green",
+            icon: <WrenchScrewdriverIcon className="w-8 h-8" />,
+        },
+        {
+            value: "92%",
+            label: "Practice Completion",
             color: "blue",
             icon: <HandThumbUpIcon className="w-8 h-8" />,
         },
         {
-            value: "1,250+",
-            label: "EVs Serviced",
+            value: "12",
+            label: "Institutions Engaged",
             color: "green",
-            icon: <WrenchScrewdriverIcon className="w-8 h-8" />,
+            icon: <RocketLaunchIcon className="w-8 h-8" />,
         },
     ];
 
@@ -103,7 +103,7 @@ export default function Stats() {
                     viewport={{ once: true }}
                     className="text-3xl md:text-4xl font-bold text-center mb-14 tracking-tight"
                 >
-                    Our Impact In Numbers
+                    Early Impact Metrics
                 </motion.h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                     {displayStats.map((item, idx) => {

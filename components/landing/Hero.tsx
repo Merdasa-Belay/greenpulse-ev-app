@@ -42,9 +42,9 @@ export default function Hero() {
     } as const;
 
     const badges = [
-        { label: "Smart Routing", icon: <BoltIcon className="h-4 w-4" /> },
-        { label: "Secure Data", icon: <ShieldCheckIcon className="h-4 w-4" /> },
-        { label: "AI Companions", icon: <PlayCircleIcon className="h-4 w-4" /> },
+        { label: "EV Maintenance", icon: <BoltIcon className="h-4 w-4" /> },
+        { label: "EV training", icon: <ShieldCheckIcon className="h-4 w-4" /> },
+        { label: "Practical EV Workshops", icon: <PlayCircleIcon className="h-4 w-4" /> },
     ];
 
     return (
@@ -91,15 +91,11 @@ export default function Hero() {
                             variants={itemVariants}
                             className="text-balance text-5xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-6xl motion-reduce:transition-none"
                         >
-                            Smarter EV Journeys,{" "}
-                            <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
-                                Optimized for You.
-                            </span>
+                            Accelerate Ethiopia’s<span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 bg-clip-text text-transparent"> EV & Green Tech Skills</span>
                         </motion.h1>
 
                         <motion.p variants={itemVariants} className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-slate-600 motion-reduce:transition-none">
-                            Plan routes, optimize charging, and track your EV journey with intelligent insights—
-                            built for sustainable travel, adaptive learning, and clean mobility adoption.
+                            EV service and green tech training—practical, local, and hands-on for Ethiopia’s emerging workforce.
                         </motion.p>
 
                         <motion.div variants={itemVariants} className="mt-12 flex flex-wrap gap-4 motion-reduce:transition-none">
@@ -107,7 +103,7 @@ export default function Hero() {
                                 href="/sign-up"
                                 className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-slate-900 px-8 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                             >
-                                <span>Get Started Today</span>
+                                <span>Join the Beta</span>
                                 <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Link>
                             <Link
@@ -115,12 +111,12 @@ export default function Hero() {
                                 className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white/60 px-8 text-lg font-medium text-slate-900 backdrop-blur-sm transition-all duration-300 hover:border-slate-400 hover:bg-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                             >
                                 <PlayCircleIcon className="h-6 w-6 text-emerald-600" />
-                                <span>Live Demo</span>
+                                <span>View Curriculum</span>
                             </Link>
                         </motion.div>
 
                         <motion.p variants={itemVariants} className="mt-5 text-sm text-slate-500 motion-reduce:transition-none">
-                            No credit card required. 14‑day free trial. Cancel anytime.
+                            Limited early access • Localized content • Founding member recognition.
                         </motion.p>
                     </div>
 
@@ -149,7 +145,7 @@ export default function Hero() {
                                     <BoltIcon className="h-5 w-5" />
                                 </div>
                                 <p className="text-sm font-medium text-slate-800">
-                                    Predictive charging stops enabled
+                                    Practical EV Workshops & Training Live
                                     <span className="ml-2 inline-block animate-pulse text-emerald-600">●</span>
                                 </p>
                             </motion.div>
@@ -187,7 +183,7 @@ export default function Hero() {
                     transition={{ delay: 1.2, duration: 0.6 }}
                     className="mt-14 flex justify-center"
                 >
-                    <a href="#services" className="group flex flex-col items-center gap-2 text-xs font-medium text-slate-500 hover:text-emerald-600">
+                    <a href="#features" className="group flex flex-col items-center gap-2 text-xs font-medium text-slate-500 hover:text-emerald-600">
                         <span className="inline-flex h-10 w-6 items-start justify-center rounded-full border border-slate-300/70 bg-white/70 p-1 backdrop-blur-sm shadow">
                             <span className="h-2 w-2 animate-bounce rounded-full bg-emerald-500" />
                         </span>

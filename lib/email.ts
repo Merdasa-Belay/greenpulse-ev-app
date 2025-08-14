@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 const createTransporter = () => {
   // For Gmail (you need to use App Passwords, not regular password)
   if (process.env.SMTP_HOST === 'smtp.gmail.com') {
-    return nodemailer.createTransporter({
+  return nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT || '587'),
       secure: false, // true for 465, false for other ports
@@ -16,7 +16,7 @@ const createTransporter = () => {
   }
   
   // For other providers (Outlook, Yahoo, etc.)
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT || '587'),
     secure: false,
@@ -51,7 +51,7 @@ ${resetUrl}
 
 This link will expire in 1 hour for security reasons.
 
-If you didn't request this password reset, please ignore this email.
+If you didn\'t request this password reset, please ignore this email.
 
 Best regards,
 The GreenPulse EV Team
@@ -114,12 +114,12 @@ const generatePasswordResetEmailTemplate = (userName: string, resetUrl: string):
                 <strong>⚠️ Important:</strong> This link will expire in 1 hour for security reasons.
             </div>
             
-            <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
+            <p>If the button doesn\'t work, you can copy and paste this link into your browser:</p>
             <p style="word-break: break-all; background-color: #e5e7eb; padding: 10px; border-radius: 4px;">
                 ${resetUrl}
             </p>
             
-            <p>If you didn't request this password reset, please ignore this email. Your account remains secure.</p>
+            <p>If you didn\'t request this password reset, please ignore this email. Your account remains secure.</p>
             
             <p>Best regards,<br>The GreenPulse EV Team</p>
         </div>

@@ -1,13 +1,14 @@
-// components/landing/Contact.tsx
 "use client";
 
 import { EnvelopeIcon, PhoneIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/solid";
+import { FaTiktok, FaTwitter, FaYoutube, FaTelegramPlane } from 'react-icons/fa';
+import SocialButton from "../ui/SocialButton";
 import { motion } from "framer-motion";
 
 
 const Contact = () => {
     return (
-        <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-slate-900 transition-colors">
             <div className="container mx-auto px-6">
                 {/* Header */}
                 <div className="text-center mb-16">
@@ -39,8 +40,8 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-gray-800 mb-1">Our Locations</h4>
-                                    <p className="text-gray-600">123 Green Ave, Seattle, WA</p>
-                                    <p className="text-gray-600">456 Eco Blvd, Portland, OR</p>
+                                    <p className="text-gray-600">Megenagna, Addis Ababa, Legesse Feleke Building</p>
+
                                 </div>
                             </div>
 
@@ -51,8 +52,10 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-gray-800 mb-1">Call Us</h4>
-                                    <p className="text-gray-600">Main: (206) 555-0199</p>
-                                    <p className="text-gray-600">Service: (206) 555-0188</p>
+                                    <p className="text-gray-600">+251911758111</p>
+                                    <p className="text-gray-600">+251912072341</p>
+                                    <p className="text-gray-600">+251913024687</p>
+
                                 </div>
                             </div>
 
@@ -82,36 +85,43 @@ const Contact = () => {
                             </div>
                         </div>
 
-                        {/* Social */}
-                        <div className="mt-8">
+                        {/* Social (Updated) */}
+                        <div className="mt-10">
                             <h4 className="font-bold text-gray-800 mb-4">Follow Us</h4>
-                            <div className="flex space-x-4">
-                                <a
-                                    href="#"
-                                    className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300"
-                                >
-                                    {/* Replace with actual SVG or icon */}
-                                    F
-                                </a>
-                                <a
-                                    href="#"
-                                    className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-500 hover:bg-green-500 hover:text-white transition duration-300"
-                                >
-                                    I
-                                </a>
-                                <a
-                                    href="#"
-                                    className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-400 hover:bg-blue-400 hover:text-white transition duration-300"
-                                >
-                                    T
-                                </a>
-                                <a
-                                    href="#"
-                                    className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white transition duration-300"
-                                >
-                                    Y
-                                </a>
-                            </div>
+                            <ul className="flex flex-wrap gap-4">
+                                <li>
+                                    <SocialButton
+                                        href="https://www.tiktok.com/@yourhandle"
+                                        label="TikTok"
+                                        brand="#010101"
+                                        icon={<FaTiktok className="text-[1.05rem]" />}
+                                    />
+                                </li>
+                                <li>
+                                    <SocialButton
+                                        href="https://twitter.com/yourhandle"
+                                        label="Twitter"
+                                        brand="#1DA1F2"
+                                        icon={<FaTwitter className="text-[1.05rem]" />}
+                                    />
+                                </li>
+                                <li>
+                                    <SocialButton
+                                        href="https://youtube.com/@yourchannel"
+                                        label="YouTube"
+                                        brand="#FF0000"
+                                        icon={<FaYoutube className="text-[1.05rem]" />}
+                                    />
+                                </li>
+                                <li>
+                                    <SocialButton
+                                        href="https://t.me/yourchannel"
+                                        label="Telegram"
+                                        brand="#0088CC"
+                                        icon={<FaTelegramPlane className="text-[1.05rem]" />}
+                                    />
+                                </li>
+                            </ul>
                         </div>
                     </motion.div>
 

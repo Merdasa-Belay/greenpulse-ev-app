@@ -22,7 +22,7 @@ export interface PasswordResetToken {
 }
 
 // In-memory storage (replace with actual database)
-let users: User[] = [
+const users: User[] = [
   // Sample users for testing (passwords: Teacher123!, Student123!, Admin123!)
   {
     id: '1',

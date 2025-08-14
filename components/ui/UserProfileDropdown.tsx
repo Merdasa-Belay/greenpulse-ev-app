@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth, User } from '@/contexts/AuthContext';
 import { ChevronDownIcon, UserIcon, Cog6ToothIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
-import Avatar, { NavbarAvatar, ProfileAvatar } from './Avatar';
+import Avatar, { NavbarAvatar } from './Avatar';
 
 interface UserProfileDropdownProps {
   user: User;
@@ -69,9 +69,8 @@ export default function UserProfileDropdown({ user }: UserProfileDropdownProps) 
 
         {/* Chevron Icon */}
         <ChevronDownIcon
-          className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
-            isOpen ? 'rotate-180' : ''
-          }`}
+          className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''
+            }`}
         />
       </button>
 

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const MobileBottomNav = () => {
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100, damping: 10 } },
+    visible: { y: 0, opacity: 1, transition: { stiffness: 100, damping: 10 } },
     tap: { scale: 0.9 },
   };
 

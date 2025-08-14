@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 
 export async function GET(request: Request) {
   try {
-    // @ts-expect-error - cookies is available on NextRequest in middleware, but here we use headers
     const cookieHeader = request.headers.get('cookie') || '';
     const match = cookieHeader.match(/(?:^|; )next-auth\.session-token=([^;]+)/);
     const token = match ? decodeURIComponent(match[1]) : null;
@@ -23,7 +22,7 @@ export async function GET(request: Request) {
         role: payload.role ?? 'student',
       },
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ user: null }, { status: 200 });
   }
 }

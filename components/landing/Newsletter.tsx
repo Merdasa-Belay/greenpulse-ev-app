@@ -1,4 +1,3 @@
-// components/landing/Newsletter.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -25,10 +24,10 @@ const Newsletter = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                        Stay Updated on Green Mobility
+                        Stay Charged with Local Insights
                     </h3>
                     <p className="mb-8 text-gray-300">
-                        Subscribe to our newsletter for the latest on EV technology, maintenance tips, and upcoming vehicle releases.
+                        Monthly EV maintenance, solar integration and workforce readiness signals for the Ethiopian market.
                     </p>
 
                     <form
@@ -72,7 +71,7 @@ const Newsletter = () => {
 
 
                     <p className="mt-4 text-sm text-gray-400">
-                        We respect your privacy. Unsubscribe at any time.
+                        No spam. Just actionable learning & adoption updates.
                     </p>
                 </motion.div>
             </div>

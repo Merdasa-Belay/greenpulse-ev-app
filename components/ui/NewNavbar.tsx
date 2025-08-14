@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Image from "next/image";
+import ThemeToggle from "../theme/ThemeToggle";
 
 
 // Define the types for the navigation items
@@ -16,9 +17,9 @@ interface NavItem {
 // Navigation links data
 const navItems: NavItem[] = [
   { name: 'Home', href: '#home' },
-  { name: 'Services', href: '#services' },
-  { name: 'About Us', href: '#about' },
-  { name: 'Future Imports', href: '#future-imports' },
+  { name: 'Features', href: '#features' },
+  { name: 'Learning Paths', href: '#paths' },
+  { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -51,28 +52,17 @@ const NewNavbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Variants for the mobile menu animation
-  const menuVariants = {
-    hidden: { opacity: 0, y: -12 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.35, ease: [0.22, 0.8, 0.36, 1], staggerChildren: 0.08 }
-    }
-  };
-  const menuItemVariants = {
-    hidden: { opacity: 0, y: -8 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.25 } }
-  };
+  // simple animation helpers (avoid complex variants to satisfy TS constraints)
+  const menuItems = navItems;
 
   return (
     <motion.nav
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 0.8, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-        ? 'backdrop-blur-md bg-white/80 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)]' : 'bg-transparent'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-md ${isScrolled
+        ? 'bg-white/80 dark:bg-slate-900/80 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_18px_-4px_rgba(0,0,0,0.5)]'
+        : 'bg-transparent'} transition-colors`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-6">
@@ -97,7 +87,7 @@ const NewNavbar = () => {
                   key={item.name}
                   href={item.href}
                   whileHover={{ y: -2 }}
-                  className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ${isActive ? 'text-emerald-600' : 'text-gray-600 hover:text-emerald-600'}`}
+                  className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ${isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400'}`}
                 >
                   <span>{item.name}</span>
                   {isActive && (
@@ -113,10 +103,11 @@ const NewNavbar = () => {
           </div>
 
           {/* Auth Buttons - Desktop */}
-          <div className="hidden md:flex items-center gap-3">
+      <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             <Link
               href="/sign-in"
-              className="group inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-white/70 px-5 py-2.5 text-sm font-medium text-emerald-700 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+        className="group inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-white/70 px-5 py-2.5 text-sm font-medium text-emerald-700 dark:border-emerald-400/40 dark:bg-slate-800/70 dark:text-emerald-300 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-300 dark:hover:border-emerald-400 hover:bg-white dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
             >
               Sign In
             </Link>
@@ -124,7 +115,7 @@ const NewNavbar = () => {
               href="/sign-up"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 transition-all hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 transition-all hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:shadow-emerald-700/30"
             >
               <span>Sign Up</span>
             </motion.a>
@@ -162,7 +153,7 @@ const NewNavbar = () => {
             />
             <motion.div
               id="mobile-menu"
-              className="fixed top-0 right-0 z-50 w-[78%] max-w-sm h-full overflow-y-auto md:hidden bg-white/90 backdrop-blur-xl shadow-xl border-l border-slate-200/70"
+              className="fixed top-0 right-0 z-50 w-[78%] max-w-sm h-full overflow-y-auto md:hidden bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-xl border-l border-slate-200/70 dark:border-slate-700/60 transition-colors"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -170,10 +161,10 @@ const NewNavbar = () => {
             >
               <motion.div
                 className="px-6 pt-6 pb-10 flex flex-col h-full"
-                variants={menuVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35 }}
               >
                 <div className="flex items-center justify-between mb-8">
                   <span className="inline-flex items-center gap-2 font-semibold text-slate-800">
@@ -188,15 +179,18 @@ const NewNavbar = () => {
                   </button>
                 </div>
                 <nav className="flex flex-col gap-1">
-                  {navItems.map((item) => {
+                  {menuItems.map((item, idx) => {
                     const isActive = active === item.href;
                     return (
                       <motion.a
                         key={item.name}
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        variants={menuItemVariants}
-                        className={`relative rounded-xl px-4 py-3 text-sm font-medium transition-colors ${isActive ? 'text-emerald-700' : 'text-slate-700 hover:text-emerald-700'}`}
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25, delay: 0.08 * idx }}
+                        className={`relative rounded-xl px-4 py-3 text-sm font-medium transition-colors ${isActive ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-700 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'}`}
                       >
                         {item.name}
                         {isActive && <span className="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-full bg-emerald-500" />}
@@ -205,17 +199,18 @@ const NewNavbar = () => {
                   })}
                 </nav>
                 <div className="mt-10 space-y-3">
+                  <ThemeToggle className="w-full h-12" />
                   <Link
                     href="/sign-in"
                     onClick={() => setIsOpen(false)}
-                    className="flex w-full items-center justify-center rounded-xl border border-emerald-200 bg-white/70 px-5 py-3 text-sm font-medium text-emerald-700 backdrop-blur-sm hover:border-emerald-300 hover:bg-white"
+                    className="flex w-full items-center justify-center rounded-xl border border-emerald-200 bg-white/70 px-5 py-3 text-sm font-medium text-emerald-700 backdrop-blur-sm hover:border-emerald-300 hover:bg-white dark:border-emerald-400/40 dark:bg-slate-800/80 dark:text-emerald-300 dark:hover:bg-slate-800"
                   >
                     Sign In
                   </Link>
                   <Link
                     href="/sign-up"
                     onClick={() => setIsOpen(false)}
-                    className="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 hover:brightness-105"
+                    className="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 hover:brightness-105 dark:shadow-emerald-700/30"
                   >
                     Sign Up
                   </Link>

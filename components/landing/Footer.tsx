@@ -1,9 +1,11 @@
-// components/landing/Footer.tsx
 "use client";
 
 import { EnvelopeIcon, PhoneIcon, MapPinIcon, ClockIcon, ArrowUpIcon } from "@heroicons/react/24/solid";
+import { FaTiktok, FaTwitter, FaYoutube, FaTelegramPlane } from 'react-icons/fa';
+import SocialButton from "../ui/SocialButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const Footer = () => {
     const [showTop, setShowTop] = useState(false);
@@ -23,27 +25,63 @@ const Footer = () => {
                     {/* Brand */}
                     <div>
                         <div className="flex items-center mb-4">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center">
-                                <span className="text-white text-xl">🌱</span>
+                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-green-200/70 transition-shadow duration-300 group">
+                                <span className="text-xl">
+                                    <Image
+                                        src="/images/logo.svg"
+                                        alt="Green Pulse logo"
+                                        width={60}
+                                        height={60}
+                                        priority
+                                        className="
+    select-none
+    transition-all duration-500 ease-out
+    hover:scale-110 hover:rotate-3
+    drop-shadow-[0_3px_8px_rgba(20,200,143,0.4)]
+    hover:drop-shadow-[0_5px_14px_rgba(20,200,143,0.55)]
+  "
+                                    />
+
+
+                                </span>
                             </div>
+
                             <a href="#" className="ml-3 text-2xl font-bold">
-                                Green<span className="text-green-500">Pulse</span>
+                                Green<span className="text-[#14C88F]">Pulse</span>
+
                             </a>
                         </div>
                         <p className="text-gray-400 mb-4">
-                            Pioneering sustainable mobility solutions through innovation and exceptional service.
+                            Empowering Ethiopia’s EV future with maintenance service, consultation, expert training, hands-on practice, and sustainable mobility solutions.
                         </p>
-                        <div className="flex space-x-4">
-                            {["facebook", "twitter", "instagram", "linkedin"].map((s) => (
-                                <a
-                                    key={s}
-                                    href="#"
-                                    className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-green-500 hover:text-white transition duration-300"
-                                >
-                                    {s.charAt(0).toUpperCase()}
-                                </a>
-                            ))}
+                        <div className="flex flex-wrap gap-4 mt-4">
+                            {/* Social Media Buttons */}
+                            <SocialButton
+                                href="https://www.tiktok.com/@greenpulseaddis"
+                                label="TikTok"
+                                brand="#010101"
+                                icon={<FaTiktok className="text-[1.1rem]" />}
+                            />
+                            <SocialButton
+                                href="https://twitter.com/yourhandle"
+                                label="Twitter"
+                                brand="#1DA1F2"
+                                icon={<FaTwitter className="text-[1.1rem]" />}
+                            />
+                            <SocialButton
+                                href="https://www.youtube.com/@greenpulse-addis"
+                                label="YouTube"
+                                brand="#FF0000"
+                                icon={<FaYoutube className="text-[1.1rem]" />}
+                            />
+                            <SocialButton
+                                href="https://t.me/Evcarsethio"
+                                label="Telegram"
+                                brand="#0088CC"
+                                icon={<FaTelegramPlane className="text-[1.1rem]" />}
+                            />
                         </div>
+
                     </div>
 
                     {/* Quick Links */}
@@ -78,11 +116,12 @@ const Footer = () => {
                         <ul className="space-y-3">
                             <li className="flex items-start">
                                 <MapPinIcon className="h-5 w-5 text-green-500 mt-1 mr-3" />
-                                <span className="text-gray-400">123 Green Ave, Seattle, WA 98101</span>
+                                <span className="text-gray-400">Megenagna, Addis Ababa, Legesse Feleke Building</span>
                             </li>
                             <li className="flex items-start">
                                 <PhoneIcon className="h-5 w-5 text-green-500 mt-1 mr-3" />
-                                <span className="text-gray-400">(206) 555-0199</span>
+                                <span className="text-gray-400">+251911758111 +251912072341
+                                    +251913024687</span>
                             </li>
                             <li className="flex items-start">
                                 <EnvelopeIcon className="h-5 w-5 text-green-500 mt-1 mr-3" />
@@ -90,7 +129,7 @@ const Footer = () => {
                             </li>
                             <li className="flex items-start">
                                 <ClockIcon className="h-5 w-5 text-green-500 mt-1 mr-3" />
-                                <span className="text-gray-400">Mon-Fri: 8AM - 6PM</span>
+                                <span className="text-gray-400">Mon-Sat: 8AM - 6PM</span>
                             </li>
                         </ul>
                     </div>
@@ -99,7 +138,7 @@ const Footer = () => {
                 <div className="border-t border-gray-800 pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <p className="text-gray-400 text-sm mb-4 md:mb-0">
-                            &copy; 2023 Green Pulse. All rights reserved.
+                            &copy; 2024 Green Pulse. All rights reserved.
                         </p>
                         <div className="flex space-x-6">
                             {["Privacy Policy", "Terms of Service", "Sitemap"].map((link) => (

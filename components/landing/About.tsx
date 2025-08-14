@@ -5,19 +5,19 @@ import { FaBolt, FaEye, FaSeedling, FaCertificate, FaExpand } from "react-icons/
 
 const About: FC = () => {
     return (
-        <section id="about" className="py-20 bg-white">
+        <section id="about" className="py-24 bg-white">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center">
                     {/* Text Content */}
                     <div className="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-                            Our <span className="text-green-500">Story</span>
+                            Built For <span className="text-green-500">Ethiopia’s Transition</span>
                         </h2>
                         <p className="text-gray-600 mb-6">
-                            Founded in 2018, Green Pulse began as a small team of EV enthusiasts with a vision to transform automotive maintenance for the electric age. Today, we're the region's most trusted name in sustainable mobility solutions.
+                            Green Pulse exists to close the emerging skills gap in EV maintenance, sustainable energy and battery systems as clean mobility adoption begins to accelerate across Ethiopia.
                         </p>
                         <p className="text-gray-600 mb-8">
-                            Our certified technicians undergo continuous training to stay ahead of evolving EV technologies. We combine cutting-edge diagnostic tools with a passion for environmental responsibility.
+                            We localize global standards to real infrastructure constraints—power fluctuation, limited tooling, and access to parts—so learners, educators and institutions can leapfrog confidently.
                         </p>
 
                         <div className="space-y-6">
@@ -28,7 +28,7 @@ const About: FC = () => {
                                 <div>
                                     <h4 className="font-bold text-gray-800 mb-2">Mission</h4>
                                     <p className="text-gray-600">
-                                        Accelerate the transition to sustainable transportation through exceptional service and education.
+                                        Equip Ethiopia’s next workforce with practical EV & green energy skills through contextual, accessible learning.
                                     </p>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@ const About: FC = () => {
                                 <div>
                                     <h4 className="font-bold text-gray-800 mb-2">Vision</h4>
                                     <p className="text-gray-600">
-                                        Become the premier hub for eco-friendly mobility solutions in North America by 2025.
+                                        An inclusive green tech talent pipeline powering sustainable transport & energy innovation across East Africa.
                                     </p>
                                 </div>
                             </div>
@@ -60,28 +60,28 @@ const About: FC = () => {
                         />
 
                         <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-lg hidden lg:block">
-                            <h4 className="font-bold text-gray-800 mb-3">Our Timeline</h4>
+                            <h4 className="font-bold text-gray-800 mb-3">Early Milestones</h4>
                             <div className="space-y-4">
                                 <div className="timeline-item relative pl-10">
                                     <div className="absolute left-0 top-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white">
                                         <FaSeedling />
                                     </div>
-                                    <p className="text-sm text-gray-500">2018</p>
-                                    <p className="font-medium text-gray-800">Founded in Seattle</p>
+                                    <p className="text-sm text-gray-500">2024</p>
+                                    <p className="font-medium text-gray-800">Curriculum Draft & Pilot Cohorts</p>
                                 </div>
                                 <div className="timeline-item relative pl-10">
                                     <div className="absolute left-0 top-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white">
                                         <FaCertificate />
                                     </div>
-                                    <p className="text-sm text-gray-500">2020</p>
-                                    <p className="font-medium text-gray-800">EV Certification Achieved</p>
+                                    <p className="text-sm text-gray-500">2025</p>
+                                    <p className="font-medium text-gray-800">Beta Expansion with Institutions</p>
                                 </div>
                                 <div className="timeline-item relative pl-10">
                                     <div className="absolute left-0 top-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white">
                                         <FaExpand />
                                     </div>
-                                    <p className="text-sm text-gray-500">2022</p>
-                                    <p className="font-medium text-gray-800">Expanded to 3 Locations</p>
+                                    <p className="text-sm text-gray-500">2026+</p>
+                                    <p className="font-medium text-gray-800">Regional Scaling & Labs</p>
                                 </div>
                             </div>
                         </div>

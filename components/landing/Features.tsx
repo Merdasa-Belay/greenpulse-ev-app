@@ -29,14 +29,14 @@ const container = {
 
 const card = {
     hidden: { opacity: 0, y: 40, scale: 0.95 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 110, damping: 18 } },
+    show: { opacity: 1, y: 0, scale: 1, transition: { stiffness: 110, damping: 18 } },
 };
 
 export default function Features() {
     const items: FeatureItem[] = [
         {
-            title: 'Smart Routing',
-            desc: 'Optimize your EV routes with intelligent charging stop recommendations and energy‑aware planning.',
+            title: 'Localized EV Maintenance',
+            desc: 'Battery packs, drivetrains & diagnostics—aligned to the vehicles entering Ethiopian roads.',
             icon: (
                 <span className="relative flex items-center justify-center">
                     <MapPinIcon className="h-7 w-7" />
@@ -45,35 +45,35 @@ export default function Features() {
             ),
             accent: 'emerald',
             tag: 'Core',
-            highlight: 'Realtime',
+            highlight: 'Hands‑On',
         },
         {
-            title: 'Companions',
-            desc: 'AI-guided learning companions that teach EV & sustainability concepts in engaging ways.',
+            title: 'AI Learning Companions',
+            desc: 'Adaptive assistants that quiz, explain & translate (English / Amharic) for deeper retention.',
             icon: <UserGroupIcon className="h-7 w-7" />,
             accent: 'blue',
             tag: 'Adaptive',
         },
         {
-            title: 'Admin Insights',
-            desc: 'Analytics for educators & admins to track learner progress, fleet usage, and impact.',
+            title: 'Analytics & Progress',
+            desc: 'Educator dashboards tracking module completion, skill gaps & cohort momentum.',
             icon: <ChartBarIcon className="h-7 w-7" />,
             accent: 'violet',
             tag: 'Analytics',
         },
         {
-            title: 'Secure Data',
-            desc: 'Enterprise‑grade encryption and privacy practices to keep all sensitive telemetry protected.',
+            title: 'Offline / Low Bandwidth',
+            desc: 'Downloadable lesson packs & compressed media for intermittent connectivity regions.',
             icon: <ShieldCheckIcon className="h-7 w-7" />,
             accent: 'teal',
-            tag: 'Trust',
+            tag: 'Access',
         },
     ];
 
     // container & card variants moved to module scope above
 
     return (
-        <section id="services" aria-labelledby="features-heading" className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60">
+        <section id="features" aria-labelledby="features-heading" className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60">
             {/* Background decorative layers */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="absolute top-[-6rem] left-1/2 -translate-x-1/2 h-72 w-[38rem] rounded-full bg-gradient-to-br from-emerald-100 via-teal-100 to-emerald-200 opacity-40 blur-3xl" />

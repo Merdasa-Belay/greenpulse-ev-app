@@ -4,91 +4,91 @@ import { motion } from "framer-motion";
 import {
     FaCarBattery,
     FaTools,
-    FaChargingStation,
     FaMicrochip,
-    FaShieldAlt,
-    FaHeadset,
+    FaServicestack,
+    FaCloudDownloadAlt,
+    FaChartLine,
     FaCheckCircle,
 } from "react-icons/fa";
 
 export default function Services() {
     const services = [
         {
-            icon: <FaCarBattery className="text-green-500 text-2xl" />,
+            icon: <FaTools className="text-green-500 text-2xl" />,
             bg: "bg-green-100",
-            title: "Battery Diagnostics",
-            text: "Advanced diagnostics and maintenance for your EV's battery system to maximize range and lifespan.",
+            title: "Foundation Essentials",
+            text: "Core electrical safety, EV architecture & terminology to build a solid base.",
             features: [
-                "State of Health analysis",
-                "Cell balancing",
-                "Thermal management check",
+                "High‑voltage safety",
+                "System components",
+                "Tooling basics",
             ],
             color: "green",
         },
         {
-            icon: <FaTools className="text-blue-500 text-2xl" />,
+            icon: <FaCarBattery className="text-blue-500 text-2xl" />,
             bg: "bg-blue-100",
-            title: "Hybrid Maintenance",
-            text: "Specialized care for hybrid vehicles, combining traditional and electric system expertise.",
+            title: "EV Power & Batteries",
+            text: "Battery pack anatomy, BMS logic & thermal management fundamentals.",
             features: [
-                "Regenerative braking inspection",
-                "Power split device service",
-                "HV cable integrity check",
+                "Cell & module structure",
+                "State of health checks",
+                "Thermal diagnostics",
             ],
             color: "blue",
         },
         {
-            icon: <FaChargingStation className="text-green-500 text-2xl" />,
+            icon: <FaMicrochip className="text-green-500 text-2xl" />,
             bg: "bg-green-100",
-            title: "Charging Solutions",
-            text: "Installation, maintenance, and troubleshooting for all types of EV charging equipment.",
+            title: "Systems Diagnostics",
+            text: "Troubleshooting drivetrains, inverters, charging & control systems.",
             features: [
-                "Home charger installation",
-                "Public station diagnostics",
-                "Fast charger compatibility",
+                "Error code logic",
+                "Signal tracing",
+                "Common fault trees",
             ],
             color: "green",
         },
         {
-            icon: <FaMicrochip className="text-blue-500 text-2xl" />,
+            icon: <FaServicestack className="text-blue-500 text-2xl" />,
             bg: "bg-blue-100",
-            title: "Software Updates",
-            text: "Keep your vehicle's systems up-to-date with the latest performance enhancements and features.",
+            title: "EV Service Skills",
+            text: "Hands-on training for practical EV service and repair.",
             features: [
-                "BMS firmware updates",
-                "Range optimization",
-                "Charging curve adjustments",
+                "Routine maintenance procedures",
+                "Battery replacement & diagnostics",
+                "Charging system inspection",
             ],
             color: "blue",
         },
         {
-            icon: <FaShieldAlt className="text-green-500 text-2xl" />,
+            icon: <FaCloudDownloadAlt className="text-green-500 text-2xl" />,
             bg: "bg-green-100",
-            title: "Safety Inspections",
-            text: "Comprehensive safety checks specific to high-voltage electric vehicle systems.",
+            title: "Offline Access",
+            text: "Low‑bandwidth optimized & downloadable lesson packs for unstable grids.",
             features: [
-                "HV isolation testing",
-                "Emergency disconnect verification",
-                "Crash sensor calibration",
+                "Compressed media",
+                "Sync later mode",
+                "Lightweight quizzes",
             ],
             color: "green",
         },
         {
-            icon: <FaHeadset className="text-blue-500 text-2xl" />,
+            icon: <FaChartLine className="text-blue-500 text-2xl" />,
             bg: "bg-blue-100",
-            title: "24/7 Roadside Assistance",
-            text: "Specialized EV and hybrid support whenever and wherever you need it.",
+            title: "Capstone & Progress",
+            text: "Applied project build + tracked competencies for employability.",
             features: [
-                "Flatbed towing for EVs",
-                "Emergency charging",
-                "HV system emergency protocols",
+                "Project brief",
+                "Skill badges",
+                "Portfolio export",
             ],
             color: "blue",
         },
     ];
 
     return (
-        <section id="services" className="py-20 bg-gray-50">
+        <section id="paths" className="py-20 bg-gray-50">
             <div className="container mx-auto px-6">
                 {/* Section Heading */}
                 <motion.div
@@ -99,11 +99,10 @@ export default function Services() {
                     viewport={{ once: true }}
                 >
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                        Our <span className="text-green-500">Services</span>
+                        Structured <span className="text-green-500">Learning Paths</span>
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Comprehensive solutions for your electric and hybrid vehicles,
-                        ensuring peak performance and longevity.
+                        Guided progression from fundamentals to applied EV & green energy skill readiness.
                     </p>
                 </motion.div>
 
