@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -30,7 +30,7 @@ interface UserInfo {
   role: string;
 }
 
-export default function ResetPasswordPage() {
+function ResetPasswordInner() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
 
@@ -77,7 +77,7 @@ export default function ResetPasswordPage() {
         } else {
           setError(result.error || 'Invalid or expired token');
         }
-      } catch (err) {
+      } catch {
         setError('Failed to verify token');
       } finally {
         setIsLoading(false);
@@ -123,7 +123,7 @@ export default function ResetPasswordPage() {
   // Password strength indicator
   const getPasswordStrength = (pass: string) => {
     if (!pass) return { score: 0, text: '', color: '' };
-    
+
     let score = 0;
     if (pass.length >= 8) score++;
     if (/[a-z]/.test(pass)) score++;
@@ -434,5 +434,13 @@ export default function ResetPasswordPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <ResetPasswordInner />
+    </Suspense>
   );
 }

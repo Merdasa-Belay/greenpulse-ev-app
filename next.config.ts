@@ -21,31 +21,36 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/avatar/**',
       },
-      // Add your own CDN/storage domains here
       {
         protocol: 'https',
-        hostname: 'your-cdn-domain.com', // Replace with your actual CDN
+        hostname: 'your-cdn-domain.com',
         port: '',
         pathname: '/uploads/**',
       },
       {
         protocol: 'https',
-        hostname: 'res.cloudinary.com', // If using Cloudinary
+        hostname: 'res.cloudinary.com',
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'firebasestorage.googleapis.com', // If using Firebase Storage
+        hostname: 'firebasestorage.googleapis.com',
         port: '',
         pathname: '/**',
       },
-      // For development/testing - remove in production
       {
         protocol: 'http',
         hostname: 'localhost',
         port: '3000',
         pathname: '/uploads/**',
+      },
+      // ✅ Added Unsplash
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
       },
     ],
   },
