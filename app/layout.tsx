@@ -12,6 +12,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://example.com'),
   title: {
     template: "%s | GreenPulse EV",
     default: "GreenPulse EV",
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-  <body className={`${bricolage.variable} antialiased transition-colors duration-300`}> 
+      <body className={`${bricolage.variable} antialiased transition-colors duration-300`}>
         <ThemeProvider>
           <AuthProvider>
             <EnvironmentBadge />
