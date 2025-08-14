@@ -180,5 +180,4 @@ npm run lint      # Lint codebase
 
 ## License
 
-Green Pulse © 2025 GreenPulse EV. See LICENSE (or replace with your organization’s license).
-
+Green Pulse © 2025 GreenPulse EV.
