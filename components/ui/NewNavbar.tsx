@@ -103,11 +103,11 @@ const NewNavbar = () => {
           </div>
 
           {/* Auth Buttons - Desktop */}
-      <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
             <Link
               href="/sign-in"
-        className="group inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-white/70 px-5 py-2.5 text-sm font-medium text-emerald-700 dark:border-emerald-400/40 dark:bg-slate-800/70 dark:text-emerald-300 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-300 dark:hover:border-emerald-400 hover:bg-white dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              className="group inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-white/70 px-5 py-2.5 text-sm font-medium text-emerald-700 dark:border-emerald-400/40 dark:bg-slate-800/70 dark:text-emerald-300 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-300 dark:hover:border-emerald-400 hover:bg-white dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
             >
               Sign In
             </Link>
