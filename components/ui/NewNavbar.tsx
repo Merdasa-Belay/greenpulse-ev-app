@@ -52,6 +52,15 @@ const NewNavbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      const previous = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      return () => { document.documentElement.style.overflow = previous; };
+    }
+  }, [isOpen]);
+
   // simple animation helpers (avoid complex variants to satisfy TS constraints)
   const menuItems = navItems;
 
@@ -60,9 +69,12 @@ const NewNavbar = () => {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 0.8, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-md ${isScrolled
-        ? 'bg-white/80 dark:bg-slate-900/80 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_18px_-4px_rgba(0,0,0,0.5)]'
-        : 'bg-transparent'} transition-colors`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isOpen
+          ? 'bg-white dark:bg-slate-950 shadow-lg'
+          : `backdrop-blur-md ${isScrolled
+            ? 'bg-white/80 dark:bg-slate-900/80 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_18px_-4px_rgba(0,0,0,0.5)]'
+            : 'bg-transparent'} `
+        } transition-colors`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-6">
@@ -103,11 +115,11 @@ const NewNavbar = () => {
           </div>
 
           {/* Auth Buttons - Desktop */}
-      <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
             <Link
               href="/sign-in"
-        className="group inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-white/70 px-5 py-2.5 text-sm font-medium text-emerald-700 dark:border-emerald-400/40 dark:bg-slate-800/70 dark:text-emerald-300 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-300 dark:hover:border-emerald-400 hover:bg-white dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              className="group inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-white/70 px-5 py-2.5 text-sm font-medium text-emerald-700 dark:border-emerald-400/40 dark:bg-slate-800/70 dark:text-emerald-300 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-300 dark:hover:border-emerald-400 hover:bg-white dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
             >
               Sign In
             </Link>
@@ -122,10 +134,12 @@ const NewNavbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            {/* Mobile theme toggle always visible */}
+            <ThemeToggle className="h-9 w-9" />
             <button
               onClick={() => setIsOpen(o => !o)}
-              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 dark:text-slate-200 transition hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
             >
@@ -141,86 +155,69 @@ const NewNavbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              key="backdrop"
-              className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm md:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-            />
-            <motion.div
-              id="mobile-menu"
-              className="fixed top-0 right-0 z-50 w-[78%] max-w-sm h-full overflow-y-auto md:hidden bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-xl border-l border-slate-200/70 dark:border-slate-700/60 transition-colors"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', stiffness: 260, damping: 28 }}
-            >
-              <motion.div
-                className="px-6 pt-6 pb-10 flex flex-col h-full"
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35 }}
+          <motion.div
+            key="mobile-fullscreen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            role="dialog" aria-modal="true"
+            className="fixed inset-0 z-[60] md:hidden flex flex-col bg-white dark:bg-slate-950 px-6 pt-6 pb-8 shadow-2xl"
+          >
+            <div className="flex items-center justify-between mb-8">
+              <span className="inline-flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-100">
+                <Image src="/images/logo.svg" alt="Green Pulse" width={40} height={40} />
+                Green Pulse
+              </span>
+              <div className="flex items-center gap-2">
+                <ThemeToggle className="h-9 w-9" />
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-lg p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
+            <nav className="flex flex-col gap-2">
+              {menuItems.map((item, idx) => {
+                const isActive = active === item.href;
+                return (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.25, delay: 0.05 * idx }}
+                    className={`relative rounded-xl px-5 py-3 text-base font-medium tracking-tight ring-1 ring-transparent hover:ring-emerald-500/30 transition-colors ${isActive ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-50/60 dark:bg-emerald-900/10' : 'text-slate-700 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'}`}
+                  >
+                    {item.name}
+                    {isActive && <span className="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-full bg-emerald-500" />}
+                  </motion.a>
+                );
+              })}
+            </nav>
+            <div className="mt-10 space-y-3">
+              <Link
+                href="/sign-in"
+                onClick={() => setIsOpen(false)}
+                className="flex w-full items-center justify-center rounded-xl border border-emerald-200 bg-white/70 px-5 py-3 text-sm font-medium text-emerald-700 backdrop-blur-sm hover:border-emerald-300 hover:bg-white dark:border-emerald-400/40 dark:bg-slate-800/80 dark:text-emerald-300 dark:hover:bg-slate-800"
               >
-                <div className="flex items-center justify-between mb-8">
-                  <span className="inline-flex items-center gap-2 font-semibold text-slate-800">
-                    <Image src="/images/logo.svg" alt="Green Pulse" width={40} height={40} />
-                    Green Pulse
-                  </span>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-                  >
-                    <XMarkIcon className="h-6 w-6" />
-                  </button>
-                </div>
-                <nav className="flex flex-col gap-1">
-                  {menuItems.map((item, idx) => {
-                    const isActive = active === item.href;
-                    return (
-                      <motion.a
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.25, delay: 0.08 * idx }}
-                        className={`relative rounded-xl px-4 py-3 text-sm font-medium transition-colors ${isActive ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-700 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'}`}
-                      >
-                        {item.name}
-                        {isActive && <span className="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-full bg-emerald-500" />}
-                      </motion.a>
-                    );
-                  })}
-                </nav>
-                <div className="mt-10 space-y-3">
-                  <ThemeToggle className="w-full h-12" />
-                  <Link
-                    href="/sign-in"
-                    onClick={() => setIsOpen(false)}
-                    className="flex w-full items-center justify-center rounded-xl border border-emerald-200 bg-white/70 px-5 py-3 text-sm font-medium text-emerald-700 backdrop-blur-sm hover:border-emerald-300 hover:bg-white dark:border-emerald-400/40 dark:bg-slate-800/80 dark:text-emerald-300 dark:hover:bg-slate-800"
-                  >
-                    Sign In
-                  </Link>
-                  <Link
-                    href="/sign-up"
-                    onClick={() => setIsOpen(false)}
-                    className="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 hover:brightness-105 dark:shadow-emerald-700/30"
-                  >
-                    Sign Up
-                  </Link>
-                </div>
-                <div className="mt-auto pt-8 text-xs text-slate-500">
-                  © {new Date().getFullYear()} Green Pulse. All rights reserved.
-                </div>
-              </motion.div>
-            </motion.div>
-          </>
+                Sign In
+              </Link>
+              <Link
+                href="/sign-up"
+                onClick={() => setIsOpen(false)}
+                className="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 hover:brightness-105 dark:shadow-emerald-700/30"
+              >
+                Sign Up
+              </Link>
+            </div>
+            <div className="mt-auto pt-10 text-xs text-slate-500 dark:text-slate-500/80">
+              © {new Date().getFullYear()} Green Pulse. All rights reserved.
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.nav>

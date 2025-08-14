@@ -23,13 +23,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!function(){try{var s=localStorage.getItem('theme');if(!s){var m=window.matchMedia('(prefers-color-scheme: dark)');s=m.matches?'dark':'light';}if(s==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}}();`
-          }}
-        />
+        {/* next-themes handles initial theme injection; no manual script needed */}
       </head>
-  <body className={`${bricolage.variable} antialiased transition-colors duration-300`}> 
+      <body className={`${bricolage.variable} antialiased transition-colors duration-300`}>
         <ThemeProvider>
           <AuthProvider>
             <EnvironmentBadge />

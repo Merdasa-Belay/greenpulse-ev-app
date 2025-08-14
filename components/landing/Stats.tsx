@@ -95,7 +95,7 @@ export default function Stats() {
             };
 
     return (
-        <section className="py-20 bg-gradient-to-b from-white via-white to-green-50/40">
+        <section className="pt-12 md:pt-16 pb-20 md:pb-24 bg-gradient-to-b from-white via-white to-green-50/40 dark:from-slate-950 dark:via-slate-950 dark:to-emerald-950/20 transition-colors">
             <div className="container mx-auto px-6">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}

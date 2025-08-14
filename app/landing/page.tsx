@@ -1,4 +1,5 @@
 import Hero from '@/components/landing/Hero';
+import FeatureSection from '@/components/landing/Feature';
 // import Features from '@/components/landing/Features';
 // import CTASection from '@/components/landing/CTASection';
 import type { Metadata } from 'next';
@@ -72,10 +73,11 @@ export const metadata: Metadata = {
 
 export default function LandingPage() {
     return (
-        <main className="min-h-screen bg-white pb-24 md:pb-0">
+        <main className="min-h-screen bg-white dark:bg-slate-950 pb-24 md:pb-0 transition-colors">
             <NewNavbar />
             <Hero />
             <Stat />
+            <FeatureSection />
             <Services />
             <About />
             <Testimonials />

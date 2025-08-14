@@ -65,7 +65,8 @@ export default function Hero() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.4 }}
-                className="mx-auto max-w-7xl px-4 pt-10 md:pt-16 pb-20 md:pb-28 sm:px-6 lg:px-8"
+                /* Reduced bottom padding to better align adjacent section spacing */
+                className="mx-auto max-w-7xl px-4 pt-10 md:pt-16 pb-12 md:pb-16 sm:px-6 lg:px-8"
             >
                 <div className="grid items-center gap-20 md:grid-cols-2"> {/* Increased gap */}
                     {/* Copy */}

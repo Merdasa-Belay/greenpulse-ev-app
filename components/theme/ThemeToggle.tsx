@@ -10,9 +10,8 @@ import { SunIcon, MoonIcon } from '@heroicons/react/24/solid';
  * - Animates icon transitions
  */
 export const ThemeToggle: React.FC<{ className?: string; size?: number }> = ({ className = '', size = 18 }) => {
-    const { resolvedTheme, toggleTheme, mounted } = useTheme();
-    const theme = mounted ? resolvedTheme : 'light';
-    const isDark = theme === 'dark';
+    const { resolvedTheme, toggleTheme } = useTheme();
+    const isDark = resolvedTheme === 'dark';
 
     return (
         <button
