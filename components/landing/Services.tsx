@@ -88,7 +88,7 @@ export default function Services() {
     ];
 
     return (
-        <section id="paths" className="py-20 bg-gray-50">
+        <section id="paths" className="py-20 bg-gray-50 dark:bg-slate-900 transition-colors">
             <div className="container mx-auto px-6">
                 {/* Section Heading */}
                 <motion.div
@@ -98,10 +98,10 @@ export default function Services() {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                        Structured <span className="text-green-500">Learning Paths</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+                        Structured <span className="text-green-600 dark:text-emerald-400">Learning Paths</span>
                     </h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         Guided progression from fundamentals to applied EV & green energy skill readiness.
                     </p>
                 </motion.div>
@@ -111,7 +111,7 @@ export default function Services() {
                     {services.map((service, idx) => (
                         <motion.div
                             key={idx}
-                            className="service-card bg-white p-8 rounded-lg transition duration-300 hover:shadow-lg"
+                            className="service-card bg-white dark:bg-slate-800/70 border border-transparent dark:border-slate-700 p-8 rounded-lg transition duration-300 hover:shadow-lg"
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: idx * 0.15 }}
@@ -122,16 +122,14 @@ export default function Services() {
                             >
                                 {service.icon}
                             </div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-3">
+                            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                                 {service.title}
                             </h3>
-                            <p className="text-gray-600 mb-4">{service.text}</p>
+                            <p className="text-gray-600 dark:text-gray-300 mb-4">{service.text}</p>
                             <ul className="space-y-2">
                                 {service.features.map((feature, i) => (
-                                    <li key={i} className="flex items-center">
-                                        <FaCheckCircle
-                                            className={`text-${service.color}-500 mr-2`}
-                                        />
+                                    <li key={i} className="flex items-center text-gray-700 dark:text-gray-200">
+                                        <FaCheckCircle className={`mr-2 ${service.color === 'green' ? 'text-green-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'}`} />
                                         <span>{feature}</span>
                                     </li>
                                 ))}

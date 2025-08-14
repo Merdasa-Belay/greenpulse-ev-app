@@ -12,12 +12,12 @@ const MobileBottomNav = () => {
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-inner md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-t border-gray-200 dark:border-slate-700 shadow-inner md:hidden transition-colors">
       <ul className="flex justify-around items-center py-2">
         <motion.li variants={itemVariants} initial="hidden" animate="visible" whileTap="tap">
           <Link
             href="/"
-            className="flex flex-col items-center text-gray-600 hover:text-green-600 transition"
+            className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition"
           >
             <HomeIcon className="w-6 h-6" />
             <span className="text-xs">Home</span>
@@ -27,7 +27,7 @@ const MobileBottomNav = () => {
         <motion.li variants={itemVariants} initial="hidden" animate="visible" whileTap="tap">
           <Link
             href="/dashboard"
-            className="flex flex-col items-center text-gray-600 hover:text-green-600 transition"
+            className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition"
           >
             <ChartPieIcon className="w-6 h-6" />
             <span className="text-xs">Dashboard</span>
@@ -37,7 +37,7 @@ const MobileBottomNav = () => {
         <motion.li variants={itemVariants} initial="hidden" animate="visible" whileTap="tap">
           <Link
             href="/programs"
-            className="flex flex-col items-center text-gray-600 hover:text-green-600 transition"
+            className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition"
           >
             <AcademicCapIcon className="w-6 h-6" />
             <span className="text-xs">Programs</span>
