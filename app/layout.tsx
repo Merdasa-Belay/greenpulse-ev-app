@@ -5,6 +5,7 @@ import ConditionalNavbar from "@/components/ui/ConditionalNavbar";
 import EnvironmentBadge from "@/components/env/EnvironmentBadge";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -103,6 +104,7 @@ export default function RootLayout({
             <EnvironmentBadge />
             <ConditionalNavbar />
             <div id="main">{children}</div>
+            <Analytics />
           </AuthProvider>
         </ThemeProvider>
       </body>

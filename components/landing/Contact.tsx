@@ -115,7 +115,7 @@ const Contact = () => {
                                 </li>
                                 <li>
                                     <SocialButton
-                                        href="https://t.me/yourchannel"
+                                        href="https://t.me/Evcarsethio"
                                         label="Telegram"
                                         brand="#0088CC"
                                         icon={<FaTelegramPlane className="text-[1.05rem]" />}
