@@ -38,6 +38,7 @@ export function generatePageMetadata({ title, description, path = '/', image, no
   };
 }
 
-export function buildJsonLd(data: Record<string, any>) {
+// Serialize structured data (JSON-LD). Accepts a generic record with unknown values for flexibility.
+export function buildJsonLd<T extends Record<string, unknown>>(data: T): string {
   return JSON.stringify(data);
 }

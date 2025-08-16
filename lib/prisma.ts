@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 // Avoid creating multiple instances in dev / hot-reload
 // and surface clearer error if client not generated.
 declare global {
-	// eslint-disable-next-line no-var
+	// Cached Prisma client in dev to avoid exhausting connections on hot reload.
 	var __prisma__: PrismaClient | undefined;
 }
 
