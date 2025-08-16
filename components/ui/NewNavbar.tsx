@@ -20,6 +20,7 @@ const navItems: NavItem[] = [
   { name: 'Features', href: '#features' },
   { name: 'Learning Paths', href: '#paths' },
   { name: 'About', href: '#about' },
+  { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -70,25 +71,26 @@ const NewNavbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 0.8, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isOpen
-          ? 'bg-white dark:bg-slate-950 shadow-lg'
-          : `backdrop-blur-md ${isScrolled
-            ? 'bg-white/80 dark:bg-slate-900/80 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_18px_-4px_rgba(0,0,0,0.5)]'
-            : 'bg-transparent'} `
+        ? 'bg-white dark:bg-slate-950 shadow-lg'
+        : `backdrop-blur-md ${isScrolled
+          ? 'bg-white/80 dark:bg-slate-900/80 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_18px_-4px_rgba(0,0,0,0.5)]'
+          : 'bg-transparent'} `
         } transition-colors`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-6">
-          {/* Logo */}
-          <div className="flex-shrink-0">
+          {/* Logo + Brand */}
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group" aria-label="Green Pulse Home">
             <Image
               src="/images/logo.svg"
               alt="Green Pulse logo"
-              width={56} // Slightly larger logo
-              height={56}
+              width={48}
+              height={48}
               priority
-              className="select-none transition-transform duration-300 hover:scale-105"
+              className="select-none transition-transform duration-300 group-hover:scale-105"
             />
-          </div>
+            <span className="text-lg font-extrabold tracking-tight bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Green Pulse</span>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-2">
@@ -220,6 +222,9 @@ const NewNavbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <style jsx global>{`
+        html { scroll-behavior: smooth; }
+      `}</style>
     </motion.nav>
   );
 };
