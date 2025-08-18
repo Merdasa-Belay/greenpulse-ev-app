@@ -1,183 +1,237 @@
+# GreenPulse EV: Smart EV Routing & Learning Platform ✨
+
 <div align="center">
 
-# GreenPulse EV
+![GreenPulse EV Banner](public/readme/thumbnail.png)
 
-Smart EV routing, charging optimization, and learning companions — built with Next.js, Prisma, and MySQL.
-
-![App Thumbnail](public/readme/thumbnail.png)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Prisma](https://img.shields.io/badge/Prisma-ORM-blue?style=for-the-badge&logo=prisma)](https://prisma.io/)
+[![MySQL](https://img.shields.io/badge/MySQL-Database-blue?style=for-the-badge&logo=mysql)](https://mysql.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
 
 </div>
 
-## Overview
+## 🔍 Overview
+GreenPulse EV is a cutting-edge platform for EV owners featuring:
+- 🚗 Smart routing optimized for EV charging
+- ⚡ AI-powered charging optimization
+- 👨‍🏫 Learning resources for EV enthusiasts
+- 👥 Community features for knowledge sharing
 
-GreenPulse EV is a Next.js App Router project with authentication (signup/signin/signout), role-based access (student/teacher/admin), and a modern Tailwind UI. It includes a public landing page, protected app routes, and a JWT-based session set via HTTP-only cookies compatible with middleware.
+Built with **Next.js App Router**, **Prisma ORM**, and **MySQL**, this full-stack solution includes:
+- 🔐 JWT-based authentication with HTTP-only cookies
+- 👥 Role-based access control (student/teacher/admin)
+- 📱 Modern responsive UI with Tailwind CSS
+- 🧩 Modular architecture for easy extensibility
 
-## Features
+## ✨ Key Features
 
-- Public landing page with marketing sections and SEO metadata
-- Authentication: signup, signin, signout using JWT (HTTP-only cookie)
-- Role-based access control in middleware (student/teacher/admin)
-- Protected routes (e.g., /admin, /teacher, /student, app pages)
-- Forms with React Hook Form + Zod validation
-- Prisma ORM (MySQL) with typed client
-- Modern UI with Tailwind CSS and headless primitives
-- Next.js App Router, server components, and edge-friendly middleware
+### 🔐 Authentication & Security
+- Signup/login with email/password
+- JWT session tokens stored in HTTP-only cookies
+- Password hashing with bcryptjs
+- Session management API endpoints
 
-## Tech Stack
+### 👥 Role Management
+- Student: Access learning resources
+- Teacher: Create/manage educational content
+- Admin: Manage users and platform settings
+- Middleware-based route protection
 
-- Next.js 15 (App Router), React 19, TypeScript 5
-- Tailwind CSS v4
-- Prisma + MySQL
-- JWT (jsonwebtoken) for session tokens
-- React Hook Form + Zod
-- Radix Primitives (label/select), Heroicons/Lucide Icons
+### 🚀 Technical Highlights
+- Next.js 15 App Router architecture
+- Prisma ORM with MySQL database
+- React Hook Form + Zod validation
+- Radix UI primitives for accessible components
+- Optimized build for Vercel deployment
 
-## Project Structure (excerpt)
+## 🛠️ Tech Stack
+
+| Category         | Technologies                                                                 |
+|------------------|------------------------------------------------------------------------------|
+| **Core**         | Next.js 15, React 19, TypeScript 5                                           |
+| **Database**     | Prisma ORM, MySQL                                                            |
+| **Styling**      | Tailwind CSS v4, CSS Modules                                                 |
+| **Authentication**| JWT (jsonwebtoken), bcryptjs, HTTP-only cookies                              |
+| **Forms**        | React Hook Form, Zod schema validation                                       |
+| **UI Components**| Radix Primitives, Heroicons, Lucide Icons                                    |
+| **Deployment**   | Vercel, Docker (compatible)                                                  |
+
+## 📂 Project Structure
 
 ```text
 app/
-   layout.tsx           # Root layout (AuthProvider, Navbar)
-   page.tsx             # Authenticated dashboard
-   landing/page.tsx     # Public landing page
-   api/                 # Route handlers (signup, signin, auth/me, auth/signout)
+├── layout.tsx           # Root layout (AuthProvider, Navbar)
+├── page.tsx             # Authenticated dashboard
+├── landing/             # Public landing pages
+│   └── page.tsx
+├── api/                 # API route handlers
+│   ├── signup/
+│   ├── signin/
+│   ├── auth/            # Auth endpoints
+│   │   ├── me/
+│   │   └── signout/
 components/
-   landing/             # Hero, Features, CTA
-   ui/                  # Reusable UI components
+├── landing/             # Marketing components
+│   ├── Hero.tsx
+│   ├── Features.tsx
+│   └── CTA.tsx
+├── ui/                  # Reusable UI components
+│   ├── button.tsx
+│   ├── card.tsx
+│   └── ...
 contexts/
-   AuthContext.tsx      # Client auth state (login/logout/refresh)
+└── AuthContext.tsx      # Client auth state management
 lib/
-   prisma.ts            # Prisma client
-   jwt.ts               # JWT helpers and password hashing
-middleware.ts          # Route protection + role enforcement
+├── prisma.ts            # Prisma client instance
+└── jwt.ts               # JWT helpers & password hashing
 prisma/
-   schema.prisma        # DB schema (User + Role)
+└── schema.prisma        # DB schema (User + Role)
 ```
 
-## Setup
+## 🚀 Getting Started
 
-Prerequisites
-
+### Prerequisites
 - Node.js 18+ (LTS recommended)
-- MySQL database (local or managed)
+- MySQL database (local or cloud)
+- npm 9+
 
-1) Install dependencies
+### Installation
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/greenpulse-ev.git
+cd greenpulse-ev
+```
 
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-2) Environment variables
-
-Create `.env` (or `.env.local`) in the project root:
-
+3. Configure environment variables:
 ```bash
-# Database (MySQL)
-DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DB_NAME"
+# Create .env file
+cp .env.example .env
+```
 
-# JWT signing secret (use a strong random value in production)
-JWT_SECRET="replace-with-a-strong-secret"
+Update your `.env` file with:
+```env
+# Database configuration
+DATABASE_URL="mysql://user:password@localhost:3306/greenpulse"
 
-# (Optional) Public app URL for absolute metadata (OG/Twitter)
+# JWT configuration
+JWT_SECRET="your_strong_secret_here"
+
+# Optional: App URL for metadata
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-3) Generate Prisma client and run migrations
-
+4. Initialize database:
 ```bash
 npx prisma migrate dev --name init
 npx prisma generate
 ```
 
-If using an existing DB, ensure it’s empty or aligned with `prisma/schema.prisma`.
-
-4) Start the dev server
-
+5. Start development server:
 ```bash
 npm run dev
 ```
 
-Visit http://localhost:3000.
+Visit http://localhost:3000 to explore the application!
 
-## Running Migrations (production)
+## 🔄 Production Deployment
 
+1. Build the application:
+```bash
+npm run build
+```
+
+2. Run database migrations:
 ```bash
 npx prisma migrate deploy
 ```
 
-## Authentication Flow
+3. Start production server:
+```bash
+npm run start
+```
 
-- Signup (`POST /api/signup`):
-   - Validates name, email, password; role defaults to `student` if omitted.
-   - Hashes password (bcryptjs) and stores user in MySQL via Prisma.
-- Signin (`POST /api/signin`):
-   - Verifies credentials, signs a JWT `{ userId, email, role }` (1h expiry).
-   - Sets `next-auth.session-token` (HTTP-only cookie) and a readable `role` cookie.
-   - Returns user payload (without password).
-- Me (`GET /api/auth/me`):
-   - Reads the HTTP-only cookie, verifies JWT, returns user info.
-- Signout (`POST /api/auth/signout`):
-   - Clears the session and role cookies.
+## 🔐 Authentication Flow
 
-Middleware (`middleware.ts`):
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+    participant Database
 
-- Public routes are allowed (e.g., `/landing`, `/sign-in`, `/sign-up`, `/forgot-password`, `/reset-password`, SEO routes).
-- Unauthenticated access to protected routes redirects to `/sign-in`.
-- Role-restricted routes (`/admin`, `/teacher`, `/student`) enforce roles using the `role` cookie when signed in.
+    Client->>Server: POST /api/signup (credentials)
+    Server->>Database: Create user (hashed password)
+    Server-->>Client: Set session cookie, 201 Created
 
-Client Auth Context (`contexts/AuthContext.tsx`):
+    Client->>Server: POST /api/signin (credentials)
+    Server->>Database: Verify credentials
+    Server-->>Client: Set session cookie, 200 OK
 
-- Holds `user` and `loading` state.
-- `refreshUser()` fetches `/api/auth/me` on mount.
-- `login()` sets client state post-signin; `logout()` calls signout and navigates to `/sign-in`.
+    Client->>Server: GET /api/auth/me
+    Server->>Server: Verify JWT from cookie
+    Server-->>Client: User data (200 OK)
 
-## Extending Roles and Features
+    Client->>Server: POST /api/auth/signout
+    Server-->>Client: Clear cookies, 200 OK
+```
 
-Add a role
+## 🧩 Extending the Platform
 
-1) Update Prisma schema:
-
+### Adding New Roles
+1. Update Prisma schema:
 ```prisma
 enum Role {
-   student
-   teacher
-   admin
-   // add more here, e.g. manager
+  student
+  teacher
+  admin
+  fleet_manager  // New role
 }
 ```
 
-2) Use the new role in the `User` model and rerun migrations:
-
+2. Run migration:
 ```bash
-npx prisma migrate dev --name add-new-role
+npx prisma migrate dev --name add_fleet_manager_role
 ```
 
-3) Update middleware checks (e.g., allow `/manager`).
-
-4) Update UI and registration (`/api/signup`) to accept/select the new role.
-
-Add a protected feature
-
-- Create a new route under `app/feature/page.tsx`.
-- Guard via middleware path rules (e.g., `/feature` for specific roles).
-- On the client, use `useAuth()` to tailor UI by role.
-
-## Known Issues / Tips
-
-- Hydration warnings can occur if client-only state renders during SSR. We mitigate this by deferring client-only UI (e.g., Navbar waits for mount) and keeping landing sections server-friendly.
-- Always include `credentials: 'include'` on fetch calls that need cookies.
-- Use `NextResponse.redirect` and middleware for server-side redirects to avoid client/server mismatches.
-- Use strong `JWT_SECRET` in production and rotate as needed.
-- For DB schema changes, commit both `schema.prisma` and generated migrations.
-
-## Scripts
-
-```bash
-npm run dev       # Start Next.js (dev)
-npm run build     # Build for production
-npm run start     # Start production server
-npm run lint      # Lint codebase
+3. Update middleware:
+```typescript
+// middleware.ts
+if (path.startsWith('/fleet') {
+  if (role !== 'fleet_manager') {
+    return redirect('/unauthorized');
+  }
+}
 ```
 
-## License
+### Creating Protected Routes
+1. Create new route:
+```text
+app/fleet/dashboard/page.tsx
+```
 
-Green Pulse © 2025 GreenPulse EV.
+2. Add middleware protection:
+```typescript
+// middleware.ts
+export const config = {
+  matcher: [
+    '/fleet/:path*',
+    // ...existing paths
+  ]
+}
+```
+
+## 💡 Pro Tips
+- Use `npm run lint` to catch code quality issues early
+- Always include `credentials: 'include'` for authenticated fetch requests
+- Refresh user data after critical actions using `refreshUser()` from AuthContext
+- For complex forms, leverage React Hook Form's `useFormContext`
+- Use `next dev --turbo` for faster development iterations
+
+## 📜 License
+GreenPulse EV © 2025 GreenPulse EV. All rights reserved.
+
