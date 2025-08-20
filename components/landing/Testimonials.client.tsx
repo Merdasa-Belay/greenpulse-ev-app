@@ -35,7 +35,7 @@ function Stars({ value }: { value: number }) {
 
 export default function Testimonials() {
     return (
-        <section id="testimonials" className="relative bg-white py-24">
+        <section id="testimonials" className="relative bg-white dark:bg-slate-950 py-24 transition-colors">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -44,8 +44,8 @@ export default function Testimonials() {
                     transition={{ duration: 0.6 }}
                     className="mx-auto mb-16 max-w-2xl text-center"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">Voices From <span className="text-emerald-600">Early Learners</span></h2>
-                    <p className="mt-4 text-lg leading-relaxed text-slate-600">Real feedback from students, instructors & enthusiasts shaping Ethiopia’s clean mobility future.</p>
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Voices From <span className="text-emerald-600 dark:text-emerald-400">Early Learners</span></h2>
+                    <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">Real feedback from students, instructors & enthusiasts shaping Ethiopia’s clean mobility future.</p>
                 </motion.div>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {data.map((t, i) => {
@@ -57,21 +57,21 @@ export default function Testimonials() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.4 }}
                                 transition={{ duration: 0.6, delay: i * 0.15 }}
-                                className="group relative flex flex-col rounded-2xl border border-slate-200/70 bg-white/70 p-8 shadow-sm backdrop-blur-sm transition-all hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                                className="group relative flex flex-col rounded-2xl border border-slate-200/70 dark:border-slate-700/70 bg-white/70 dark:bg-slate-900/60 p-8 shadow-sm backdrop-blur-sm transition-all hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                             >
                                 <div className="flex items-center gap-4">
-                                    <span className={`flex h-14 w-14 items-center justify-center rounded-full ring-1 ${c.bg} ${c.ring} font-semibold text-sm`}>{t.name[0]}</span>
+                                    <span className={`flex h-14 w-14 items-center justify-center rounded-full ring-1 ${c.bg} ${c.ring} font-semibold text-sm dark:opacity-90`}>{t.name[0]}</span>
                                     <div>
-                                        <h3 className="font-semibold text-slate-900">{t.name}</h3>
-                                        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{t.role}</p>
+                                        <h3 className="font-semibold text-slate-900 dark:text-slate-100">{t.name}</h3>
+                                        <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">{t.role}</p>
                                     </div>
                                 </div>
-                                <p className="mt-5 flex-1 text-sm leading-relaxed text-slate-600">“{t.message}”</p>
+                                <p className="mt-5 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">“{t.message}”</p>
                                 <div className="mt-6 flex items-center justify-between">
                                     <Stars value={t.rating} />
-                                    <span className="text-[11px] font-medium tracking-wide text-emerald-600/80">Verified</span>
+                                    <span className="text-[11px] font-medium tracking-wide text-emerald-600/80 dark:text-emerald-400/80">Verified</span>
                                 </div>
-                                <span className="pointer-events-none absolute inset-x-0 bottom-0 h-1 w-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-500 transition-all duration-500 group-hover:w-full" />
+                                <span className="pointer-events-none absolute inset-x-0 bottom-0 h-1 w-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-500 dark:from-emerald-600 dark:via-teal-600 dark:to-emerald-600 transition-all duration-500 group-hover:w-full" />
                             </motion.article>
                         );
                     })}
