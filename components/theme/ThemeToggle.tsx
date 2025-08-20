@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { useTheme } from './ThemeProvider';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/solid';
 
 /**

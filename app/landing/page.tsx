@@ -8,6 +8,7 @@ import Stat from '@/components/landing/Stats';
 import Services from '@/components/landing/Services';
 import About from '@/components/landing/About';
 import Testimonials from '@/components/landing/Testimonials.client';
+import Partners from '@/components/landing/Partners';
 
 import Appointment from '@/components/landing/Appointment';
 
@@ -113,6 +114,7 @@ export default function LandingPage() {
             <Services />
             <About />
             <Testimonials />
+            <Partners />
             <Appointment />
             <Contact />
             <FAQ />

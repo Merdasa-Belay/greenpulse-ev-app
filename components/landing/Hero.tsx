@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useAuth } from "@/contexts/AuthContext";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 import { ArrowRightIcon, PlayCircleIcon, ShieldCheckIcon, BoltIcon } from "@heroicons/react/24/outline";
 
 export default function Hero() {
+    const { user } = useAuth();
     // IMPORTANT: Removed useReducedMotion conditionals because they produce
     // different server vs client variant values (server can't know user media preference)
     // which was triggering hydration warnings. We now use fixed variants and rely on
@@ -92,28 +94,55 @@ export default function Hero() {
                             variants={itemVariants}
                             className="text-balance text-5xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-6xl motion-reduce:transition-none"
                         >
-                            Accelerate Ethiopia’s<span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 bg-clip-text text-transparent"> EV & Green Tech Skills</span>
+                            {user ? (
+                                <>
+                                    Welcome back, {user.name || 'Explorer'}!<span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 bg-clip-text text-transparent"> Continue Your EV Path</span>
+                                </>
+                            ) : (
+                                <>Accelerate Ethiopia’s<span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 bg-clip-text text-transparent"> EV & Green Tech Skills</span></>
+                            )}
                         </motion.h1>
 
                         <motion.p variants={itemVariants} className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-300 motion-reduce:transition-none">
-                            EV service and green tech training—practical, local, and hands-on for Ethiopia’s emerging workforce.
+                            {user ? 'Pick up where you left off—advance your competencies and earn recognitions in real EV & green tech contexts.' : 'EV service and green tech training—practical, local, and hands-on for Ethiopia’s emerging workforce.'}
                         </motion.p>
 
                         <motion.div variants={itemVariants} className="mt-12 flex flex-wrap gap-4 motion-reduce:transition-none">
-                            <Link
-                                href="/sign-up"
-                                className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-slate-900 dark:bg-emerald-700 px-8 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:bg-slate-800 dark:hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-                            >
-                                <span>Join the Beta</span>
-                                <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                            </Link>
-                            <Link
-                                href="/sign-in"
-                                className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/60 dark:bg-slate-900/60 px-8 text-lg font-medium text-slate-900 dark:text-white backdrop-blur-sm transition-all duration-300 hover:border-slate-400 dark:hover:border-slate-600 hover:bg-white/80 dark:hover:bg-slate-900/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-                            >
-                                <PlayCircleIcon className="h-6 w-6 text-emerald-600" />
-                                <span>View Curriculum</span>
-                            </Link>
+                            {!user && (
+                                <Link
+                                    href="/sign-up"
+                                    className="group relative inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-8 text-lg font-semibold text-white shadow-lg shadow-emerald-500/25 ring-1 ring-emerald-400/40 transition-all duration-300 hover:from-emerald-500 hover:via-emerald-500 hover:to-teal-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:from-emerald-600 dark:via-emerald-500 dark:to-teal-500 dark:hover:from-emerald-500 dark:hover:to-teal-400"
+                                >
+                                    <span className="absolute -inset-px rounded-xl bg-gradient-to-r from-emerald-600/0 via-teal-400/0 to-teal-400/0 opacity-0 blur transition duration-500 group-hover:opacity-60 group-hover:via-teal-400/30" aria-hidden />
+                                    <span className="relative flex items-center gap-2">
+                                        <span className="inline-flex items-center gap-2">
+                                            <span className="relative flex h-2 w-2">
+                                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70 opacity-70" />
+                                                <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                                            </span>
+                                            Join the Beta
+                                        </span>
+                                        <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                                    </span>
+                                </Link>
+                            )}
+                            {user ? (
+                                <Link
+                                    href="/dashboard"
+                                    className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-emerald-300/70 dark:border-emerald-700/70 bg-white/60 dark:bg-slate-900/60 px-8 text-lg font-medium text-emerald-700 dark:text-emerald-300 backdrop-blur-sm transition-all duration-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-white/80 dark:hover:bg-slate-900/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                                >
+                                    <PlayCircleIcon className="h-6 w-6" />
+                                    <span>Continue Learning</span>
+                                </Link>
+                            ) : (
+                                <Link
+                                    href="/sign-in"
+                                    className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-300/70 dark:border-slate-700/70 bg-white/50 dark:bg-slate-900/50 px-8 text-lg font-medium text-slate-900 dark:text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/70 dark:hover:bg-slate-900/70 hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                                >
+                                    <PlayCircleIcon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                                    <span>View Curriculum</span>
+                                </Link>
+                            )}
                         </motion.div>
 
                         <motion.p variants={itemVariants} className="mt-5 text-sm text-slate-500 dark:text-slate-400 motion-reduce:transition-none">
@@ -177,20 +206,7 @@ export default function Hero() {
                     </motion.div>
                 </div>
 
-                {/* Scroll indicator */}
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.2, duration: 0.6 }}
-                    className="mt-14 flex justify-center"
-                >
-                    <a href="#features" className="group flex flex-col items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400">
-                        <span className="inline-flex h-10 w-6 items-start justify-center rounded-full border border-slate-300/70 dark:border-slate-700/70 bg-white/70 dark:bg-slate-900/70 p-1 backdrop-blur-sm shadow">
-                            <span className="h-2 w-2 animate-bounce rounded-full bg-emerald-500 dark:bg-emerald-400" />
-                        </span>
-                        Scroll
-                    </a>
-                </motion.div>
+                {/* Scroll indicator removed for cleaner Turbopack-friendly hero */}
             </motion.div>
         </section>
     );

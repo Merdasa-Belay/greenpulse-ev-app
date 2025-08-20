@@ -1,22 +1,12 @@
 "use client";
 
-import { EnvelopeIcon, PhoneIcon, MapPinIcon, ClockIcon, ArrowUpIcon } from "@heroicons/react/24/solid";
+import { EnvelopeIcon, PhoneIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/solid";
 import { FaTiktok, FaTwitter, FaYoutube, FaTelegramPlane } from 'react-icons/fa';
 import SocialButton from "../ui/SocialButton";
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const Footer = () => {
-    const [showTop, setShowTop] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => setShowTop(window.scrollY > 300);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    // Scroll button removed per branding simplification
 
     return (
         <footer className="bg-gray-900 text-white pt-16 pb-8 relative">
@@ -52,7 +42,10 @@ const Footer = () => {
                             </a>
                         </div>
                         <p className="text-gray-400 mb-4">
-                            Empowering Ethiopia’s EV future with maintenance service, consultation, expert training, hands-on practice, and sustainable mobility solutions.
+                            Ethiopia’s EV knowledge hub—training technicians, servicing electric & hybrid vehicles, and advising institutions on sustainable adoption.
+                        </p>
+                        <p className="text-gray-500 text-sm mb-4">
+                            Green Pulse not only trains — we also support real maintenance, diagnostics, and deployment.
                         </p>
                         <div className="flex flex-wrap gap-4 mt-4">
                             {/* Social Media Buttons */}
@@ -137,9 +130,10 @@ const Footer = () => {
 
                 <div className="border-t border-gray-800 pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center">
-                        <p className="text-gray-400 text-sm mb-4 md:mb-0">
-                            &copy; 2024 Green Pulse. All rights reserved.
-                        </p>
+                        <div className="flex flex-col items-center md:items-start gap-2 mb-4 md:mb-0">
+                            <p className="text-gray-400 text-sm">&copy; 2024 Green Pulse. All rights reserved.</p>
+                            <p className="text-[11px] text-gray-500 tracking-wide uppercase">Training • Service • Consultation • Sustainability</p>
+                        </div>
                         <div className="flex space-x-6">
                             {["Privacy Policy", "Terms of Service", "Sitemap"].map((link) => (
                                 <a key={link} href="#" className="text-gray-400 hover:text-green-500 text-sm transition duration-300">{link}</a>
@@ -149,20 +143,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Back to Top Button */}
-            <AnimatePresence>
-                {showTop && (
-                    <motion.button
-                        onClick={scrollToTop}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        className="fixed bottom-8 right-8 w-12 h-12 bg-green-500 text-white rounded-full shadow-lg flex items-center justify-center transition duration-300 hover:bg-green-600"
-                    >
-                        <ArrowUpIcon className="h-6 w-6" />
-                    </motion.button>
-                )}
-            </AnimatePresence>
+            {/* Back to Top Button removed */}
         </footer>
     );
 };

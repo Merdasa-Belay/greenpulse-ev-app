@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { HomeIcon, ChartPieIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 
 const MobileBottomNav = () => {
   const itemVariants = {
