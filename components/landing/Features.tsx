@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "@/lib/motion";
 import {
     MapPinIcon,
     BoltIcon,

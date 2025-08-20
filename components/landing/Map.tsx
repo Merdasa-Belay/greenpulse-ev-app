@@ -13,7 +13,7 @@ import { useState, useMemo } from "react";
 // In Next.js client components, process.env.NEXT_PUBLIC_* vars are statically inlined.
 // We avoid accessing (window as any) to keep types clean.
 const RAW_ENV_URL = process.env.NEXT_PUBLIC_MAP_EMBED_URL;
-const DEFAULT_QUERY = encodeURIComponent("Addis Ababa, Ethiopia");
+const DEFAULT_QUERY = encodeURIComponent("Addis Ababa, Ethiopia"); // TODO: Replace with precise address e.g. 'Addis Ababa Institute of Technology'
 
 const FALLBACK_EMBED = `https://maps.google.com/maps?q=${DEFAULT_QUERY}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
 
@@ -36,17 +36,17 @@ const MapSection = () => {
     }, []);
 
     return (
-        <section id="map" className="relative w-full bg-white dark:bg-slate-900 transition-colors">
+        <section id="map" className="relative w-full bg-white dark:bg-slate-900 transition-colors" aria-labelledby="location-heading">
             <div className="max-w-6xl mx-auto px-6 py-20">
                 <div className="mb-10 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Our Location</h2>
-                    <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm md:text-base">Find us easily – tap for directions.</p>
+                    <h2 id="location-heading" className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Our Location</h2>
+                    <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm md:text-base">Find us easily – tap for directions or open the map in a new tab for full accessibility.</p>
                 </div>
                 <div className="relative rounded-2xl overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm">
                     {!errored && (
                         <iframe
                             title="Green Pulse location map"
-                            className="w-full h-[420px] md:h-[480px]"
+                            className="w-full h-[420px] md:h-[480px] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                             src={iframeSrc}
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
@@ -72,7 +72,7 @@ const MapSection = () => {
                     )}
                     <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 dark:ring-white/10 rounded-2xl" />
                 </div>
-                <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-center">
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-center" aria-label="Map external links">
                     <a
                         href={externalLink}
                         target="_blank"
@@ -81,7 +81,7 @@ const MapSection = () => {
                     >
                         Open larger map →
                     </a>
-                    <code className="text-[11px] px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Override: NEXT_PUBLIC_MAP_EMBED_URL</code>
+                    <code className="text-[11px] px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Environment variable override">Override: NEXT_PUBLIC_MAP_EMBED_URL</code>
                 </div>
             </div>
         </section>
