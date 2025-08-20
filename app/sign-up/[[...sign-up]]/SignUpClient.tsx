@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from 'react';
+import type { Resolver } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -22,7 +23,7 @@ export default function SignUpClient() {
     const [serverError, setServerError] = useState<string | null>(null);
     const [submitting, setSubmitting] = useState(false);
     const { register, handleSubmit, watch, formState: { errors, isValid, dirtyFields } } = useForm<SignUpForm>({
-        resolver: zodResolver(signUpSchema),
+        resolver: zodResolver(signUpSchema) as unknown as Resolver<SignUpForm>,
         mode: 'onChange',
         defaultValues: { name: '', email: '', password: '', role: 'student' }
     });
@@ -30,8 +31,10 @@ export default function SignUpClient() {
     const values = watch();
     const totalFields = 4;
     type FieldKey = keyof SignUpForm;
-    const orderedFields: FieldKey[] = ['name', 'email', 'password', 'role'];
-    const completedCount = useMemo(() => orderedFields.filter(f => (dirtyFields as Partial<Record<FieldKey, boolean>>)[f] && values[f]).length, [dirtyFields, values]);
+    const completedCount = useMemo(() => {
+        const orderedFields: FieldKey[] = ['name', 'email', 'password', 'role'];
+        return orderedFields.filter(f => (dirtyFields as Partial<Record<FieldKey, boolean>>)[f] && values[f]).length;
+    }, [dirtyFields, values]);
     const progressPct = Math.round((completedCount / totalFields) * 100);
 
     const passwordStrength = useMemo(() => {
