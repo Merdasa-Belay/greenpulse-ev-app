@@ -12,7 +12,7 @@ const signUpSchema = z.object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
     email: z.string().email('Enter a valid email'),
     password: z.string().min(8, 'Minimum 8 characters').regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/, 'Must include upper, lower & number'),
-    role: z.enum(['student', 'teacher', 'admin']).default('student'),
+    role: z.enum(['student', 'teacher', 'admin']),
 });
 
 type SignUpForm = z.infer<typeof signUpSchema>;
