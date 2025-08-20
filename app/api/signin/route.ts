@@ -35,10 +35,9 @@ export async function POST(request: Request) {
       { expiresIn: '1h' }
     );
 
-    // 5. Return the token and user info and set an auth cookie for middleware
-  // Omit password before sending user back to client
-  // Extract password without triggering unused var rule
-  const { password: _removedPassword, ...userWithoutPassword } = user;
+  // 5. Return the token and user info and set an auth cookie for middleware.
+  // Strip password (rename during destructure so linter sees usage avoidance intentionally)
+  const { password: _pw, ...userWithoutPassword } = user;
     const response = NextResponse.json({ token, user: userWithoutPassword }, { status: 200 });
     response.cookies.set('next-auth.session-token', token, {
       httpOnly: true,

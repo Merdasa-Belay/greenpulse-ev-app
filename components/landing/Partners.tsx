@@ -168,7 +168,7 @@ export default function Partners() {
                 </div>
 
                 <div className="sr-only" aria-hidden>
-                    Partners & Collaborators listed across Founding/Policy, Strategic/Tech and Community tiers supporting Ethiopia's EV talent development.
+                    Partners & Collaborators listed across Founding/Policy, Strategic/Tech and Community tiers supporting Ethiopia&rsquo;s EV talent development.
                 </div>
             </div>
         </section>
