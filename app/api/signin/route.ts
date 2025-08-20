@@ -37,7 +37,8 @@ export async function POST(request: Request) {
 
     // 5. Return the token and user info and set an auth cookie for middleware
   // Omit password before sending user back to client
-  const { password: _password, ...userWithoutPassword } = user;
+  // Extract password without triggering unused var rule
+  const { password: _removedPassword, ...userWithoutPassword } = user;
     const response = NextResponse.json({ token, user: userWithoutPassword }, { status: 200 });
     response.cookies.set('next-auth.session-token', token, {
       httpOnly: true,

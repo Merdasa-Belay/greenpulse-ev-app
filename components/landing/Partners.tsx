@@ -150,7 +150,7 @@ export default function Partners() {
                                                         </Link>
                                                     </h4>
                                                     <p className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 mt-1">
-                                                        {p.role}{p.pilot && ' • Pilot'}
+                                                        {p.role}{p.pilot && ' \u2022 Pilot'}
                                                     </p>
                                                 </div>
                                             </div>

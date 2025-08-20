@@ -29,7 +29,9 @@ export default function SignUpClient() {
 
     const values = watch();
     const totalFields = 4;
-    const completedCount = useMemo(() => ['name', 'email', 'password', 'role'].filter(f => (dirtyFields as any)[f] && (values as any)[f]).length, [dirtyFields, values]);
+    type FieldKey = keyof SignUpForm;
+    const orderedFields: FieldKey[] = ['name', 'email', 'password', 'role'];
+    const completedCount = useMemo(() => orderedFields.filter(f => (dirtyFields as Partial<Record<FieldKey, boolean>>)[f] && values[f]).length, [dirtyFields, values]);
     const progressPct = Math.round((completedCount / totalFields) * 100);
 
     const passwordStrength = useMemo(() => {
