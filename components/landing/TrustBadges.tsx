@@ -1,12 +1,13 @@
 "use client";
 import { motion } from "@/lib/motion";
 import { ShieldCheckIcon, AcademicCapIcon, GlobeAltIcon, BoltIcon } from "@heroicons/react/24/outline";
+import type { ReactNode } from 'react';
 
 interface Badge {
     label: string;
     status: "verified" | "pending";
     description: string;
-    icon: JSX.Element;
+    icon: ReactNode;
 }
 
 const badges: Badge[] = [
