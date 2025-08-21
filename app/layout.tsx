@@ -91,7 +91,7 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
       </head>
       <body
-        className={`${bricolage.variable} antialiased transition-colors duration-300`}
+        className={`${bricolage.variable} antialiased transition-colors duration-300 bg-gradient-to-b from-white via-emerald-50/40 to-teal-50/20 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900`}
       >
         <a
           href="#main"

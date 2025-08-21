@@ -33,8 +33,8 @@ const Footer = () => {
                     <div>
                         <h4 className="text-sm font-semibold mb-4 text-gray-900 dark:text-white">Quick Links</h4>
                         <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                            {['Home','Services','About','Contact'].map(l => (
-                                <li key={l}><a href={`#${l.toLowerCase().replace(/\s/g,'')}`} className="hover:text-emerald-600 transition">{l}</a></li>
+                            {['Home', 'Services', 'About', 'Contact'].map(l => (
+                                <li key={l}><a href={`#${l.toLowerCase().replace(/\s/g, '')}`} className="hover:text-emerald-600 transition">{l}</a></li>
                             ))}
                         </ul>
                     </div>
@@ -43,7 +43,7 @@ const Footer = () => {
                     <div>
                         <h4 className="text-sm font-semibold mb-4 text-gray-900 dark:text-white">Services</h4>
                         <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                            {['EV Maintenance','Battery Diagnostics','Capstone Projects'].map(s => (
+                            {['EV Maintenance', 'Battery Diagnostics', 'Capstone Projects'].map(s => (
                                 <li key={s}><a href="#" className="hover:text-emerald-600 transition">{s}</a></li>
                             ))}
                         </ul>
