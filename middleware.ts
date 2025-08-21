@@ -16,6 +16,7 @@ export function middleware(request: NextRequest) {
   const isPublicRoute =
     isAuthPage ||
     pathname === '/landing' ||
+  pathname === '/google0dd8049ac7666f2d.html' ||
     pathname === '/robots.txt' ||
     pathname === '/sitemap.xml'
 
