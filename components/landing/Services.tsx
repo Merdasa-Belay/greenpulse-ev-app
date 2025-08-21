@@ -30,7 +30,7 @@ export default function Services() {
             icon: <FaTools className="text-emerald-600 dark:text-emerald-400 text-2xl" />,
             bg: "bg-emerald-100/70 dark:bg-emerald-900/30",
             title: "Foundation Essentials",
-            text: "Core electrical safety, EV architecture & terminology to build a solid base.",
+            text: "Safety-first basics: electricity, components, and essential tools.",
             features: ["High‑voltage safety", "System components", "Tooling basics"],
             level: 1,
             thumb: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=60",
@@ -40,7 +40,7 @@ export default function Services() {
             icon: <FaCarBattery className="text-emerald-600 dark:text-emerald-400 text-2xl" />,
             bg: "bg-emerald-100/70 dark:bg-emerald-900/30",
             title: "EV Power & Batteries",
-            text: "Battery pack anatomy, BMS logic & thermal management fundamentals.",
+            text: "Understand battery packs, BMS basics, and thermal safety.",
             features: ["Cell & module structure", "State of health checks", "Thermal diagnostics"],
             level: 2,
             thumb: "https://images.unsplash.com/photo-1694889648476-3777d917b91c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -50,7 +50,7 @@ export default function Services() {
             icon: <FaMicrochip className="text-emerald-600 dark:text-emerald-400 text-2xl" />,
             bg: "bg-emerald-100/70 dark:bg-emerald-900/30",
             title: "Systems Diagnostics",
-            text: "Troubleshooting drivetrains, inverters, charging & control systems.",
+            text: "Fast troubleshooting for controls, inverters and charging systems.",
             features: ["Error code logic", "Signal tracing", "Common fault trees"],
             level: 3,
             thumb: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=400&q=60",
@@ -60,7 +60,7 @@ export default function Services() {
             icon: <FaServicestack className="text-emerald-600 dark:text-emerald-400 text-2xl" />,
             bg: "bg-emerald-100/70 dark:bg-emerald-900/30",
             title: "EV Service Skills",
-            text: "Hands-on training for practical EV service and repair.",
+            text: "Practical, workshop-focused repair & maintenance skills.",
             features: ["Routine maintenance procedures", "Battery replacement & diagnostics", "Charging system inspection"],
             level: 4,
             thumb: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -70,7 +70,7 @@ export default function Services() {
             icon: <FaCloudDownloadAlt className="text-emerald-600 dark:text-emerald-400 text-2xl" />,
             bg: "bg-emerald-100/70 dark:bg-emerald-900/30",
             title: "Offline Access",
-            text: "Low‑bandwidth optimized & downloadable lesson packs for unstable grids.",
+            text: "Downloadable, bandwidth-friendly lesson packs.",
             features: ["Compressed media", "Sync later mode", "Lightweight quizzes"],
             level: 5,
             thumb: "https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&w=400&q=60",
@@ -80,7 +80,7 @@ export default function Services() {
             icon: <FaChartLine className="text-emerald-600 dark:text-emerald-400 text-2xl" />,
             bg: "bg-emerald-100/70 dark:bg-emerald-900/30",
             title: "Capstone & Progress",
-            text: "Applied project build + tracked competencies for employability.",
+            text: "Project-based capstone and skill tracking for jobs.",
             features: ["Project brief", "Skill badges", "Portfolio export"],
             level: 6,
             thumb: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=60",
@@ -104,7 +104,7 @@ export default function Services() {
                         Structured Learning Paths
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        Guided progression from fundamentals to applied EV & green energy skill readiness.
+                        Clear, hands-on paths from basics to applied EV skills — fast, practical, and locally relevant.
                     </p>
                 </motion.div>
 
