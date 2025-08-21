@@ -1,4 +1,14 @@
-'use client';
+"use client";
+
+import type { Metadata } from 'next';
+
+// Explicitly prevent indexing of password recovery page.
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -83,7 +93,7 @@ export default function ForgotPasswordPage() {
             <div className="space-y-3">
               <Link
                 href="/sign-in"
-                className="block w-full bg-gray-900 text-white text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-gray-800 transition"
+                className="w-full bg-gray-900 text-white text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-gray-800 transition"
               >
                 Back to Sign In
               </Link>
@@ -92,7 +102,7 @@ export default function ForgotPasswordPage() {
                   setIsSubmitted(false);
                   setError(null);
                 }}
-                className="block w-full border border-gray-300 text-gray-700 text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-gray-50 transition"
+                className="w-full border border-gray-300 text-gray-700 text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-gray-50 transition"
               >
                 Try Again
               </button>

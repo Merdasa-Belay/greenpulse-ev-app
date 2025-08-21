@@ -1,4 +1,14 @@
-'use client';
+"use client";
+
+import type { Metadata } from 'next';
+
+// Prevent indexing of password reset flow for security & SEO hygiene.
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 import { useState, useEffect, Suspense } from 'react';
 import { useForm } from 'react-hook-form';
@@ -186,7 +196,7 @@ function ResetPasswordInner() {
             </p>
             <Link
               href="/sign-in"
-              className="block w-full bg-gray-900 text-white text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-gray-800 transition"
+              className="w-full bg-gray-900 text-white text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-gray-800 transition"
             >
               Continue to Sign In
             </Link>
@@ -224,13 +234,13 @@ function ResetPasswordInner() {
             <div className="space-y-3">
               <Link
                 href="/forgot-password"
-                className="block w-full bg-blue-600 text-white text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-blue-700 transition"
+                className="w-full bg-blue-600 text-white text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-blue-700 transition"
               >
                 Request New Reset Link
               </Link>
               <Link
                 href="/sign-in"
-                className="block w-full border border-gray-300 text-gray-700 text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-gray-50 transition"
+                className="w-full border border-gray-300 text-gray-700 text-sm font-medium rounded-lg h-12 flex items-center justify-center hover:bg-gray-50 transition"
               >
                 Back to Sign In
               </Link>
