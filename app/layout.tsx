@@ -89,6 +89,57 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* Structured Data: Organization & Website */}
+        <script
+          type="application/ld+json"
+          // Using dangerouslySetInnerHTML to embed JSON-LD per Next.js pattern.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': `${appUrl}#org`,
+                  name: 'GreenPulse EV',
+                  url: appUrl,
+                  logo: `${appUrl}/readme/thumbnail.png`,
+                  sameAs: [
+                    'https://twitter.com/greenpulse',
+                  ],
+                  description:
+                    'Smart EV routing, charging optimization, and contextual EV & green tech learning for emerging markets.',
+                  foundingDate: '2024-01-01',
+                  areaServed: 'ET',
+                  keywords: 'EV training, electric vehicle, battery maintenance, green tech skills, charging optimization, sustainability',
+                  contactPoint: [
+                    {
+                      '@type': 'ContactPoint',
+                      contactType: 'customer support',
+                      availableLanguage: ['en'],
+                    },
+                  ],
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': `${appUrl}#website`,
+                  url: appUrl,
+                  name: 'GreenPulse EV',
+                  description:
+                    'EV journey planning & green technology skill development platform.',
+                  inLanguage: 'en',
+                  publisher: { '@id': `${appUrl}#org` },
+                  potentialAction: [
+                    {
+                      '@type': 'SearchAction',
+                      target: `${appUrl}/search?q={search_term_string}`,
+                      'query-input': 'required name=search_term_string',
+                    },
+                  ],
+                },
+              ],
+            }),
+          }}
+        />
         {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
           <meta
             name="google-site-verification"
