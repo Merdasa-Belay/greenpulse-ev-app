@@ -56,10 +56,6 @@ export const metadata: Metadata = {
     apple: "/favicon.ico",
   },
   manifest: "/manifest.webmanifest",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#020617" },
-  ],
   category: "education",
   keywords: [
     "EV training",
@@ -69,6 +65,13 @@ export const metadata: Metadata = {
     "Ethiopia",
     "charging optimization",
     "sustainability",
+  ],
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#020617" },
   ],
 };
 

@@ -65,7 +65,7 @@ export default function TrustBadges() {
                                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white">
                                     {b.icon}
                                 </div>
-                                <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide ${b.status === 'verified' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'}`}>{b.status}</span>
+                                <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide ${b.status === 'verified' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300' : 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300'}`}>{b.status}</span>
                             </div>
                             <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm leading-tight">{b.label}</h3>
                             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-300 flex-1">{b.description}</p>

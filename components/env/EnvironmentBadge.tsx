@@ -5,7 +5,7 @@ import { APP_ENV } from "@/config/features";
 const colors: Record<string, string> = {
     production: "bg-emerald-600",
     beta: "bg-indigo-600",
-    alpha: "bg-amber-600",
+    alpha: "bg-emerald-600",
     development: "bg-slate-600",
 };
 

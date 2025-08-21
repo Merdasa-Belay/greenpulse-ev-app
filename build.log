@@ -1,0 +1,38 @@
+
+> greenpulse-ev@0.1.0 build
+> next build
+
+ ⚠ Warning: Found multiple lockfiles. Selecting C:\Users\merda\Documents\Projects\package-lock.json.
+   Consider removing the lockfiles at:
+   * C:\Users\merda\Documents\Projects\greenpulse-ev-app\package-lock.json
+
+   ▲ Next.js 15.4.5
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 20.0s
+   Linting and checking validity of types ...
+
+./components/ui/CTA.tsx
+5:23  Warning: 'children' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+Failed to compile.
+
+./components/CompanionForm.tsx:6:24
+Type error: Already included file name 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/ui/Button.tsx' differs from file name 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/ui/button.tsx' only in casing.
+  The file is in the program because:
+    Imported via "@/components/ui/Button" from file 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/CompanionForm.tsx'
+    Imported via './Button' from file 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/ui/Button.tsx'
+    Imported via '@/components/ui/Button' from file 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/landing/About.tsx'
+    Imported via './Button' from file 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/ui/CTA.tsx'
+    Root file specified for compilation
+
+[0m [90m 4 |[39m [36mimport[39m { useForm } [36mfrom[39m [32m"react-hook-form"[39m
+ [90m 5 |[39m [36mimport[39m { z } [36mfrom[39m [32m"zod"[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/Button"[39m
+ [90m   |[39m                        [31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mInput[39m } [36mfrom[39m [32m"@/components/ui/input"[39m
+ [90m 8 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m
+ [90m 9 |[39m [36mimport[39m {[0m
+Next.js build worker exited with code: 1 and signal: null

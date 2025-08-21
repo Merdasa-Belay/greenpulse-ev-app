@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/Card';
 import { IconBadge } from '@/components/ui/IconBadge';
 import Cohorts from '@/components/landing/Cohorts';
 import Testimonials from '@/components/landing/Testimonials';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 const parent = {
     hidden: { opacity: 0 },
@@ -46,10 +46,10 @@ export const About: FC = () => {
                         <motion.div variants={reveal} className="lg:col-span-5">
                             <div className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-emerald-200/20 bg-gradient-to-tr from-slate-900 via-emerald-700 to-teal-500">
                                 <div className="relative w-full h-48 sm:h-64 md:h-72 lg:h-56 xl:h-64">
-                                    <Image src="/readme/hero.png" alt="EV training lab" fill className="object-cover" />
+                                    <Image src="/images/training.png" alt="EV training lab" fill className="object-cover" />
                                     <div className="absolute left-4 top-4 flex flex-col gap-2">
-                                        <IconBadge icon={<SparklesIcon className="h-4 w-4 text-amber-400" />} label="Hands-on" />
-                                        <IconBadge icon={<BoltIcon className="h-4 w-4 text-amber-400" />} label="Charging" />
+                                        <IconBadge icon={<SparklesIcon className="h-4 w-4 text-emerald-600" />} label="Hands-on" />
+                                        <IconBadge icon={<BoltIcon className="h-4 w-4 text-emerald-600" />} label="Charging" />
                                     </div>
                                 </div>
                             </div>
@@ -60,12 +60,12 @@ export const About: FC = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                         <motion.div variants={reveal} className="order-2 lg:order-1 lg:col-span-7">
                             <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">Who we are</h3>
-                            <p className="mt-3 text-slate-700 dark:text-slate-300">We train technicians, certify workshops, and partner with local institutions to deliver resilient EV services. Our programs combine classroom learning with real-vehicle labs and diagnostics adapted to local conditions.</p>
+                            <p className="mt-3 text-slate-700 dark:text-slate-300">We train technicians, certify workshops, and partner with local institutions to deliver resilient EV services. Our programs combine classroom learning with real-vehicle labs and diagnostics adapted to local conditions. In addition to training, we directly provide EV service & maintenance support—covering diagnostics, battery health assessment, and safe repair practices—to accelerate ecosystem readiness.</p>
                         </motion.div>
                         <motion.div variants={reveal} className="order-1 lg:order-2 lg:col-span-5">
                             <div className="rounded-2xl overflow-hidden shadow-soft-lg">
                                 <div className="relative w-full h-56">
-                                    <Image src="/readme/jsmpro.png" alt="Workshop training" fill className="object-cover" />
+                                    <Image src="/images/evcharging.png" alt="Workshop training" fill className="object-cover" />
                                 </div>
                             </div>
                         </motion.div>
@@ -114,7 +114,7 @@ export const About: FC = () => {
 
                             <Card className="p-4 flex items-start gap-3">
                                 <div className="rounded-lg p-2 bg-emerald-50 dark:bg-emerald-900/20">
-                                    <SparklesIcon className="h-5 w-5 text-amber-500" />
+                                    <SparklesIcon className="h-5 w-5 text-emerald-600" />
                                 </div>
                                 <div>
                                     <div className="text-sm font-semibold">Practical skills</div>
@@ -135,34 +135,42 @@ export const About: FC = () => {
                     </div>
 
                     {/* Journey / Timeline */}
-                    <div>
-                        <h4 className="text-base font-semibold text-slate-900 dark:text-white">Our journey</h4>
-                        <div className="mt-6 space-y-4">
-                            <div className="flex items-start gap-4">
-                                <div className="mt-1 rounded-full w-8 h-8 bg-emerald-600 text-white flex items-center justify-center text-sm">2019</div>
-                                <div>
-                                    <div className="font-semibold">Founding</div>
-                                    <div className="text-sm text-slate-600 dark:text-slate-300">Green Pulse formed to tackle EV skills gaps and localise maintenance know-how.</div>
-                                </div>
-                            </div>
+                    <div className="pb-4 border-b border-emerald-100/60 dark:border-emerald-900/40">
+                        <h4 className="text-base font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span className="inline-block size-2 rounded-full bg-emerald-500" />Our journey
+                        </h4>
+                        <div className="mt-6 relative">
+                            <div className="absolute left-3 top-6 bottom-1 w-px bg-gradient-to-b from-emerald-300/70 via-emerald-200/40 to-transparent" aria-hidden />
+                            <div className="space-y-8">
+                                <motion.div variants={card} className="relative pl-20">
+                                    <div className="absolute left-0 top-1 w-14 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[11px] font-medium">2024</div>
+                                    <div className="font-semibold">Founding (Jan 1, 2024)</div>
+                                    <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">Green Pulse established to close EV skills gaps & localise maintenance knowledge from day one.</div>
+                                </motion.div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="mt-1 rounded-full w-8 h-8 bg-emerald-600 text-white flex items-center justify-center text-sm">2022</div>
-                                <div>
-                                    <div className="font-semibold">Pilot programs</div>
-                                    <div className="text-sm text-slate-600 dark:text-slate-300">Started workshops with partner fleets and built our first curriculum.</div>
-                                </div>
-                            </div>
+                                <motion.div variants={card} className="relative pl-20">
+                                    <div className="absolute left-0 top-1 w-14 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[11px] font-medium">2024</div>
+                                    <div className="font-semibold">EV service offering</div>
+                                    <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">Launch of hands-on EV service & maintenance support: diagnostics, battery care & safety.</div>
+                                </motion.div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="mt-1 rounded-full w-8 h-8 bg-emerald-600 text-white flex items-center justify-center text-sm">2024</div>
-                                <div>
-                                    <div className="font-semibold">Scaling</div>
-                                    <div className="text-sm text-slate-600 dark:text-slate-300">Expanding cohorts and formalising certified pathways.</div>
-                                </div>
+                                <motion.div variants={card} className="relative pl-20">
+                                    <div className="absolute left-0 top-1 w-14 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[11px] font-medium">2024</div>
+                                    <div className="font-semibold">Official platform launch (Jan 3)</div>
+                                    <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">Platform & early curriculum released with initial participant onboarding.</div>
+                                </motion.div>
+
+                                <motion.div variants={card} className="relative pl-20">
+                                    <div className="absolute left-0 top-1 w-14 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[11px] font-medium">2024</div>
+                                    <div className="font-semibold">Scaling cohorts</div>
+                                    <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">Expanding training pathways & certifying partner workshops.</div>
+                                </motion.div>
                             </div>
                         </div>
                     </div>
+
+                    {/* Spacer & transition before community */}
+                    <div className="h-2" aria-hidden />
 
                     {/* Community & impact */}
                     <div>
