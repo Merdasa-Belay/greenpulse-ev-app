@@ -50,7 +50,7 @@ export default function Hero() {
     ];
 
     return (
-        <section id="home" aria-labelledby="hero-heading" className="relative overflow-hidden bg-white dark:bg-slate-950">
+        <section id="home" aria-labelledby="hero-heading" className="relative overflow-hidden bg-white dark:bg-slate-950 scroll-mt-24 md:scroll-mt-28">
             {/* Decorative background layers */}
             <div className="absolute inset-0 -z-10">
                 {/* radial glows */}
@@ -68,7 +68,7 @@ export default function Hero() {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.4 }}
                 /* Reduced bottom padding to better align adjacent section spacing */
-                className="mx-auto max-w-7xl px-4 pt-10 md:pt-16 pb-12 md:pb-16 sm:px-6 lg:px-8"
+                className="mx-auto max-w-7xl px-4 pt-24 md:pt-28 pb-12 md:pb-16 sm:px-6 lg:px-8"
             >
                 <div className="grid items-center gap-20 md:grid-cols-2"> {/* Increased gap */}
                     {/* Copy */}

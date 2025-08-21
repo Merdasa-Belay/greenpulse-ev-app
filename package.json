@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "prisma generate",
     "build": "next build",
+    "build:log": "npm run build > build.log 2>&1",
     "dev": "next dev",
     "start": "next start"
   },

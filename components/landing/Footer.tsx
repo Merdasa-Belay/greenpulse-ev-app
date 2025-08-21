@@ -1,149 +1,76 @@
 "use client";
 
-import { EnvelopeIcon, PhoneIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/solid";
+import { EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { FaTiktok, FaTwitter, FaYoutube, FaTelegramPlane } from 'react-icons/fa';
 import SocialButton from "../ui/SocialButton";
 import Image from "next/image";
 
 const Footer = () => {
-    // Scroll button removed per branding simplification
-
     return (
-        <footer className="bg-gray-900 text-white pt-16 pb-8 relative">
+        <footer className="relative py-12 bg-gradient-to-t from-emerald-50/40 dark:from-slate-900">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-8">
                     {/* Brand */}
                     <div>
-                        <div className="flex items-center mb-4">
-                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-green-200/70 transition-shadow duration-300 group">
-                                <span className="text-xl">
-                                    <Image
-                                        src="/images/logo.svg"
-                                        alt="Green Pulse logo"
-                                        width={60}
-                                        height={60}
-                                        priority
-                                        className="
-    select-none
-    transition-all duration-500 ease-out
-    hover:scale-110 hover:rotate-3
-    drop-shadow-[0_3px_8px_rgba(20,200,143,0.4)]
-    hover:drop-shadow-[0_5px_14px_rgba(20,200,143,0.55)]
-  "
-                                    />
-
-
-                                </span>
+                        <div className="flex items-center mb-3">
+                            <div className="w-12 h-12 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center shadow-sm ring-1 ring-emerald-200 dark:ring-emerald-800">
+                                <Image src="/images/logo.svg" alt="Green Pulse logo" width={48} height={48} priority className="h-10 w-auto" />
                             </div>
-
-                            <a href="#" className="ml-3 text-2xl font-bold">
-                                Green<span className="text-[#14C88F]">Pulse</span>
-
+                            <a href="#" className="ml-3 text-2xl font-bold leading-none">
+                                Green<span className="text-emerald-500">Pulse</span>
                             </a>
                         </div>
-                        <p className="text-gray-400 mb-4">
-                            Ethiopia’s EV knowledge hub—training technicians, servicing electric & hybrid vehicles, and advising institutions on sustainable adoption.
-                        </p>
-                        <p className="text-gray-500 text-sm mb-4">
-                            Green Pulse not only trains — we also support real maintenance, diagnostics, and deployment.
-                        </p>
-                        <div className="flex flex-wrap gap-4 mt-4">
-                            {/* Social Media Buttons */}
-                            <SocialButton
-                                href="https://www.tiktok.com/@greenpulseaddis"
-                                label="TikTok"
-                                brand="#010101"
-                                icon={<FaTiktok className="text-[1.1rem]" />}
-                            />
-                            <SocialButton
-                                href="https://twitter.com/yourhandle"
-                                label="Twitter"
-                                brand="#1DA1F2"
-                                icon={<FaTwitter className="text-[1.1rem]" />}
-                            />
-                            <SocialButton
-                                href="https://www.youtube.com/@greenpulse-addis"
-                                label="YouTube"
-                                brand="#FF0000"
-                                icon={<FaYoutube className="text-[1.1rem]" />}
-                            />
-                            <SocialButton
-                                href="https://t.me/Evcarsethio"
-                                label="Telegram"
-                                brand="#0088CC"
-                                icon={<FaTelegramPlane className="text-[1.1rem]" />}
-                            />
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">Ethiopia’s EV training & service hub — practical skills, safer workshops.</p>
+                        <div className="flex flex-wrap gap-3 mt-3">
+                            <SocialButton href="https://www.tiktok.com/@greenpulseaddis" label="TikTok" brand="#010101" icon={<FaTiktok />} />
+                            <SocialButton href="https://twitter.com/yourhandle" label="Twitter" brand="#1DA1F2" icon={<FaTwitter />} />
+                            <SocialButton href="https://www.youtube.com/@greenpulse-addis" label="YouTube" brand="#FF0000" icon={<FaYoutube />} />
+                            <SocialButton href="https://t.me/Evcarsethio" label="Telegram" brand="#0088CC" icon={<FaTelegramPlane />} />
                         </div>
-
                     </div>
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="text-lg font-bold mb-6">Quick Links</h4>
-                        <ul className="space-y-3">
-                            {["Home", "Services", "About Us", "Future Imports", "Contact"].map((link) => (
-                                <li key={link}>
-                                    <a href={`#${link.toLowerCase().replace(/\s/g, "")}`} className="text-gray-400 hover:text-green-500 transition duration-300">
-                                        {link}
-                                    </a>
-                                </li>
+                        <h4 className="text-sm font-semibold mb-4 text-gray-900 dark:text-white">Quick Links</h4>
+                        <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                            {['Home', 'Services', 'About', 'Contact'].map(l => (
+                                <li key={l}><a href={`#${l.toLowerCase().replace(/\s/g, '')}`} className="hover:text-emerald-600 transition">{l}</a></li>
                             ))}
                         </ul>
                     </div>
 
                     {/* Services */}
                     <div>
-                        <h4 className="text-lg font-bold mb-6">Services</h4>
-                        <ul className="space-y-3">
-                            {["EV Maintenance", "Hybrid Service", "Battery Diagnostics", "Charger Installation", "Software Updates"].map((s) => (
-                                <li key={s}>
-                                    <a href="#" className="text-gray-400 hover:text-green-500 transition duration-300">{s}</a>
-                                </li>
+                        <h4 className="text-sm font-semibold mb-4 text-gray-900 dark:text-white">Services</h4>
+                        <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                            {['EV Maintenance', 'Battery Diagnostics', 'Capstone Projects'].map(s => (
+                                <li key={s}><a href="#" className="hover:text-emerald-600 transition">{s}</a></li>
                             ))}
                         </ul>
                     </div>
 
                     {/* Contact Info */}
                     <div>
-                        <h4 className="text-lg font-bold mb-6">Contact Info</h4>
-                        <ul className="space-y-3">
-                            <li className="flex items-start">
-                                <MapPinIcon className="h-5 w-5 text-green-500 mt-1 mr-3" />
-                                <span className="text-gray-400">Megenagna, Addis Ababa, Legesse Feleke Building</span>
-                            </li>
-                            <li className="flex items-start">
-                                <PhoneIcon className="h-5 w-5 text-green-500 mt-1 mr-3" />
-                                <span className="text-gray-400">+251911758111 +251912072341
-                                    +251913024687</span>
-                            </li>
-                            <li className="flex items-start">
-                                <EnvelopeIcon className="h-5 w-5 text-green-500 mt-1 mr-3" />
-                                <span className="text-gray-400">info@greenpulse.com</span>
-                            </li>
-                            <li className="flex items-start">
-                                <ClockIcon className="h-5 w-5 text-green-500 mt-1 mr-3" />
-                                <span className="text-gray-400">Mon-Sat: 8AM - 6PM</span>
-                            </li>
+                        <h4 className="text-sm font-semibold mb-4 text-gray-900 dark:text-white">Contact</h4>
+                        <ul className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                            <li className="flex items-start gap-3"><MapPinIcon className="h-5 w-5 text-emerald-500 mt-1" /><span>Megenagna, Addis Ababa</span></li>
+                            <li className="flex items-start gap-3"><PhoneIcon className="h-5 w-5 text-emerald-500 mt-1" /><span>+251 911 758 111</span></li>
+                            <li className="flex items-start gap-3"><EnvelopeIcon className="h-5 w-5 text-emerald-500 mt-1" /><span>info@greenpulse.com</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <div className="border-t border-gray-800 pt-8">
-                    <div className="flex flex-col md:flex-row justify-between items-center">
-                        <div className="flex flex-col items-center md:items-start gap-2 mb-4 md:mb-0">
-                            <p className="text-gray-400 text-sm">&copy; 2024 Green Pulse. All rights reserved.</p>
-                            <p className="text-[11px] text-gray-500 tracking-wide uppercase">Training • Service • Consultation • Sustainability</p>
-                        </div>
-                        <div className="flex space-x-6">
-                            {["Privacy Policy", "Terms of Service", "Sitemap"].map((link) => (
-                                <a key={link} href="#" className="text-gray-400 hover:text-green-500 text-sm transition duration-300">{link}</a>
-                            ))}
+                <div className="border-t border-emerald-100/60 pt-6">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+                        <div className="text-sm text-gray-600 dark:text-gray-400">&copy; {new Date().getFullYear()} Green Pulse — Training · Service · Sustainability</div>
+                        <div className="flex gap-4 text-sm">
+                            <a href="#" className="hover:text-emerald-600">Privacy</a>
+                            <a href="#" className="hover:text-emerald-600">Terms</a>
+                            <a href="#" className="hover:text-emerald-600">Sitemap</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            {/* Back to Top Button removed */}
         </footer>
     );
 };

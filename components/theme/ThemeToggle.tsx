@@ -30,7 +30,7 @@ export const ThemeToggle: React.FC<{ className?: string; size?: number }> = ({ c
                         animate={{ rotate: 0, opacity: 1, scale: 1 }}
                         exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
                         transition={{ duration: 0.35, ease: [0.22, 0.8, 0.36, 1] }}
-                        className="text-amber-300"
+                        className="text-emerald-300"
                     >
                         <MoonIcon style={{ width: size, height: size }} />
                     </motion.span>
@@ -41,7 +41,7 @@ export const ThemeToggle: React.FC<{ className?: string; size?: number }> = ({ c
                         animate={{ rotate: 0, opacity: 1, scale: 1 }}
                         exit={{ rotate: -90, opacity: 0, scale: 0.6 }}
                         transition={{ duration: 0.35, ease: [0.22, 0.8, 0.36, 1] }}
-                        className="text-amber-500"
+                        className="text-emerald-500"
                     >
                         <SunIcon style={{ width: size, height: size }} />
                     </motion.span>
