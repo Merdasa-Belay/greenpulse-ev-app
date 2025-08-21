@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "@/lib/motion";
+import type { ReactNode } from 'react';
 import Image from "next/image";
 import {
     FaCarBattery,
@@ -13,7 +14,7 @@ import {
 } from "react-icons/fa";
 
 type Service = {
-    icon: JSX.Element;
+    icon: ReactNode;
     bg: string; // unified brand background
     title: string;
     text: string;
