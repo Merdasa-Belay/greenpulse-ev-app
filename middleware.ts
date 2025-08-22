@@ -54,5 +54,9 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.(?:png|jpg|jpeg|gif|svg)$).*)'],
-}
+  // Match all routes except for API routes, static files, image optimization files,
+  // and public SEO/meta files.
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:png|jpg|jpeg|gif|svg)$).*)',
+  ],
+};

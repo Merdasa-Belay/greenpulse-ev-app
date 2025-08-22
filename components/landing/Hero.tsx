@@ -89,23 +89,17 @@ export default function Hero() {
                             ))}
                         </motion.div>
 
-                        <motion.h1
-                            id="hero-heading"
-                            variants={itemVariants}
-                            className="text-balance text-5xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-6xl motion-reduce:transition-none"
-                        >
-                            {user ? (
-                                <>
-                                    Welcome back, {user.name || 'Explorer'}!<span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 bg-clip-text text-transparent"> Continue Your EV Path</span>
-                                </>
-                            ) : (
-                                <>Accelerate Ethiopia’s<span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 bg-clip-text text-transparent"> EV & Green Tech Skills</span></>
-                            )}
-                        </motion.h1>
+                                                <motion.h1
+                                                        id="hero-heading"
+                                                        variants={itemVariants}
+                                                        className="text-balance text-5xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-6xl motion-reduce:transition-none"
+                                                >
+                                                    EV Training & Maintenance in Addis Ababa, Ethiopia | Green Pulse
+                                                </motion.h1>
 
-                        <motion.p variants={itemVariants} className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-300 motion-reduce:transition-none">
-                            {user ? 'Pick up where you left off—advance your competencies and earn recognitions in real EV & green tech contexts.' : 'EV service and green tech training—practical, local, and hands-on for Ethiopia’s emerging workforce.'}
-                        </motion.p>
+                                                <motion.p variants={itemVariants} className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-300 motion-reduce:transition-none">
+                                                    Hands-on electric vehicle training, EV maintenance services and battery diagnostics in Addis Ababa, Ethiopia—practical pathways that build local technician and electric mobility capacity.
+                                                </motion.p>
 
                         <motion.div variants={itemVariants} className="mt-12 flex flex-wrap gap-4 motion-reduce:transition-none">
                             {!user && (
@@ -126,23 +120,13 @@ export default function Hero() {
                                     </span>
                                 </Link>
                             )}
-                            {user ? (
-                                <Link
-                                    href="/dashboard"
-                                    className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-emerald-300/70 dark:border-emerald-700/70 bg-white/60 dark:bg-slate-900/60 px-8 text-lg font-medium text-emerald-700 dark:text-emerald-300 backdrop-blur-sm transition-all duration-300 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-white/80 dark:hover:bg-slate-900/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-                                >
-                                    <PlayCircleIcon className="h-6 w-6" />
-                                    <span>Continue Learning</span>
-                                </Link>
-                            ) : (
-                                <Link
-                                    href="/sign-in"
-                                    className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-300/70 dark:border-slate-700/70 bg-white/50 dark:bg-slate-900/50 px-8 text-lg font-medium text-slate-900 dark:text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/70 dark:hover:bg-slate-900/70 hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-                                >
-                                    <PlayCircleIcon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
-                                    <span>View Curriculum</span>
-                                </Link>
-                            )}
+                                                        <Link
+                                                            href="/sign-in"
+                                                            className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-300/70 dark:border-slate-700/70 bg-white/50 dark:bg-slate-900/50 px-8 text-lg font-medium text-slate-900 dark:text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/70 dark:hover:bg-slate-900/70 hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                                                        >
+                                                            <PlayCircleIcon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                                                            <span>View Curriculum</span>
+                                                        </Link>
                         </motion.div>
 
                         <motion.p variants={itemVariants} className="mt-5 text-sm text-slate-500 dark:text-slate-400 motion-reduce:transition-none">
@@ -157,7 +141,7 @@ export default function Hero() {
                         <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200/50 dark:border-slate-700/50 bg-white/40 dark:bg-slate-900/40 backdrop-blur-sm shadow-2xl">
                             <Image
                                 src="https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                alt="Electric vehicle gliding along a smart, sustainable route"
+                                alt="Electric vehicle technician cohort reviewing battery diagnostics in Addis Ababa workshop"
                                 fill
                                 priority
                                 sizes="(min-width: 768px) 50vw, 100vw"

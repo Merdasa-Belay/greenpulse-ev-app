@@ -17,36 +17,41 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://greenpulse.com";
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
-    template: "%s | GreenPulse EV",
-    default: "GreenPulse EV — EV & Green Tech Skills",
+    template: "%s | Green Pulse",
+    default: "EV Training & Maintenance Ethiopia | Green Pulse",
   },
   description:
-    "Smart EV routing, charging optimization, and contextual EV & green tech learning for emerging markets.",
-  alternates: {
-    canonical: appUrl,
-  },
+    "Hands-on electric vehicle training, maintenance & battery diagnostics in Addis Ababa, Ethiopia. Build EV service skills fast with local, practical courses.",
+  alternates: { canonical: appUrl },
+  keywords: [
+    "EV Ethiopia",
+    "Electric Vehicle Training Ethiopia",
+    "EV Maintenance Addis Ababa",
+    "Battery Diagnostics Ethiopia",
+    "Ethiopia Electric Mobility",
+    "EV Service Ethiopia",
+  ],
   openGraph: {
-    title: "GreenPulse EV — Smarter EV Journeys",
+    title: "EV Training & Maintenance Ethiopia | Green Pulse",
     description:
-      "Plan routes, optimize charging, and build EV maintenance & green energy skills.",
+      "Practical EV training & maintenance services in Addis Ababa. Local courses, diagnostics, workshops & certification pathways.",
     url: appUrl,
-    siteName: "GreenPulse EV",
+    siteName: "Green Pulse",
+    locale: "en_ET",
     type: "website",
     images: [
       {
         url: "/readme/thumbnail.png",
         width: 1200,
         height: 630,
-        alt: "Green Pulse platform preview",
+        alt: "EV technician training session in Addis Ababa workshop",
       },
     ],
-    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "GreenPulse EV — Smarter EV Journeys",
-    description:
-      "Optimize charging & learn EV maintenance skills with localized content.",
+    title: "EV Training & Maintenance Ethiopia | Green Pulse",
+    description: "Local EV service & battery diagnostics training in Addis Ababa, Ethiopia.",
     images: ["/readme/thumbnail.png"],
     creator: "@greenpulse",
   },
@@ -57,15 +62,6 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
   category: "education",
-  keywords: [
-    "EV training",
-    "electric vehicle",
-    "battery maintenance",
-    "green tech skills",
-    "Ethiopia",
-    "charging optimization",
-    "sustainability",
-  ],
 };
 
 export const viewport = {
@@ -89,55 +85,59 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* Structured Data: Organization & Website */}
+        {/* Structured Data: LocalBusiness + Course (+ WebSite for completeness) */}
         <script
           type="application/ld+json"
-          // Using dangerouslySetInnerHTML to embed JSON-LD per Next.js pattern.
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@graph': [
                 {
-                  '@type': 'Organization',
-                  '@id': `${appUrl}#org`,
-                  name: 'GreenPulse EV',
+                  '@type': 'LocalBusiness',
+                  '@id': `${appUrl}#business`,
+                  name: 'Green Pulse',
+                  image: `${appUrl}/readme/thumbnail.png`,
                   url: appUrl,
-                  logo: `${appUrl}/readme/thumbnail.png`,
+                  telephone: '+251911758111',
+                  description: 'EV training and maintenance services in Addis Ababa, Ethiopia: battery diagnostics, safety, workshops and technician upskilling.',
+                  address: {
+                    '@type': 'PostalAddress',
+                    streetAddress: 'Legesse Feleke Building, Megenagna',
+                    addressLocality: 'Addis Ababa',
+                    addressCountry: 'ET'
+                  },
+                  geo: { '@type': 'GeoCoordinates', latitude: 9.0108, longitude: 38.7870 },
+                  areaServed: { '@type': 'Country', name: 'Ethiopia' },
                   sameAs: [
                     'https://twitter.com/greenpulse',
-                  ],
-                  description:
-                    'Smart EV routing, charging optimization, and contextual EV & green tech learning for emerging markets.',
-                  foundingDate: '2024-01-01',
-                  areaServed: 'ET',
-                  keywords: 'EV training, electric vehicle, battery maintenance, green tech skills, charging optimization, sustainability',
-                  contactPoint: [
-                    {
-                      '@type': 'ContactPoint',
-                      contactType: 'customer support',
-                      availableLanguage: ['en'],
-                    },
-                  ],
+                    'https://www.linkedin.com/company/greenpulse'
+                  ]
+                },
+                {
+                  '@type': 'Course',
+                  '@id': `${appUrl}#course-foundations`,
+                  name: 'EV Foundations & Safety (Ethiopia)',
+                  provider: { '@type': 'Organization', name: 'Green Pulse', sameAs: appUrl },
+                  description: 'Introductory EV technician pathway focusing on safety, high-voltage basics and local maintenance context in Addis Ababa, Ethiopia.'
                 },
                 {
                   '@type': 'WebSite',
                   '@id': `${appUrl}#website`,
                   url: appUrl,
-                  name: 'GreenPulse EV',
-                  description:
-                    'EV journey planning & green technology skill development platform.',
+                  name: 'Green Pulse',
+                  description: 'EV training & maintenance: diagnostics, safety & practical workshops in Ethiopia.',
                   inLanguage: 'en',
-                  publisher: { '@id': `${appUrl}#org` },
+                  publisher: { '@id': `${appUrl}#business` },
                   potentialAction: [
                     {
                       '@type': 'SearchAction',
                       target: `${appUrl}/search?q={search_term_string}`,
-                      'query-input': 'required name=search_term_string',
-                    },
-                  ],
-                },
-              ],
-            }),
+                      'query-input': 'required name=search_term_string'
+                    }
+                  ]
+                }
+              ]
+            })
           }}
         />
         {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
