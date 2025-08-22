@@ -113,3 +113,83 @@ export function buildCourseJsonLd(course: CourseInput) {
     },
   } as const;
 }
+
+// --- Generic Post-Build Sanitizers ---
+
+type JsonObject = { [k: string]: unknown };
+
+/**
+ * Sanitize a CourseInstance node in-place: enforce valid courseMode enum and migrate extra info to name.
+ */
+export function sanitizeCourseInstance(instance: JsonObject) {
+  if (!instance || instance['@type'] !== 'CourseInstance') return instance;
+  const allowed = ['online', 'offline', 'onsite', 'hybrid'];
+  if (typeof instance.courseMode === 'string') {
+    const raw = instance.courseMode.trim();
+    const lower = raw.toLowerCase();
+    let mode: string = 'hybrid';
+    let remainder = '';
+    // Extract parentheses content if present
+  // Determine mode from start
+    for (const m of allowed) {
+      if (lower.startsWith(m)) {
+        mode = m;
+        remainder = raw.slice(m.length).trim();
+        break;
+      }
+    }
+    // If no leading allowed token found but parentheses pattern exists, keep default mode
+    let cohortInfo: string | undefined;
+    // Parentheses content
+    const directParen = raw.match(/\(([^)]+)\)/);
+    if (directParen) {
+      cohortInfo = directParen[1].trim();
+    }
+    // If remainder has non-parenthetical text, treat as extra info
+    const remainderNoParens = remainder.replace(/\([^)]*\)/g, '').trim();
+    if (!cohortInfo && remainderNoParens) {
+      cohortInfo = remainderNoParens;
+    }
+    instance.courseMode = mode;
+    if (cohortInfo) {
+      // Append cohort info to name if not already present
+      if (typeof instance.name === 'string' && !instance.name.includes(cohortInfo)) {
+        instance.name = `${instance.name} (${cohortInfo})`;
+      }
+    }
+  }
+  return instance;
+}
+
+/**
+ * Traverse a JSON-LD graph (array) or single node and sanitize any CourseInstance nodes found
+ * whether standalone or inside hasCourseInstance.
+ */
+export function sanitizeCourseGraph<T>(root: T): T {
+  const visit = (node: unknown) => {
+    if (!node || typeof node !== 'object') return;
+    if (Array.isArray(node)) {
+      node.forEach(visit);
+      return;
+    }
+    const obj = node as JsonObject;
+    if (obj['@type'] === 'CourseInstance') {
+      sanitizeCourseInstance(obj);
+    }
+    // hasCourseInstance can be object or array
+    if (obj.hasCourseInstance) {
+      if (Array.isArray(obj.hasCourseInstance)) {
+        obj.hasCourseInstance.forEach(ci => sanitizeCourseInstance(ci as JsonObject));
+      } else if (typeof obj.hasCourseInstance === 'object') {
+        sanitizeCourseInstance(obj.hasCourseInstance as JsonObject);
+      }
+    }
+    // Recurse other properties shallowly
+    for (const key of Object.keys(obj)) {
+      const val = (obj as JsonObject)[key];
+      if (val && typeof val === 'object') visit(val);
+    }
+  };
+  visit(root);
+  return root;
+}
