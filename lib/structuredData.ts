@@ -24,26 +24,26 @@ export interface CourseInput {
 }
 
 export function buildCourseJsonLd(course: CourseInput) {
-  // Extract cohort info if embedded in courseMode (e.g., "hybrid (September 2025 Cohort)")
-  const rawMode = course.courseMode.trim();
-  const allowedModes = new Set(['online', 'offline', 'onsite', 'hybrid']);
-  let extractedCohort: string | undefined;
-  let detectedMode: string | undefined;
-  // Pattern: <mode>( optional space )(<cohort text>)
-  const cohortPattern = /^(online|offline|onsite|hybrid)\s*\(([^)]+)\)\s*$/i;
-  const match = rawMode.match(cohortPattern);
-  if (match) {
-    detectedMode = match[1].toLowerCase();
-    extractedCohort = match[2].trim();
-  } else {
-    // If not with cohort parentheses, attempt to find leading allowed token
-    const leadingMode = rawMode.split(/\s+/)[0].toLowerCase();
-    if (allowedModes.has(leadingMode)) {
-      detectedMode = leadingMode;
+  // Sanitize courseMode to a valid Schema.org enum, defaulting to 'hybrid'.
+  const rawMode = course.courseMode.trim().toLowerCase();
+  const allowedModes = ['online', 'offline', 'onsite', 'hybrid'];
+  let mode: 'online' | 'offline' | 'onsite' | 'hybrid' = 'hybrid'; // Default value
+  for (const validMode of allowedModes) {
+    if (rawMode.startsWith(validMode)) {
+      mode = validMode as 'online' | 'offline' | 'onsite' | 'hybrid';
+      break;
     }
   }
-  const mode = allowedModes.has(detectedMode || '') ? (detectedMode as string) : 'onsite';
-  // Convert human readable workload like "6 weeks · 6–8 hours/week" to ISO 8601 durations (overall + weekly)
+
+  // Extract cohort info if embedded in courseMode (e.g., "hybrid (September 2025 Cohort)")
+  let extractedCohort: string | undefined;
+  const cohortPattern = /\(([^)]+)\)/;
+  const match = rawMode.match(cohortPattern);
+  if (match) {
+    extractedCohort = match[1].trim();
+  }
+
+  // Convert human readable workload like "6 weeks" to ISO 8601 duration "P6W"
   let courseWorkloadISO: string | undefined = undefined;
   if (course.courseWorkload) {
     const weeksMatch = course.courseWorkload.match(/(\d+)\s*week/i);
@@ -51,24 +51,26 @@ export function buildCourseJsonLd(course: CourseInput) {
       courseWorkloadISO = `P${weeksMatch[1]}W`;
     }
   }
-  // Build instance name. If a cohort was explicitly supplied via courseMode parentheses, append it.
+
+  // Build instance name. If a cohort was explicitly supplied, append it.
   let instanceName: string;
   if (extractedCohort) {
     // Avoid double-appending if name already contains the cohort text
-    if (course.name.includes(extractedCohort)) {
-      instanceName = course.name;
-    } else {
-      instanceName = `${course.name} (${extractedCohort})`;
-    }
+    instanceName = course.name.includes(extractedCohort)
+      ? course.name
+      : `${course.name} (${extractedCohort})`;
   } else {
     // Derive cohort from start date (Month YYYY Cohort)
-    const autoCohort = new Date(course.startDate).toLocaleString('en-ET', { month: 'long', year: 'numeric' }) + ' Cohort';
-    if (course.name.includes(autoCohort)) {
-      instanceName = course.name;
-    } else {
-      instanceName = `${course.name} (${autoCohort})`;
-    }
+    const autoCohort =
+      new Date(course.startDate).toLocaleString('en-ET', {
+        month: 'long',
+        year: 'numeric',
+      }) + ' Cohort';
+    instanceName = course.name.includes(autoCohort)
+      ? course.name
+      : `${course.name} (${autoCohort})`;
   }
+
   return {
     '@type': 'Course',
     name: course.name,
