@@ -122,7 +122,7 @@ export default function RootLayout({
                   startDate: new Date(new Date().getFullYear(), 8, 1).toISOString().split('T')[0],
                   endDate: new Date(new Date().getFullYear(), 10, 30).toISOString().split('T')[0],
                   courseMode: 'hybrid',
-                  courseWorkload: '6 weeks · 6–8 hours/week',
+                  courseWorkload: '6 weeks',
                   locationName: 'Green Pulse Training Lab',
                   streetAddress: 'Legesse Feleke Building, Megenagna',
                   addressLocality: 'Addis Ababa',
