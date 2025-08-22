@@ -13,13 +13,13 @@ const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
 });
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://greenpulse.com";
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://greenpulseaddis.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
     template: "%s | Green Pulse",
-    default: "EV Training & Maintenance Ethiopia | Green Pulse",
+    default: "Green Pulse EV Training & Maintenance in Ethiopia",
   },
   description:
     "Hands-on electric vehicle training, maintenance & battery diagnostics in Addis Ababa, Ethiopia. Build EV service skills fast with local, practical courses.",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "EV Service Ethiopia",
   ],
   openGraph: {
-    title: "EV Training & Maintenance Ethiopia | Green Pulse",
+    title: "Green Pulse EV Training & Maintenance in Ethiopia",
     description:
       "Practical EV training & maintenance services in Addis Ababa. Local courses, diagnostics, workshops & certification pathways.",
     url: appUrl,
@@ -51,10 +51,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "EV Training & Maintenance Ethiopia | Green Pulse",
+    title: "Green Pulse EV Training & Maintenance in Ethiopia",
     description: "Local EV service & battery diagnostics training in Addis Ababa, Ethiopia.",
     images: ["/readme/thumbnail.png"],
-    creator: "@greenpulse",
+    creator: "@greenpulseaddis",
   },
   icons: {
     icon: "/favicon.ico",
@@ -108,7 +108,7 @@ export default function RootLayout({
                 geo: { '@type': 'GeoCoordinates', latitude: 9.0108, longitude: 38.7870 },
                 areaServed: { '@type': 'Country', name: 'Ethiopia' },
                 sameAs: [
-                  'https://twitter.com/greenpulse',
+                  'https://x.com/greenpulseaddis',
                   'https://www.linkedin.com/company/greenpulse'
                 ]
               },
