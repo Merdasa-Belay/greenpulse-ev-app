@@ -1,23 +1,32 @@
-import type { MetadataRoute } from 'next';
+import { MetadataRoute } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-// Public, index-worthy routes only. Excludes auth & user-specific app areas.
-// If later you add dynamic content (e.g. /companions/[id]), fetch & append.
-export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_APP_URL || 'https://greenpulse-ev-app.vercel.app';
-  const now = new Date().toISOString();
+const base = process.env.NEXT_PUBLIC_APP_URL || 'https://greenpulseaddis.vercel.app/';
+const now = new Date().toISOString();
 
-  // Avoid duplicate canonical targets: treat '/' as canonical for marketing homepage.
-  const routes: Array<{ path: string; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']; priority: number; }> = [
-    { path: '/', changeFrequency: 'weekly', priority: 0.9 },
-    { path: '/companions', changeFrequency: 'weekly', priority: 0.6 },
-    { path: '/companions/new', changeFrequency: 'monthly', priority: 0.4 },
-    { path: '/subscription', changeFrequency: 'monthly', priority: 0.5 },
-  ];
+const routes = [
+  { path: '/', changeFrequency: 'weekly', priority: 0.9 },
+  { path: '/companions', changeFrequency: 'weekly', priority: 0.6 },
+  { path: '/companions/new', changeFrequency: 'monthly', priority: 0.4 },
+  { path: '/subscription', changeFrequency: 'monthly', priority: 0.5 },
+];
 
-  return routes.map(r => ({
-    url: `${base}${r.path}`,
-    lastModified: now,
-    changeFrequency: r.changeFrequency,
-    priority: r.priority,
-  }));
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  res.setHeader('Content-Type', 'application/xml');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${routes
+    .map(
+      (r) => `<url>
+    <loc>${base}${r.path}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>${r.changeFrequency}</changefreq>
+    <priority>${r.priority}</priority>
+  </url>`
+    )
+    .join('')}
+</urlset>`;
+
+  res.status(200).send(xml);
 }
