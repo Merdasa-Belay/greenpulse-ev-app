@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
+import { buildCourseJsonLd } from "@/lib/structuredData";
 import "./globals.css";
 import ConditionalNavbar from "@/components/ui/ConditionalNavbar";
 import EnvironmentBadge from "@/components/env/EnvironmentBadge";
@@ -113,41 +114,26 @@ export default function RootLayout({
                     'https://www.linkedin.com/company/greenpulse'
                   ]
                 },
-                {
-                  '@type': 'Course',
-                  '@id': `${appUrl}#course-foundations`,
+                buildCourseJsonLd({
                   name: 'EV Foundations & Safety (Ethiopia)',
-                  provider: { '@type': 'Organization', name: 'Green Pulse', sameAs: appUrl },
-                  description: 'Introductory EV technician pathway focusing on safety, high-voltage basics and local maintenance context in Addis Ababa, Ethiopia.',
-                  offers: {
-                    '@type': 'Offer',
-                    price: '0',
-                    priceCurrency: 'USD',
-                    availability: 'https://schema.org/PreOrder',
-                    url: `${appUrl}/sign-up`,
-                    validFrom: new Date().toISOString()
-                  },
-                  hasCourseInstance: {
-                    '@type': 'CourseInstance',
-                    courseMode: 'onsite blended',
-                    startDate: new Date(new Date().getFullYear(), 8, 1).toISOString(),
-                    endDate: new Date(new Date().getFullYear(), 10, 30).toISOString(),
-                    location: {
-                      '@type': 'Place',
-                      name: 'Green Pulse Training Lab',
-                      address: {
-                        '@type': 'PostalAddress',
-                        streetAddress: 'Legesse Feleke Building, Megenagna',
-                        addressLocality: 'Addis Ababa',
-                        addressCountry: 'ET'
-                      }
-                    },
-                    instructor: {
-                      '@type': 'Person',
-                      name: 'Certified EV Trainer'
-                    }
-                  }
-                },
+                  description: 'Introductory EV technician course focused on safety, high-voltage basics, battery fundamentals and local maintenance context in Addis Ababa, Ethiopia.',
+                  providerName: 'Green Pulse',
+                  providerURL: appUrl,
+                  startDate: new Date(new Date().getFullYear(), 8, 1).toISOString().split('T')[0],
+                  endDate: new Date(new Date().getFullYear(), 10, 30).toISOString().split('T')[0],
+                  courseMode: 'hybrid',
+                  courseWorkload: '6 weeks · 6–8 hours/week',
+                  locationName: 'Green Pulse Training Lab',
+                  streetAddress: 'Legesse Feleke Building, Megenagna',
+                  addressLocality: 'Addis Ababa',
+                  addressCountry: 'ET',
+                  instructorName: 'Certified EV Trainer',
+                  offerURL: `${appUrl}/sign-up`,
+                  price: 0,
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/PreOrder',
+                  offerCategory: 'Certificate Course'
+                }),
                 {
                   '@type': 'WebSite',
                   '@id': `${appUrl}#website`,
