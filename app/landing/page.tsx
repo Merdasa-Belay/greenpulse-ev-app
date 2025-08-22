@@ -82,11 +82,9 @@ const breadcrumbJsonLd = {
 };
 
 export const metadata: Metadata = {
-    title: 'Green Pulse — Smarter EV Journeys',
     description: 'Plan routes, optimize charging, and track your EV journey with intelligent insights. Built for students, teachers, and admins to learn and manage sustainably.',
     alternates: { canonical: `${appUrl}/landing` },
     openGraph: {
-        title: 'Green Pulse — Smarter EV Journeys',
         description: 'Plan routes, optimize charging, and track your EV journey with intelligent insights.',
         url: `${appUrl}/landing`,
         siteName: 'Green Pulse',
@@ -96,7 +94,6 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Green Pulse — Smarter EV Journeys',
         description: 'Plan routes, optimize charging, and track your EV journey with intelligent insights.',
         images: ['/readme/thumbnail.png'],
     },

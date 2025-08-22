@@ -4,7 +4,7 @@ import { motion, useMotionValue, useTransform } from "@/lib/motion";
 import {
     MapPinIcon,
     BoltIcon,
-    UserGroupIcon,
+    AcademicCapIcon,
     ChartBarIcon,
     ShieldCheckIcon,
 } from "@heroicons/react/24/outline";
@@ -48,11 +48,11 @@ export default function Features() {
             highlight: 'Hands‑On',
         },
         {
-            title: 'AI Learning Companions',
-            desc: 'Adaptive assistants that quiz, explain & translate (English / Amharic) for deeper retention.',
-            icon: <UserGroupIcon className="h-7 w-7" />,
+            title: 'Certified Training Programs',
+            desc: 'Follow structured learning paths designed by industry experts to gain certified EV maintenance skills.',
+            icon: <AcademicCapIcon className="h-7 w-7" />,
             accent: 'blue',
-            tag: 'Adaptive',
+            tag: 'Certification',
         },
         {
             title: 'Analytics & Progress',
@@ -99,7 +99,7 @@ export default function Features() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.15 }}
                 >
-                    A platform engineered for smarter EV journeys, adaptive learning, and actionable insights.
+                    A platform engineered for practical EV training, adaptive learning, and actionable insights.
                 </motion.p>
 
                 <motion.div
