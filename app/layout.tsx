@@ -118,7 +118,35 @@ export default function RootLayout({
                   '@id': `${appUrl}#course-foundations`,
                   name: 'EV Foundations & Safety (Ethiopia)',
                   provider: { '@type': 'Organization', name: 'Green Pulse', sameAs: appUrl },
-                  description: 'Introductory EV technician pathway focusing on safety, high-voltage basics and local maintenance context in Addis Ababa, Ethiopia.'
+                  description: 'Introductory EV technician pathway focusing on safety, high-voltage basics and local maintenance context in Addis Ababa, Ethiopia.',
+                  offers: {
+                    '@type': 'Offer',
+                    price: '0',
+                    priceCurrency: 'USD',
+                    availability: 'https://schema.org/PreOrder',
+                    url: `${appUrl}/sign-up`,
+                    validFrom: new Date().toISOString()
+                  },
+                  hasCourseInstance: {
+                    '@type': 'CourseInstance',
+                    courseMode: 'onsite blended',
+                    startDate: new Date(new Date().getFullYear(), 8, 1).toISOString(),
+                    endDate: new Date(new Date().getFullYear(), 10, 30).toISOString(),
+                    location: {
+                      '@type': 'Place',
+                      name: 'Green Pulse Training Lab',
+                      address: {
+                        '@type': 'PostalAddress',
+                        streetAddress: 'Legesse Feleke Building, Megenagna',
+                        addressLocality: 'Addis Ababa',
+                        addressCountry: 'ET'
+                      }
+                    },
+                    instructor: {
+                      '@type': 'Person',
+                      name: 'Certified EV Trainer'
+                    }
+                  }
                 },
                 {
                   '@type': 'WebSite',
