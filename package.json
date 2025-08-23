@@ -53,11 +53,4 @@
   "overrides": {
     "nodemailer": "^6.10.1"
   }
-  ,
-  "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions",
-    "Safari >= 16",
-    "Edge >= 110"
-  ]
 }

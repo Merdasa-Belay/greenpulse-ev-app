@@ -86,8 +86,6 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* Preload hero LCP image to improve LCP */}
-        <link rel="preload" as="image" href="/readme/hero.png" />
         {/* Structured Data: LocalBusiness + Course (+ WebSite for completeness) */}
         {(() => {
           const graph = {

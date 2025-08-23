@@ -29,48 +29,28 @@ const NewNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [active, setActive] = useState<string>('');
 
-  // Track scroll position and active section using IntersectionObserver to avoid
-  // forced reflows from repeatedly calling getBoundingClientRect in a scroll handler.
+  // Track scroll position to toggle background + active section
   useEffect(() => {
     const sectionIds = navItems.map(i => i.href).filter(h => h.startsWith('#'));
-    let mounted = true;
 
-    // lightweight scroll listener only updates header compact state
-    const onScroll = () => setIsScrolled(window.scrollY > 8);
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Observe sections and pick the one with the largest intersection ratio
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!mounted) return;
-        let bestId = '';
-        let bestRatio = 0;
-        for (const entry of entries) {
-          const id = entry.target.id ? `#${entry.target.id}` : '';
-          if (!id) continue;
-          if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
-            bestRatio = entry.intersectionRatio;
-            bestId = id;
-          }
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setIsScrolled(y > 8);
+      // Determine active section (simple heuristic: last section above midpoint)
+      let current = '';
+      for (const id of sectionIds) {
+        const el = document.querySelector<HTMLElement>(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.35) {
+          current = id;
         }
-        setActive(bestId);
-      },
-      { root: null, rootMargin: '0px 0px -60% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
-    );
-
-    for (const id of sectionIds) {
-      const el = document.querySelector<HTMLElement>(id);
-      if (el) observer.observe(el);
-    }
-
-    // initial check
-    onScroll();
-
-    return () => {
-      mounted = false;
-      window.removeEventListener('scroll', onScroll);
-      observer.disconnect();
+      }
+      setActive(current);
     };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Prevent body scroll when mobile menu is open
