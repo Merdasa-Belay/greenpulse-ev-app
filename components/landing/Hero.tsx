@@ -140,7 +140,7 @@ export default function Hero() {
                         <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-emerald-100/40 via-white to-teal-100/40 dark:from-emerald-900/40 dark:via-slate-950 dark:to-teal-900/40 blur-xl" />
                         <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200/50 dark:border-slate-700/50 bg-white/40 dark:bg-slate-900/40 backdrop-blur-sm shadow-2xl">
                             <Image
-                                src="/readme/hero.png"
+                                src="/readme/hero1.png"
                                 alt="Electric vehicle technician cohort reviewing battery diagnostics in Addis Ababa workshop"
                                 fill
                                 priority
