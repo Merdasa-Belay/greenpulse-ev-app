@@ -89,17 +89,17 @@ export default function Hero() {
                             ))}
                         </motion.div>
 
-                                                <motion.h1
-                                                        id="hero-heading"
-                                                        variants={itemVariants}
-                                                        className="text-balance text-5xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-6xl motion-reduce:transition-none"
-                                                >
-                                                    EV Training & Maintenance in Addis Ababa, Ethiopia | Green Pulse
-                                                </motion.h1>
+                        <motion.h1
+                            id="hero-heading"
+                            variants={itemVariants}
+                            className="text-balance text-5xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-6xl motion-reduce:transition-none"
+                        >
+                            EV Training & Maintenance in Addis Ababa, Ethiopia | Green Pulse
+                        </motion.h1>
 
-                                                <motion.p variants={itemVariants} className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-300 motion-reduce:transition-none">
-                                                    Hands-on electric vehicle training, EV maintenance services and battery diagnostics in Addis Ababa, Ethiopia—practical pathways that build local technician and electric mobility capacity.
-                                                </motion.p>
+                        <motion.p variants={itemVariants} className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-300 motion-reduce:transition-none">
+                            Hands-on electric vehicle training, EV maintenance services and battery diagnostics in Addis Ababa, Ethiopia—practical pathways that build local technician and electric mobility capacity.
+                        </motion.p>
 
                         <motion.div variants={itemVariants} className="mt-12 flex flex-wrap gap-4 motion-reduce:transition-none">
                             {!user && (
@@ -120,13 +120,13 @@ export default function Hero() {
                                     </span>
                                 </Link>
                             )}
-                                                        <Link
-                                                            href="/sign-in"
-                                                            className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-300/70 dark:border-slate-700/70 bg-white/50 dark:bg-slate-900/50 px-8 text-lg font-medium text-slate-900 dark:text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/70 dark:hover:bg-slate-900/70 hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-                                                        >
-                                                            <PlayCircleIcon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
-                                                            <span>View Curriculum</span>
-                                                        </Link>
+                            <Link
+                                href="/sign-in"
+                                className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-300/70 dark:border-slate-700/70 bg-white/50 dark:bg-slate-900/50 px-8 text-lg font-medium text-slate-900 dark:text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/70 dark:hover:bg-slate-900/70 hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                            >
+                                <PlayCircleIcon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                                <span>View Curriculum</span>
+                            </Link>
                         </motion.div>
 
                         <motion.p variants={itemVariants} className="mt-5 text-sm text-slate-500 dark:text-slate-400 motion-reduce:transition-none">
@@ -140,7 +140,7 @@ export default function Hero() {
                         <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-emerald-100/40 via-white to-teal-100/40 dark:from-emerald-900/40 dark:via-slate-950 dark:to-teal-900/40 blur-xl" />
                         <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200/50 dark:border-slate-700/50 bg-white/40 dark:bg-slate-900/40 backdrop-blur-sm shadow-2xl">
                             <Image
-                                src="https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                src="/readme/hero.png"
                                 alt="Electric vehicle technician cohort reviewing battery diagnostics in Addis Ababa workshop"
                                 fill
                                 priority

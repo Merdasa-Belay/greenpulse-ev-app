@@ -2,6 +2,7 @@
 
 import { motion } from "@/lib/motion";
 import Link from "next/link";
+import Image from 'next/image';
 
 type PartnerTier = 'founding' | 'strategic' | 'community';
 interface Partner {
@@ -132,8 +133,7 @@ export default function Partners() {
                                             <div className="flex items-center gap-4">
                                                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white font-semibold text-lg tracking-tight ring-2 ring-emerald-400/40 dark:ring-emerald-600/50">
                                                     {p.logoSrc ? (
-                                                        // eslint-disable-next-line @next/next/no-img-element
-                                                        <img src={p.logoSrc} alt={p.name + ' logo'} className="h-10 w-10 object-contain grayscale group-hover:grayscale-0 transition" />
+                                                        <Image src={p.logoSrc as string} alt={p.name + ' logo'} width={40} height={40} className="h-10 w-10 object-contain grayscale group-hover:grayscale-0 transition" />
                                                     ) : (
                                                         p.name.split(/\s+/).slice(0, 2).map(w => w[0]).join("")
                                                     )}
