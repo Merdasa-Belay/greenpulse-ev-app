@@ -105,7 +105,9 @@ export default function RootLayout({
                   addressLocality: 'Addis Ababa',
                   addressCountry: 'ET'
                 },
-                geo: { '@type': 'GeoCoordinates', latitude: 9.0108, longitude: 38.7870 },
+                geo: { '@type': 'GeoCoordinates', latitude: 9.0072312, longitude: 38.8062175 },
+                // Link to a Google Maps listing for the business location
+                hasMap: 'https://www.google.com/maps/place/Totot+Traditional+Food+Hall+%7C+Gerji+%7C+%E1%89%B6%E1%89%B6%E1%89%B5+%7C+%E1%8C%88%E1%88%AD%E1%8C%82/@9.0072312,38.8062175,17z/data=!3m1!4b1!4m6!3m5!1s0x164b8599dd6be6a5:0x6f01def6f8644ea2!8m2!3d9.0072312!4d38.8062175!16s%2Fg%2F11j5qlc4dr?entry=ttu&g_ep=EgoyMDI1MTEwMi4wIKXMDSoASAFQAw%3D%3D',
                 areaServed: { '@type': 'Country', name: 'Ethiopia' },
                 sameAs: [
                   'https://x.com/greenpulseaddis',
