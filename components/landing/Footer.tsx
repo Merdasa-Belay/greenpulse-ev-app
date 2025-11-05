@@ -54,7 +54,7 @@ const Footer = () => {
                         <h4 className="text-sm font-semibold mb-4 text-gray-900 dark:text-white">Contact</h4>
                         <ul className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                             <li className="flex items-start gap-3"><MapPinIcon className="h-5 w-5 text-emerald-500 mt-1" /><span>Megenagna, Addis Ababa</span></li>
-                            <li className="flex items-start gap-3"><PhoneIcon className="h-5 w-5 text-emerald-500 mt-1" /><span>+251 911 758 111</span></li>
+                            <li className="flex items-start gap-3"><PhoneIcon className="h-5 w-5 text-emerald-500 mt-1" /><span>+251912072341</span></li>
                             <li className="flex items-start gap-3"><EnvelopeIcon className="h-5 w-5 text-emerald-500 mt-1" /><span>info@greenpulse.com</span></li>
                         </ul>
                     </div>
