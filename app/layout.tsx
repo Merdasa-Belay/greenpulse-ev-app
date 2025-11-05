@@ -101,7 +101,7 @@ export default function RootLayout({
                 description: 'EV training and maintenance services in Addis Ababa, Ethiopia: battery diagnostics, safety, workshops and technician upskilling.',
                 address: {
                   '@type': 'PostalAddress',
-                  streetAddress: 'Legesse Feleke Building, Megenagna',
+                  streetAddress: 'Around Totot Traditional Food Hall | Gerji',
                   addressLocality: 'Addis Ababa',
                   addressCountry: 'ET'
                 },
@@ -124,7 +124,7 @@ export default function RootLayout({
                 courseMode: 'hybrid',
                 courseWorkload: '6 weeks',
                 locationName: 'Green Pulse Training Lab',
-                streetAddress: 'Legesse Feleke Building, Megenagna',
+                streetAddress: 'Around Totot Traditional Food Hall | Gerji',
                 addressLocality: 'Addis Ababa',
                 addressCountry: 'ET',
                 instructorName: 'Certified EV Trainer',
