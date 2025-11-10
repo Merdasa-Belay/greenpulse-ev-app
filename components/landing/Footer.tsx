@@ -66,7 +66,7 @@ const Footer = () => {
                                         className="font-medium hover:underline"
                                         aria-label="Open Green Pulse location in Google Maps"
                                     >
-                                        Around Totot Traditional Food Hall | Gerji Around
+                                        Around Totot Traditional Food Hall | Gerji
                                     </a>
                                     <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                                         Coordinates: {latitude.toFixed(6)}, {longitude.toFixed(6)}{' '}
