@@ -41,7 +41,7 @@ const Contact = () => {
                                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300"><MapPinIcon className="h-6 w-6" /></span>
                                 <div>
                                     <h4 className="font-semibold text-slate-800 dark:text-slate-100">Location</h4>
-                                    <p className="mt-1 text-slate-600 dark:text-slate-300 leading-relaxed">Megenagna, Addis Ababa<br />Legesse Feleke Building</p>
+                                    <p className="mt-1 text-slate-600 dark:text-slate-300 leading-relaxed">Around Totot Traditional Food Hall | Gerji</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">

@@ -398,7 +398,7 @@ export default function LandingPage() {
                             <div>
                                 <h3 className="font-semibold text-lg">Contact Information</h3>
                                 <ul className="mt-3 space-y-2">
-                                    <li><span className="font-semibold">Location</span><br />Megenagna, Addis Ababa<br />Legesse Feleke Building</li>
+                                    <li><span className="font-semibold">Location</span><br />Around Totot Traditional Food Hall | Gerji</li>
                                     <li><span className="font-semibold">Phone</span><br />+251 911 758 111<br />+251 912 072 341<br />+251 913 024 687</li>
                                     <li><span className="font-semibold">Email</span><br />info@greenpulse.com<br />service@greenpulse.com</li>
                                     <li><span className="font-semibold">Hours</span><br />Mon–Fri: 8:00–18:00<br />Sat: 9:00–16:00<br />Sun: Emergency Only</li>
@@ -474,7 +474,7 @@ export default function LandingPage() {
                     <div>
                         <h3 className="font-semibold">Contact</h3>
                         <ul className="mt-3 space-y-1">
-                            <li>Megenagna, Addis Ababa</li>
+                            <li>Around Totot Traditional Food Hall | Gerji</li>
                             <li>+251 911 758 111</li>
                             <li>info@greenpulse.com</li>
                         </ul>
