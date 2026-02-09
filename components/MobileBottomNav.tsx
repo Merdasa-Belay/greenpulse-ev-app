@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { HomeIcon, ChartPieIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, AcademicCapIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { motion } from "@/lib/motion";
 
 const MobileBottomNav = () => {
@@ -16,7 +16,7 @@ const MobileBottomNav = () => {
       <ul className="flex justify-around items-center py-2">
         <motion.li variants={itemVariants} initial="hidden" animate="visible" whileTap="tap">
           <Link
-            href="/"
+            href="#home"
             className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition"
           >
             <HomeIcon className="w-6 h-6" />
@@ -26,21 +26,21 @@ const MobileBottomNav = () => {
 
         <motion.li variants={itemVariants} initial="hidden" animate="visible" whileTap="tap">
           <Link
-            href="/dashboard"
+            href="#paths"
             className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition"
           >
-            <ChartPieIcon className="w-6 h-6" />
-            <span className="text-xs">Dashboard</span>
+            <AcademicCapIcon className="w-6 h-6" />
+            <span className="text-xs">Training</span>
           </Link>
         </motion.li>
 
         <motion.li variants={itemVariants} initial="hidden" animate="visible" whileTap="tap">
           <Link
-            href="/programs"
+            href="#contact"
             className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition"
           >
-            <AcademicCapIcon className="w-6 h-6" />
-            <span className="text-xs">Programs</span>
+            <PhoneIcon className="w-6 h-6" />
+            <span className="text-xs">Contact</span>
           </Link>
         </motion.li>
       </ul>

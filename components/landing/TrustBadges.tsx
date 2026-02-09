@@ -30,9 +30,9 @@ const badges: Badge[] = [
         icon: <ShieldCheckIcon className="h-6 w-6" />
     },
     {
-        label: "Offline Optimized",
-        status: "pending",
-        description: "Lightweight content packs under active refinement for low bandwidth.",
+        label: "In‑Person Labs",
+        status: "verified",
+        description: "Live, hands‑on sessions with real vehicles and shop‑grade tooling.",
         icon: <BoltIcon className="h-6 w-6" />
     }
 ];

@@ -1,8 +1,7 @@
-import React from 'react';
 import { Card } from './Card';
 import { Button } from './button';
 
-export const CTA = ({ children }: { children?: React.ReactNode }) => {
+export const CTA = () => {
     return (
         <Card className="p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-gradient-to-r from-emerald-600 to-teal-500 text-white">
             <div>

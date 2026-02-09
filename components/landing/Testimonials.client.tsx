@@ -11,7 +11,7 @@ interface Testimonial {
 
 const data: Testimonial[] = [
     { name: 'Hanna G.', role: 'Electrical Student – Addis Ababa', message: 'The battery module lessons finally explained what we only guessed in class. I feel job‑ready now.', color: 'emerald', rating: 5 },
-    { name: 'Samuel T.', role: 'Vocational Instructor – Adama', message: 'Offline packs kept our workshop going during outages. Students stayed engaged and confident.', color: 'blue', rating: 5 },
+    { name: 'Samuel T.', role: 'Vocational Instructor – Adama', message: 'Live lab sessions made the diagnostics click. Students leave ready for real service bays.', color: 'blue', rating: 5 },
     { name: 'Lulit M.', role: 'Solar & EV Enthusiast – Hawassa', message: 'The local context examples make a huge difference—finally content that understands Ethiopia.', color: 'teal', rating: 5 },
 ];
 

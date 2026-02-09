@@ -116,22 +116,16 @@ const NewNavbar = () => {
             })}
           </div>
 
-          {/* Auth Buttons - Desktop */}
+          {/* CTA + Theme - Desktop */}
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            <Link
-              href="/sign-in"
-              className="group inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-white/70 px-5 py-2.5 text-sm font-medium text-emerald-700 dark:border-emerald-400/40 dark:bg-slate-800/70 dark:text-emerald-300 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-300 dark:hover:border-emerald-400 hover:bg-white dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-            >
-              Sign In
-            </Link>
             <motion.a
-              href="/sign-up"
+              href="#appointment"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 transition-all hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:shadow-emerald-700/30"
             >
-              <span>Sign Up</span>
+              <span>Book Appointment</span>
             </motion.a>
           </div>
 
@@ -200,20 +194,13 @@ const NewNavbar = () => {
                 );
               })}
             </nav>
-            <div className="mt-10 space-y-3">
+            <div className="mt-10">
               <Link
-                href="/sign-in"
-                onClick={() => setIsOpen(false)}
-                className="flex w-full items-center justify-center rounded-xl border border-emerald-200 bg-white/70 px-5 py-3 text-sm font-medium text-emerald-700 backdrop-blur-sm hover:border-emerald-300 hover:bg-white dark:border-emerald-400/40 dark:bg-slate-800/80 dark:text-emerald-300 dark:hover:bg-slate-800"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/sign-up"
+                href="#appointment"
                 onClick={() => setIsOpen(false)}
                 className="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 hover:brightness-105 dark:shadow-emerald-700/30"
               >
-                Sign Up
+                Book Appointment
               </Link>
             </div>
             <div className="mt-auto pt-10 text-xs text-slate-500 dark:text-slate-500/80">

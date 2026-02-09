@@ -12,13 +12,13 @@ export default function CTASection() {
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
                     <Link
-                        href="/sign-up"
+                        href="#appointment"
                         className="inline-flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 px-7 text-white font-semibold shadow-sm shadow-emerald-500/30 transition-colors duration-200 hover:from-emerald-500 hover:to-teal-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                     >
-                        Start Training
+                        Book Appointment
                     </Link>
                     <Link
-                        href="/contact"
+                        href="#contact"
                         className="inline-flex h-12 items-center justify-center rounded-xl border border-slate-300 dark:border-slate-600 px-7 text-slate-900 dark:text-slate-100 font-medium transition-colors duration-200 hover:border-emerald-400 dark:hover:border-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                     >
                         Request Service / Consultation

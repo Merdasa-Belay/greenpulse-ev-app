@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import { buildCourseJsonLd, sanitizeCourseGraph } from "@/lib/structuredData";
 import "./globals.css";
-import ConditionalNavbar from "@/components/ui/ConditionalNavbar";
-import EnvironmentBadge from "@/components/env/EnvironmentBadge";
-import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -128,7 +125,7 @@ export default function RootLayout({
                 addressLocality: 'Addis Ababa',
                 addressCountry: 'ET',
                 instructorName: 'Certified EV Trainer',
-                offerURL: `${appUrl}/sign-up`,
+                offerURL: `${appUrl}/#appointment`,
                 price: 0,
                 priceCurrency: 'USD',
                 availability: 'https://schema.org/PreOrder',
@@ -192,12 +189,8 @@ export default function RootLayout({
           Skip to content
         </a>
         <ThemeProvider>
-          <AuthProvider>
-            <EnvironmentBadge />
-            <ConditionalNavbar />
-            <div id="main">{children}</div>
-            <Analytics />
-          </AuthProvider>
+          <div id="main">{children}</div>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

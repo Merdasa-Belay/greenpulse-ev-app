@@ -10,7 +10,7 @@ interface FAQGroup { category: string; blurb?: string; items: QA[]; }
 const faqGroups: FAQGroup[] = [
     {
         category: 'Training & Learning Paths',
-        blurb: 'Curriculum depth, starting points, certifications, and offline continuity.',
+        blurb: 'Curriculum depth, starting points, certifications, and in‑person delivery.',
         items: [
             {
                 q: 'What EV topics do the learning paths cover?',
@@ -21,8 +21,8 @@ const faqGroups: FAQGroup[] = [
                 a: 'No. You can begin with foundational electrical safety and EV architecture modules. The platform gradually unlocks advanced diagnostics and analytics as you progress.'
             },
             {
-                q: 'Is offline access available?',
-                a: 'Yes. Downloadable lightweight lesson packs, quiz banks, and reference sheets let you continue learning during network gaps.'
+                q: 'Are classes in-person or online?',
+                a: 'All classes are currently in‑person and live. We focus on hands‑on practice and shop-floor learning.'
             },
             {
                 q: 'Will you issue certifications?',

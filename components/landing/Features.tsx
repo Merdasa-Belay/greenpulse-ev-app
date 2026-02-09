@@ -62,8 +62,8 @@ export default function Features() {
             tag: 'Analytics',
         },
         {
-            title: 'Offline / Low Bandwidth',
-            desc: 'Downloadable lesson packs & compressed media for intermittent connectivity regions.',
+            title: 'In‑Person Practical Labs',
+            desc: 'Hands‑on sessions with real tools, vehicles, and guided shop-floor practice.',
             icon: <ShieldCheckIcon className="h-7 w-7" />,
             accent: 'teal',
             tag: 'Access',

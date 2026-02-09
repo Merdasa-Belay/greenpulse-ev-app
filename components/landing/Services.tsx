@@ -69,9 +69,9 @@ export default function Services() {
         {
             icon: <FaCloudDownloadAlt className="text-emerald-600 dark:text-emerald-400 text-2xl" />,
             bg: "bg-emerald-100/70 dark:bg-emerald-900/30",
-            title: "Offline Access",
-            text: "Downloadable, bandwidth-friendly lesson packs.",
-            features: ["Compressed media", "Sync later mode", "Lightweight quizzes"],
+            title: "Industry Readiness",
+            text: "Real‑world exposure through partners, shop visits, and live case studies.",
+            features: ["On‑site demos", "Mentor feedback", "Real service tickets"],
             level: 5,
             thumb: "https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&w=400&q=60",
             alt: "Abstract icon collage representing downloadable learning content",
