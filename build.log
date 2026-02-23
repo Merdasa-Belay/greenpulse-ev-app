@@ -2,37 +2,44 @@
 > greenpulse-ev@0.1.0 build
 > next build
 
- ⚠ Warning: Found multiple lockfiles. Selecting C:\Users\merda\Documents\Projects\package-lock.json.
-   Consider removing the lockfiles at:
-   * C:\Users\merda\Documents\Projects\greenpulse-ev-app\package-lock.json
-
-   ▲ Next.js 15.4.5
-   - Environments: .env
+   Γû▓ Next.js 15.4.5
 
    Creating an optimized production build ...
- ✓ Compiled successfully in 20.0s
+ Γ£ô Compiled successfully in 19.0s
    Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/14) ...
+   Generating static pages (3/14) 
+   Generating static pages (6/14) 
+   Generating static pages (10/14) 
+ Γ£ô Generating static pages (14/14)
+   Finalizing page optimization ...
+   Collecting build traces ...
 
-./components/ui/CTA.tsx
-5:23  Warning: 'children' is defined but never used.  @typescript-eslint/no-unused-vars
+Route (app)                                 Size  First Load JS
+Γöî Γùï /                                    78.6 kB         187 kB
+Γö£ Γùï /_not-found                            149 B        99.8 kB
+Γö£ Γùï /admin                                 149 B        99.8 kB
+Γö£ Γùï /admin/login                         21.3 kB         130 kB
+Γö£ ╞Æ /api/admin/auth/login                  149 B        99.8 kB
+Γö£ ╞Æ /api/admin/auth/logout                 149 B        99.8 kB
+Γö£ ╞Æ /api/admin/auth/me                     149 B        99.8 kB
+Γö£ ╞Æ /api/admin/categories                  149 B        99.8 kB
+Γö£ ╞Æ /api/admin/categories/[id]             149 B        99.8 kB
+Γö£ ╞Æ /api/admin/posts                       149 B        99.8 kB
+Γö£ ╞Æ /api/admin/posts/[id]                  149 B        99.8 kB
+Γö£ Γùï /blog                                  176 B         108 kB
+Γö£ ╞Æ /blog/[slug]                           176 B         108 kB
+Γö£ Γùï /robots.txt                            149 B        99.8 kB
+Γöö Γùï /sitemap.xml                           149 B        99.8 kB
++ First Load JS shared by all            99.7 kB
+  Γö£ chunks/4bd1b696-cf72ae8a39fa05aa.js  54.1 kB
+  Γö£ chunks/964-02efbd2195ef91bd.js       43.5 kB
+  Γöö other shared chunks (total)             2 kB
 
-info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
-Failed to compile.
 
-./components/CompanionForm.tsx:6:24
-Type error: Already included file name 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/ui/Button.tsx' differs from file name 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/ui/button.tsx' only in casing.
-  The file is in the program because:
-    Imported via "@/components/ui/Button" from file 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/CompanionForm.tsx'
-    Imported via './Button' from file 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/ui/Button.tsx'
-    Imported via '@/components/ui/Button' from file 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/landing/About.tsx'
-    Imported via './Button' from file 'C:/Users/merda/Documents/Projects/greenpulse-ev-app/components/ui/CTA.tsx'
-    Root file specified for compilation
+╞Æ Middleware                             39.1 kB
 
-[0m [90m 4 |[39m [36mimport[39m { useForm } [36mfrom[39m [32m"react-hook-form"[39m
- [90m 5 |[39m [36mimport[39m { z } [36mfrom[39m [32m"zod"[39m
-[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/Button"[39m
- [90m   |[39m                        [31m[1m^[22m[39m
- [90m 7 |[39m [36mimport[39m { [33mInput[39m } [36mfrom[39m [32m"@/components/ui/input"[39m
- [90m 8 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m
- [90m 9 |[39m [36mimport[39m {[0m
-Next.js build worker exited with code: 1 and signal: null
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+

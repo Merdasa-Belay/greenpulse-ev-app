@@ -8,6 +8,7 @@ import About from '@/components/landing/About';
 import { CTA } from '@/components/ui/CTA';
 import Testimonials from '@/components/landing/Testimonials';
 import Partners from '@/components/landing/Partners';
+import BlogPreview from '@/components/landing/BlogPreview';
 import Appointment from '@/components/landing/Appointment';
 import Contact from '@/components/landing/Contact';
 import Map from '@/components/landing/Map';
@@ -19,6 +20,8 @@ import MobileBottomNav from '@/components/MobileBottomNav';
 import BackToTop from '@/components/ui/BackToTop';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://greenpulse.com';
+
+export const dynamic = 'force-dynamic';
 
 const orgJsonLd = {
   '@context': 'https://schema.org',
@@ -102,6 +105,7 @@ export default function LandingPage() {
       <About />
       <Testimonials />
       <Partners />
+      <BlogPreview />
       <Appointment />
       <Contact />
       <FAQ />

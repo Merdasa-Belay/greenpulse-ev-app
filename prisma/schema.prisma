@@ -12,12 +12,80 @@ model user {
   name      String
   email     String    @unique(map: "User_email_key")
   createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   password  String
   role      user_role @default(student)
+  posts     post[]
+  media     media[]
 }
 
 enum user_role {
   student
   teacher
   admin
+}
+
+enum post_status {
+  draft
+  published
+}
+
+model post {
+  id             Int          @id @default(autoincrement())
+  title          String
+  slug           String       @unique
+  excerpt        String
+  content        String       @db.LongText
+  coverImage     String?
+  status         post_status  @default(draft)
+  readTime       Int
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  publishedAt    DateTime?
+  authorId       Int
+  author         user         @relation(fields: [authorId], references: [id])
+  categoryId     Int?
+  category       category?    @relation(fields: [categoryId], references: [id])
+  tags           post_tag[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     post[]
+}
+
+model tag {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  posts     post_tag[]
+}
+
+model post_tag {
+  postId Int
+  tagId  Int
+  post   post @relation(fields: [postId], references: [id])
+  tag    tag  @relation(fields: [tagId], references: [id])
+
+  @@id([postId, tagId])
+}
+
+model media {
+  id           Int      @id @default(autoincrement())
+  url          String
+  publicId     String?
+  createdAt    DateTime @default(now())
+  uploadedById Int
+  uploadedBy   user     @relation(fields: [uploadedById], references: [id])
 }

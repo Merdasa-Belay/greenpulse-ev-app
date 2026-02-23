@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from '@/lib/motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -22,31 +22,40 @@ const navItems: NavItem[] = [
   { name: 'About', href: '#about' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
+  { name: 'Blog', href: '/blog' },
 ];
 
 const NewNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [active, setActive] = useState<string>('');
+  const lockUntilRef = useRef(0);
 
   // Track scroll position to toggle background + active section
   useEffect(() => {
     const sectionIds = navItems.map(i => i.href).filter(h => h.startsWith('#'));
 
     const handleScroll = () => {
+      if (Date.now() < lockUntilRef.current) {
+        return;
+      }
       const y = window.scrollY;
       setIsScrolled(y > 8);
-      // Determine active section (simple heuristic: last section above midpoint)
+      const midpoint = window.innerHeight * 0.35;
       let current = '';
       for (const id of sectionIds) {
         const el = document.querySelector<HTMLElement>(id);
         if (!el) continue;
         const rect = el.getBoundingClientRect();
-        if (rect.top <= window.innerHeight * 0.35) {
+        const inView = rect.top <= midpoint && rect.bottom > midpoint;
+        if (inView) {
           current = id;
+          break;
         }
       }
-      setActive(current);
+      if (current) {
+        setActive(current);
+      }
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -96,10 +105,18 @@ const NewNavbar = () => {
           <div className="hidden md:flex items-center gap-2">
             {navItems.map((item) => {
               const isActive = active === item.href;
+              const handleClick = () => {
+                if (item.href.startsWith('#')) {
+                  setActive(item.href);
+                  lockUntilRef.current = Date.now() + 1000;
+                }
+              };
+
               return (
                 <motion.a
                   key={item.name}
                   href={item.href}
+                  onClick={handleClick}
                   whileHover={{ y: -2 }}
                   className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ${isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400'}`}
                 >
@@ -177,11 +194,19 @@ const NewNavbar = () => {
             <nav className="flex flex-col gap-2">
               {menuItems.map((item, idx) => {
                 const isActive = active === item.href;
+                const handleClick = () => {
+                  if (item.href.startsWith('#')) {
+                    setActive(item.href);
+                    lockUntilRef.current = Date.now() + 1000;
+                  }
+                  setIsOpen(false);
+                };
+
                 return (
                   <motion.a
                     key={item.name}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleClick}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
